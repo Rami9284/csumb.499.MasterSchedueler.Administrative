@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - AdministrativeApplication",
+            "request": "launch",
+            "mainClass": "com.csumb.Administrative.AdministrativeApplication",
+            "projectName": "Administrative"
+        }
+    ]
+}
