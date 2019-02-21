@@ -17,14 +17,22 @@ public class AdministrativeController{
     IStudentRepository studentRepo;
     ITeacherRepository teacherRepo;
 
+    @GetMapping("/test")
+    public String test() {
+        
+        return "This is a test";
+
+    }
+
     //@CrossOrigin(origins = {"https://otterbuy.herokuapp.com","http://localhost:4200"})
     @GetMapping("/students")
     public List<Student> getStudents() {
         //List<Student> result = studentRepo.getAll();
         //return result;
-
+        
         return null;
     }
+
     
     @GetMapping("/teachers")
     public List<Student> getTeachers() {
