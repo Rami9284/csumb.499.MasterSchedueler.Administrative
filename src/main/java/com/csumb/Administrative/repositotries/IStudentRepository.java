@@ -8,14 +8,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface IStudentRepository extends MongoRepository<Student,String> {
-
-    //Finding by ID
-    @Override
-    default Optional<Student> findById(String id) {
-        return null;
-    }
 
     // delete query
     void delete(Student s);
@@ -33,6 +30,11 @@ public interface IStudentRepository extends MongoRepository<Student,String> {
     Student save(Student s);
 
     Student saveAll(Student s );
+    Optional<Student> findById(String id);
+
+    List<Student> findAll();
+
+    Student findByName(String name);
     
 }
 

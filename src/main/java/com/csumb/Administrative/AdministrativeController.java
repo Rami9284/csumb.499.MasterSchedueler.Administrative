@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,6 +30,8 @@ public class AdministrativeController{
         return "This is a test";
 
     }
+
+
 
     //@CrossOrigin(origins = {"https://otterbuy.herokuapp.com","http://localhost:4200"})
 
@@ -82,6 +86,11 @@ public class AdministrativeController{
     @PostMapping(path = "/addteachers")
     public void addTeacher(@RequestBody List<Teacher> teacher) {
         teacherRepo.insert(teacher);
+    } 
+    
+    @GetMapping("/teachers/{name}")
+    public Student findStudent(@PathVariable String name) {
+        return studentRepo.findByName(name);
     }
 
     @DeleteMapping("/{teacher}")
