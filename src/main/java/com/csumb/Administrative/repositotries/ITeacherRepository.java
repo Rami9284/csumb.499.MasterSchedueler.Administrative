@@ -11,26 +11,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ITeacherRepository extends MongoRepository<Teacher,String> {
   
-    //Finding by ID
-  @Override
-  default Optional<Teacher> findById(String id) {
-      return null;
-  }
-
-  // delete query
-  void delete(Teacher s);
-
-  void deleteById(String id);
-
-  void deleteAll( List<Teacher> s );
-
-  // add query
-  Teacher insert(Teacher s);
-
-  List<Teacher> insert(List<Teacher> s);
-  
-  // update query
-  Teacher save(Teacher s);
-
-  Teacher saveAll(Teacher s );
 }

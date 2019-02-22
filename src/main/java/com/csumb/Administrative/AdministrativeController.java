@@ -87,11 +87,11 @@ public class AdministrativeController{
     public void addTeacher(@RequestBody List<Teacher> teacher) {
         teacherRepo.insert(teacher);
     } 
-    
-    @GetMapping("/teachers/{name}")
+
+    /*@GetMapping("/teachers/{name}")
     public Student findStudent(@PathVariable String name) {
         return studentRepo.findByName(name);
-    }
+    }*/
 
     @DeleteMapping("/{teacher}")
     public void deleteTeacher(@RequestBody Teacher teacher){
