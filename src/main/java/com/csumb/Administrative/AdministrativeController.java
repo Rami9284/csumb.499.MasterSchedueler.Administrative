@@ -16,6 +16,8 @@ public class AdministrativeController{
 
     @Autowired
     IStudentRepository studentRepo;
+    
+    @Autowired
     ITeacherRepository teacherRepo;
 
     //Response : list of every student
