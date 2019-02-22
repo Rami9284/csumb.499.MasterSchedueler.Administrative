@@ -8,18 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ITeacherRepository extends MongoRepository<Teacher,String> {
 
-    @Query (value = "{'id':'?0'}")
-    
-    Teacher findId(String id);
 
-
-    @Query (value = "{'name':?0}")   
-
-    Teacher findName(String name); 
-
-    // delete query
-
-    // add query
-
-    // update query
 }

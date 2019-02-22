@@ -3,11 +3,14 @@ package com.csumb.Administrative;
 import java.util.List;
 
 import com.csumb.Administrative.entities.Student;
+import com.csumb.Administrative.entities.Teacher;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,22 +27,22 @@ public class AdministrativeController{
 
     }
 
+
+
     //@CrossOrigin(origins = {"https://otterbuy.herokuapp.com","http://localhost:4200"})
     @GetMapping("/students")
     public List<Student> getStudents() {
-        //List<Student> result = studentRepo.getAll();
-        //return result;
-        
-        return null;
+        return studentRepo.findAll();
     }
-
     
     @GetMapping("/teachers")
-    public List<Student> getTeachers() {
-        //List<Student> result = studentRepo.getAll();
-        //return result;
+    public List<Teacher> getTeachers() {
+        return teacherRepo.findAll();
+    }
 
-        return null;
+    @GetMapping("/teachers/{name}")
+    public Student findStudent(@PathVariable String name) {
+        return studentRepo.findByName(name);
     }
 
 }
