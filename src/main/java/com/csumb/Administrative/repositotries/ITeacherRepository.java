@@ -1,25 +1,36 @@
 package com.csumb.Administrative.repositotries;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.csumb.Administrative.entities.Teacher;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
+import javax.management.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ITeacherRepository extends MongoRepository<Teacher,String> {
+  
+    //Finding by ID
+  @Override
+  default Optional<Teacher> findById(String id) {
+      return null;
+  }
 
-    @Query (value = "{'id':'?0'}")
-    
-    Teacher findId(String id);
+  // delete query
+  void delete(Teacher s);
 
+  void deleteById(String id);
 
-    @Query (value = "{'name':?0}")   
+  void deleteAll( List<Teacher> s );
 
-    Teacher findName(String name); 
+  // add query
+  Teacher insert(Teacher s);
 
-    // delete query
+  List<Teacher> insert(List<Teacher> s);
+  
+  // update query
+  Teacher save(Teacher s);
 
-    // add query
-
-    // update query
+  Teacher saveAll(Teacher s );
 }
