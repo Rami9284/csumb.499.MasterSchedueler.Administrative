@@ -1,5 +1,7 @@
 package com.csumb.Administrative;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.csumb.Administrative.entities.Student;
@@ -23,7 +25,8 @@ public class AdministrativeController{
         //List<Student> result = studentRepo.getAll();
         //return result;
 
-        return null;
+        List<Student> ans = new ArrayList<Student>(Arrays.asList(new Student("1"), new Student("2"), new Student("3")));
+        return ans;
     }
     
     @GetMapping("/teachers")

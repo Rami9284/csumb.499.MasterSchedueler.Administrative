@@ -14,6 +14,16 @@ public class Student {
     int grade;
     List prefered_classes;
 
+    public Student() {
+        this.grade = 0;
+        this.name = "test";
+        this.per_id = "00000";
+    }
+
+    public Student(String per_id) {
+        this.per_id = per_id;
+    }
+
     public Student(String per_id, String name, int grade) {
         this.per_id = per_id;
         this.name = name;
