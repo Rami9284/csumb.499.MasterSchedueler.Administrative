@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.Objects;
 
 @Document
 public class Student {
@@ -60,5 +61,31 @@ public class Student {
 
     public void setprefered_classes(List prefered_classes) {
         this.prefered_classes = prefered_classes;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "per_id='" + per_id + '\'' +
+                ", name='" + name + '\'' +
+                ", grade=" + grade +
+                ", prefered_classes=" + prefered_classes +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return grade == student.grade &&
+                per_id.equals(student.per_id) &&
+                name.equals(student.name) &&
+                prefered_classes.equals(student.prefered_classes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(per_id, name, grade, prefered_classes);
     }
 }

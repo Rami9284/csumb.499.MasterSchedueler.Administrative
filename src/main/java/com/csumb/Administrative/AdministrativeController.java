@@ -1,16 +1,15 @@
 package com.csumb.Administrative;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import com.csumb.Administrative.entities.Student;
+import com.csumb.Administrative.entities.Teacher;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AdministrativeController{
@@ -19,22 +18,102 @@ public class AdministrativeController{
     IStudentRepository studentRepo;
     ITeacherRepository teacherRepo;
 
-    //@CrossOrigin(origins = {"https://otterbuy.herokuapp.com","http://localhost:4200"})
+    //Response : list of every student
     @GetMapping("/students")
     public List<Student> getStudents() {
-        //List<Student> result = studentRepo.getAll();
-        //return result;
-
-        List<Student> ans = new ArrayList<Student>(Arrays.asList(new Student("1"), new Student("2"), new Student("3")));
-        return ans;
+        return studentRepo.findAll();
     }
-    
+
+    //Response : null if success,
+    //           List of students with failures
+    @PostMapping("/addstudents")
+    public List<Student> addStudents(@RequestBody List<Student> students) {
+        List<Student> error = new ArrayList<>();
+        Student err;
+
+            for (Student s: students) {
+                err = s;
+                try {
+                    studentRepo.insert(s);
+                }
+                catch (Exception e){
+                    error.add(err);
+                }
+            }
+
+        if(error.isEmpty()){
+            return null;
+        }
+        return error;
+    }
+
+//    @DeleteMapping("/deletestudents")
+//    public void deleteStudents(@RequestBody List<Student> students){
+//        System.out.println("hello");
+//        for (Student e: students) {
+//            try {
+//                System.out.printf("Trying to delete");
+//                studentRepo.deleteById(e.getPer_id());
+//            } catch (Exception ex) {
+//                System.out.println("in catch");
+//                System.out.println(ex);
+//            }
+//        }
+//        System.out.println(students);
+//        System.out.println(studentRepo.findAll());
+//    }
+
+    //Response: null
+    @PutMapping("/updatestudents")
+    public void updateStudents(@RequestBody List<Student> students){
+        studentRepo.saveAll(students);
+    }
+
+    //Teachers
+    //Response: list of all teachers
     @GetMapping("/teachers")
-    public List<Student> getTeachers() {
-        //List<Student> result = studentRepo.getAll();
-        //return result;
-
-        return null;
+    public List<Teacher> getTeachers() {
+        return teacherRepo.findAll();
     }
 
+    //Response : null if success,
+    //           List of Teachers with failures
+    @PostMapping("/addteachers")
+    public List<Teacher> addTeacher(@RequestBody List<Teacher> teachers) {
+        List<Teacher> error = new ArrayList<>();
+        Teacher err;
+
+        for (Teacher s: teachers) {
+            err = s;
+            try {
+                teacherRepo.insert(s);
+            }
+            catch (Exception e){
+                error.add(err);
+            }
+        }
+
+        if(error.isEmpty()){
+            return null;
+        }
+        return error;
+    }
+
+    // need to refactor this
+    @GetMapping("/findteacher/{id}")
+    public Optional<Teacher> findTeacher(@PathVariable String id) {
+        return teacherRepo.findById(id);
+    }
+
+//    @DeleteMapping("/{teachers}")
+//    public void deleteTeacher(@RequestBody List<Teacher> teachers){
+//        teacherRepo.deleteAll(teachers);
+//    }
+//
+
+    @PutMapping("/updateteachers")
+    public void updateTeachers(@RequestBody List<Teacher> teachers){
+        teacherRepo.saveAll(teachers);
+    }
+  
 }
