@@ -20,7 +20,7 @@ public class StudentSeeder implements CommandLineRunner {
         Student s3 = new Student("567", "Judith", 11);
         Student s4 = new Student("789", "Manjit", 12);
 
-//        studentRepository.deleteAll();
+        studentRepository.deleteAll();
         List<Student> students = Arrays.asList(s1,s2,s3,s4);
         studentRepository.saveAll(students);
     }
