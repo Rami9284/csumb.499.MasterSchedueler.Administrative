@@ -1,7 +1,9 @@
 package com.csumb.Administrative;
 
+import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.entities.Student;
 import com.csumb.Administrative.entities.Teacher;
+import com.csumb.Administrative.repositotries.IClassRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
 import org.junit.Assert;
@@ -31,11 +33,16 @@ public class ControllerTest {
     @MockBean
     private ITeacherRepository teacherRepository;
 
+    @MockBean
+    private IClassRepository classRepository;
+
     private List<Student> studentData = new ArrayList<>(Arrays.asList(new Student("123", "Edith",9),
             new Student("345", "Daniel", 10)));
 
     private List<Teacher> teacherData = new ArrayList<>(Arrays.asList(new Teacher("098","Ms. Gonzalez","English", 1),
             new Teacher("876", "Ms. Gurcha", "Science", 4)));
+
+    private List<Class> classData = new ArrayList<>(Arrays.asList(new Class("430","Math", "Algebra"), new Class("989","Math", "Calc")));
 
     //all Students
     @Test
@@ -88,6 +95,32 @@ public class ControllerTest {
     public void updateTeachers(){
         when(teacherRepository.saveAll(teacherData)).thenReturn(teacherData);
         Assert.assertEquals(teacherData, administrativeController.updateTeachers(teacherData));
+    }
+
+    //all Classes
+    @Test
+    public void getAllClasses(){
+        when(classRepository.findAll()).thenReturn(classData);
+        Assert.assertEquals(classData, administrativeController.getClasses());
+    }
+
+    @Test
+    public void addClasses(){
+        //When there is not an error
+        when(classRepository.insert(classData.get(0))).thenReturn(classData.get(0));
+        when(classRepository.insert(classData.get(1))).thenReturn(classData.get(1));
+        Assert.assertEquals(null,administrativeController.addClasses(classData));
+
+        //when an error occurs
+        when(classRepository.insert(classData.get(0))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        when(classRepository.insert(classData.get(1))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        Assert.assertEquals(classData, administrativeController.addClasses(classData));
+    }
+
+    @Test
+    public void updateClasses(){
+        when(classRepository.saveAll(classData)).thenReturn(classData);
+        Assert.assertEquals(classData, administrativeController.updateClasses(classData));
     }
 
 }

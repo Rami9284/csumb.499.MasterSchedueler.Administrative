@@ -1,4 +1,4 @@
-package com.csumb.Administrative;
+package com.csumb.Administrative.seeders;
 
 import com.csumb.Administrative.entities.Teacher;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
