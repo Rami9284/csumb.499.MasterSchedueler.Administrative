@@ -16,6 +16,8 @@ public class AdministrativeController{
 
     @Autowired
     IStudentRepository studentRepo;
+
+    @Autowired
     ITeacherRepository teacherRepo;
 
     //Response : list of every student
@@ -63,10 +65,10 @@ public class AdministrativeController{
 //        System.out.println(studentRepo.findAll());
 //    }
 
-    //Response: null
+    //Response: list of students
     @PutMapping("/updatestudents")
-    public void updateStudents(@RequestBody List<Student> students){
-        studentRepo.saveAll(students);
+    public List<Student> updateStudents(@RequestBody List<Student> students){
+        return studentRepo.saveAll(students);
     }
 
     //Teachers
@@ -112,8 +114,8 @@ public class AdministrativeController{
 //
 
     @PutMapping("/updateteachers")
-    public void updateTeachers(@RequestBody List<Teacher> teachers){
-        teacherRepo.saveAll(teachers);
+    public List<Teacher> updateTeachers(@RequestBody List<Teacher> teachers){
+        return teacherRepo.saveAll(teachers);
     }
   
 }
