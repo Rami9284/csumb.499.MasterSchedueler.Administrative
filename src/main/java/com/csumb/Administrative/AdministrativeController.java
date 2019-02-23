@@ -51,22 +51,22 @@ public class AdministrativeController{
         return error;
     }
 
-//    @CrossOrigin(origins = "*")
-//    @DeleteMapping("/deletestudents")
-//    public void deleteStudents(@RequestBody List<Student> students){
-//        System.out.println("hello");
-//        for (Student e: students) {
-//            try {
-//                System.out.printf("Trying to delete");
-//                studentRepo.deleteById(e.getPer_id());
-//            } catch (Exception ex) {
-//                System.out.println("in catch");
-//                System.out.println(ex);
-//            }
-//        }
-//        System.out.println(students);
-//        System.out.println(studentRepo.findAll());
-//    }
+   @CrossOrigin(origins = "*")
+   @DeleteMapping("/deletestudents")
+   public void deleteStudents(@RequestBody List<Student> students){
+       System.out.println("hello");
+       for (Student e: students) {
+           try {
+               System.out.printf("Trying to delete");
+               studentRepo.deleteById(e.getPer_id());
+           } catch (Exception ex) {
+               System.out.println("in catch");
+               System.out.println(ex);
+           }
+       }
+       System.out.println(students);
+       System.out.println(studentRepo.findAll());
+   }
 
     //Response: null
     @CrossOrigin(origins = "*")
