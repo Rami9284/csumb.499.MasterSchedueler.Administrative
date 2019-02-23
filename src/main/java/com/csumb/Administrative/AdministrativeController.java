@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import com.csumb.Administrative.entities.Class;
+import com.csumb.Administrative.entities.Section;
 import com.csumb.Administrative.entities.Student;
 import com.csumb.Administrative.entities.Teacher;
 import com.csumb.Administrative.repositotries.IClassRepository;
+import com.csumb.Administrative.repositotries.ISectionRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +19,16 @@ import org.springframework.web.bind.annotation.*;
 public class AdministrativeController{
 
     @Autowired
-    IStudentRepository studentRepo;
+    private IStudentRepository studentRepo;
 
     @Autowired
-    ITeacherRepository teacherRepo;
+    private ITeacherRepository teacherRepo;
 
     @Autowired
-    IClassRepository classRepo;
+    private IClassRepository classRepo;
+
+    @Autowired
+    private ISectionRepository sectionRepo;
 
     //Response : list of every student
     @CrossOrigin(origins = "*")
@@ -183,6 +188,55 @@ public class AdministrativeController{
 //    @DeleteMapping("/{classes}")
 //    public void deleteClasses(@RequestBody List<Class> classes){
 //        classRepo.deleteAll(classes);
+//    }
+//
+
+    //Sections
+    //Response: list of all the sections
+    @CrossOrigin(origins = "*")
+    @GetMapping("/sections")
+    public List<Section> getSections() {
+        return sectionRepo.findAll();
+    }
+
+    // need to refactor this
+    @CrossOrigin(origins = "*")
+    @GetMapping("/findsection/{id}")
+    public Optional<Section> findSection(@PathVariable String id) {
+        return sectionRepo.findById(id);
+    }
+
+    //Response : null if success,
+    //           List of Sections with failures
+    @CrossOrigin(origins = "*")
+    @PostMapping("/addsections")
+    public List<Section> addSections(@RequestBody List<Section> sections) {
+        List<Section> error = new ArrayList<>();
+        Section err;
+        for (Section s: sections) {
+            err = s;
+            try {
+                sectionRepo.insert(s);
+            }
+            catch (Exception e){
+                error.add(err);
+            }
+        }
+        if(error.isEmpty()){
+            return null;
+        }
+        return error;
+    }
+
+    @CrossOrigin(origins = "*")
+    @PutMapping("/updatesection")
+    public List<Section> updateSections(@RequestBody List<Section> sections){
+        return sectionRepo.saveAll(sections);
+    }
+
+//    @DeleteMapping("/{section}")
+//    public void deleteSections(@RequestBody List<Section> sections){
+//        sectionRepo.deleteAll(sections);
 //    }
 //
   

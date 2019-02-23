@@ -1,9 +1,11 @@
 package com.csumb.Administrative;
 
 import com.csumb.Administrative.entities.Class;
+import com.csumb.Administrative.entities.Section;
 import com.csumb.Administrative.entities.Student;
 import com.csumb.Administrative.entities.Teacher;
 import com.csumb.Administrative.repositotries.IClassRepository;
+import com.csumb.Administrative.repositotries.ISectionRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
 import org.junit.Assert;
@@ -36,6 +38,9 @@ public class ControllerTest {
     @MockBean
     private IClassRepository classRepository;
 
+    @MockBean
+    private ISectionRepository sectionRepository;
+
     private List<Student> studentData = new ArrayList<>(Arrays.asList(new Student("123", "Edith",9),
             new Student("345", "Daniel", 10)));
 
@@ -43,6 +48,8 @@ public class ControllerTest {
             new Teacher("876", "Ms. Gurcha", "Science", 4)));
 
     private List<Class> classData = new ArrayList<>(Arrays.asList(new Class("430","Math", "Algebra"), new Class("989","Math", "Calc")));
+
+    private List<Section> sectionData = new ArrayList<>(Arrays.asList(new Section(classData.get(0),4), new Section(classData.get(1),2)));
 
     //all Students
     @Test
@@ -121,6 +128,33 @@ public class ControllerTest {
     public void updateClasses(){
         when(classRepository.saveAll(classData)).thenReturn(classData);
         Assert.assertEquals(classData, administrativeController.updateClasses(classData));
+    }
+
+
+    //all Sections
+    @Test
+    public void getAllSections(){
+        when(sectionRepository.findAll()).thenReturn(sectionData);
+        Assert.assertEquals(sectionData, administrativeController.getSections());
+    }
+
+    @Test
+    public void addSections(){
+        //When there is not an error
+        when(sectionRepository.insert(sectionData.get(0))).thenReturn(sectionData.get(0));
+        when(sectionRepository.insert(sectionData.get(1))).thenReturn(sectionData.get(1));
+        Assert.assertEquals(null,administrativeController.addSections(sectionData));
+
+        //when an error occurs
+        when(sectionRepository.insert(sectionData.get(0))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        when(sectionRepository.insert(sectionData.get(1))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        Assert.assertEquals(sectionData, administrativeController.addSections(sectionData));
+    }
+
+    @Test
+    public void updateSections(){
+        when(sectionRepository.saveAll(sectionData)).thenReturn(sectionData);
+        Assert.assertEquals(sectionData, administrativeController.updateSections(sectionData));
     }
 
 }
