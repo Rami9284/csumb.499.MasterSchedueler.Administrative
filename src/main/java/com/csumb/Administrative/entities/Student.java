@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Student {
 
     @Id
-    String per_id;
+    String id;
     String name;
     int grade;
     List prefered_classes;
@@ -18,25 +18,25 @@ public class Student {
     public Student() {
         this.grade = 0;
         this.name = "test";
-        this.per_id = "00000";
+        this.id = "00000";
     }
 
-    public Student(String per_id) {
-        this.per_id = per_id;
+    public Student(String id) {
+        this.id = id;
     }
 
-    public Student(String per_id, String name, int grade) {
-        this.per_id = per_id;
+    public Student(String id, String name, int grade) {
+        this.id = id;
         this.name = name;
         this.grade = grade;
     }
 
-    public String getPer_id() {
-        return per_id;
+    public String getid() {
+        return id;
     }
 
-    public void setPer_id(String per_id) {
-        this.per_id = per_id;
+    public void setid(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -66,7 +66,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "per_id='" + per_id + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", grade=" + grade +
                 ", prefered_classes=" + prefered_classes +
@@ -79,13 +79,13 @@ public class Student {
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
         return grade == student.grade &&
-                per_id.equals(student.per_id) &&
+                id.equals(student.id) &&
                 name.equals(student.name) &&
                 prefered_classes.equals(student.prefered_classes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(per_id, name, grade, prefered_classes);
+        return Objects.hash(id, name, grade, prefered_classes);
     }
 }
