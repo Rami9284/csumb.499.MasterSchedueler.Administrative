@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IStudentRepository extends MongoRepository<Student,String> {
 
-//    @Query(value = "{id: $id}", delete = true)
-//    void deleteById(String id);
+   // @Query(value = "{'per_id': '$0'}", delete = true)
+   // void deleteById(String id);
 }
 
