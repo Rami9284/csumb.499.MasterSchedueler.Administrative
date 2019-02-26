@@ -74,22 +74,19 @@ public class AdministrativeController{
         return studentRepo.saveAll(students);
     }
 
-//    @CrossOrigin(origins = "*")
-//    @DeleteMapping("/deletestudents")
-//    public void deleteStudents(@RequestBody List<Student> students){
-//        System.out.println("hello");
-//        for (Student e: students) {
-//            try {
-//                System.out.printf("Trying to delete");
-//                studentRepo.deleteById(e.getPer_id());
-//            } catch (Exception ex) {
-//                System.out.println("in catch");
-//                System.out.println(ex);
-//            }
-//        }
-//        System.out.println(students);
-//        System.out.println(studentRepo.findAll());
-//    }
+    //Response : null if success,
+    //           List of students with failures
+   @CrossOrigin(origins = "*")
+   @DeleteMapping("/deletestudents")
+   public void deleteStudents(@RequestBody List<Student> students){
+       for (Student e: students) {
+           try {
+               studentRepo.deleteById(e.getid());
+           } catch (Exception ex) {
+               System.out.println(ex);
+           }
+       }
+   }
 
     //Teachers
     //Response: list of all
@@ -136,11 +133,19 @@ public class AdministrativeController{
         return teacherRepo.saveAll(teachers);
     }
 
-//    @DeleteMapping("/{teachers}")
-//    public void deleteTeacher(@RequestBody List<Teacher> teachers){
-//        teacherRepo.deleteAll(teachers);
-//    }
-//
+    //response: null if success
+    //          List of techers with failure  
+   @DeleteMapping("/deleteteachers")
+   public void deleteTeacher(@RequestBody List<Teacher> teachers){
+        for (Teacher e: teachers) {
+            try {
+                teacherRepo.deleteById(e.getId());
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+        }
+   }
+
 
     //Classes
     //Response: list of all the classes
@@ -185,11 +190,19 @@ public class AdministrativeController{
         return classRepo.saveAll(classes);
     }
 
-//    @DeleteMapping("/{classes}")
-//    public void deleteClasses(@RequestBody List<Class> classes){
-//        classRepo.deleteAll(classes);
-//    }
-//
+    //Response : null if success,
+    //           List of Teachers with failures
+   @DeleteMapping("/deleteclasses")
+   public void deleteClasses(@RequestBody List<Class> classes){
+        for (Class e: classes) {
+            try {
+                classRepo.deleteById(e.getClass_id());
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+        }
+   }
+
 
     //Sections
     //Response: list of all the sections
@@ -234,10 +247,18 @@ public class AdministrativeController{
         return sectionRepo.saveAll(sections);
     }
 
-//    @DeleteMapping("/{section}")
-//    public void deleteSections(@RequestBody List<Section> sections){
-//        sectionRepo.deleteAll(sections);
-//    }
-//
+    //Response : null if success,
+    //           List of Teachers with failures
+   @DeleteMapping("/deletesections")
+   public void deleteSections(@RequestBody List<Section> sections){
+        for (Section e: sections) {
+            try {
+                sectionRepo.deleteById(e.getClass_id());
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+        }
+   }
+
   
 }
