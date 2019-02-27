@@ -34,8 +34,8 @@ public class AdministrativeControllerTest {
     private List<Student> studentData = new ArrayList<>(Arrays.asList(new Student("123", "Edith",9),
             new Student("345", "Daniel", 10)));
 
-    private List<Teacher> teacherData = new ArrayList<>(Arrays.asList(new Teacher("098","Ms. Gonzalez","English", 1),
-            new Teacher("876", "Ms. Gurcha", "Science", 4)));
+    private List<Teacher> teacherData = new ArrayList<>(Arrays.asList(new Teacher("098","Ms. Gonzalez","English"),
+            new Teacher("876", "Ms. Gurcha", "Science")));
 
     //all Students
     @Test

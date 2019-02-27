@@ -146,7 +146,6 @@ public class AdministrativeController{
         }
    }
 
-
     //Classes
     //Response: list of all the classes
     @CrossOrigin(origins = "*")

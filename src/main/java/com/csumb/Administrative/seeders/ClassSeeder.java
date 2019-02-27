@@ -17,7 +17,7 @@ public class ClassSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args)throws  Exception{
-        Class c1 = new Class("0012", "English", "Literature", "400", "760");
+        Class c1 = new Class("English", "Literature", "400");
        
         // Class c2 = new Class("0000", "Math", "Geometry", "101", "216");
         // Class c3 = new Class("0101", "Art", "Digital Art","201", "656");
