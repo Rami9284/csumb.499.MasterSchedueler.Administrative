@@ -15,16 +15,16 @@ public class TeacherSeeder  implements CommandLineRunner {
 
     @Override
     public void run(String... args)throws  Exception {
-        Teacher t1 = new Teacher("098","Ms. Gonzalez","English", 1);
-        Teacher t2 = new Teacher("876", "Ms. Gurcha", "Science", 4);
-        Teacher t3 = new Teacher("656", "Ms. Ramirez", "Art", 6);
-        Teacher t4 = new Teacher("216", "Mr. Aguila", "Math", 3);
-        Teacher t5 = new Teacher("356", "Mr. Ferguson", "Science", 6);
-        Teacher t6 = new Teacher("615", "Mr. O\'Brien", "English", 3);
-        Teacher t7 = new Teacher("522", "Mr. kent", "Math", 1);
-        Teacher t8 = new Teacher("760", "Ms. Andrews", "English", 2);
-        Teacher t9 = new Teacher("627", "Mr. Robertson", "History", 5);
-        Teacher t10 = new Teacher("348", "Ms. Johnston", "Science", 4);
+        Teacher t1 = new Teacher("098","Ms. Gonzalez","English");
+        Teacher t2 = new Teacher("876", "Ms. Gurcha", "Science");
+        Teacher t3 = new Teacher("656", "Ms. Ramirez", "Art");
+        Teacher t4 = new Teacher("216", "Mr. Aguila", "Math");
+        Teacher t5 = new Teacher("356", "Mr. Ferguson", "Science");
+        Teacher t6 = new Teacher("615", "Mr. O\'Brien", "English");
+        Teacher t7 = new Teacher("522", "Mr. kent", "Math");
+        Teacher t8 = new Teacher("760", "Ms. Andrews", "English");
+        Teacher t9 = new Teacher("627", "Mr. Robertson", "History");
+        Teacher t10 = new Teacher("348", "Ms. Johnston", "Science");
         // Teacher t11 = new Teacher("435", "Ms. Chambers", "Art", 2);
         // Teacher t12 = new Teacher("488", "Ms. Marquez", "History", 1);
         // Teacher t13 = new Teacher("767", "Mr. Freeman", "English", 4);

@@ -120,7 +120,6 @@ public class AdministrativeController{
                 error.add(err);
             }
         }
-
         if(error.isEmpty()){
             return null;
         }
@@ -145,7 +144,6 @@ public class AdministrativeController{
             }
         }
    }
-
 
     //Classes
     //Response: list of all the classes
