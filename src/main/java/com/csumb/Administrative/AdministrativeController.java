@@ -120,7 +120,6 @@ public class AdministrativeController{
                 error.add(err);
             }
         }
-
         if(error.isEmpty()){
             return null;
         }
