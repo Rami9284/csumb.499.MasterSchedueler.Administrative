@@ -1,6 +1,6 @@
 package com.csumb.Administrative;
 
-import com.csumb.Administrative.entities.Classes;
+import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.entities.Section;
 import com.csumb.Administrative.entities.Student;
 import com.csumb.Administrative.entities.Teacher;
@@ -47,7 +47,7 @@ public class ControllerTest {
     private List<Teacher> teacherData = new ArrayList<>(Arrays.asList(new Teacher("098","Ms. Gonzalez","English", 1),
             new Teacher("876", "Ms. Gurcha", "Science", 4)));
 
-    private List<Classes> classData = new ArrayList<>(Arrays.asList(new Classes("430","Math", "Algebra"), new Classes("989","Math", "Calc")));
+    private List<Class> classData = new ArrayList<>(Arrays.asList(new Class("430","Math", "Algebra"), new Class("989","Math", "Calc")));
 
     private List<Section> sectionData = new ArrayList<>(Arrays.asList(new Section(classData.get(0),4), new Section(classData.get(1),2)));
 
