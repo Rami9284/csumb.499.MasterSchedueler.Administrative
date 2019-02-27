@@ -18,7 +18,7 @@ public class SectionSeeder implements CommandLineRunner {
     private ISectionRepository sectionRepository;
 
     @Override
-    public void run(String... args){
+    public void run(String... args)throws  Exception{
 
         Section s1 = new Section(new Class("0012", "English", "Literature", "400", "760"),1);
         Section s2 = new Section(new Class("0012", "English", "Literature", "400", "760"),2);

@@ -13,7 +13,7 @@ public class Student {
     String id;
     String name;
     int grade;
-    List prefered_classes;
+    List<Class> prefered_classes;
 
     public Student() {
         this.grade = 0;
