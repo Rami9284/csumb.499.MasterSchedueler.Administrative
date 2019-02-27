@@ -3,6 +3,7 @@ package com.csumb.Administrative.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.beans.ConstructorProperties;
 import java.util.Objects;
 
 @Document
@@ -14,6 +15,14 @@ public class Class {
     protected String className;
     protected String classRoom;
     protected String teacherId;
+
+    public Class(String class_id, String department, String className, String classRoom, String teacherId) {
+        this.class_id = class_id;
+        this.department = department;
+        this.className = className;
+        this.classRoom = classRoom;
+        this.teacherId = teacherId;
+    }
 
     public Class(Class c){
         this.class_id = c.getClass_id();
@@ -32,14 +41,6 @@ public class Class {
         this.class_id = id;
         this.department = department;
         this.className = className;
-    }
-
-    public Class(String class_id, String department, String className, String classRoom, String teacherId) {
-        this.class_id = class_id;
-        this.department = department;
-        this.className = className;
-        this.classRoom = classRoom;
-        this.teacherId = teacherId;
     }
 
     public String getDepartment() {
