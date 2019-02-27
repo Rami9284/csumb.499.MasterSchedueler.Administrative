@@ -5,6 +5,8 @@ import com.csumb.Administrative.repositotries.IStudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -60,11 +62,19 @@ public class StudentSeeder implements CommandLineRunner {
         Student s35 = new Student("488", "Tommy", 11);
         Student s36 = new Student("265", "Rafael", 12);
 
+        List<Student> fastStudents = new ArrayList<>();
+        for( int i = 0; i < 30; i++){
+            fastStudents.add(new Student("1234" +i,"student_" + i, 10));
+        }
+
+
+
         studentRepository.deleteAll();
         List<Student> students = Arrays.asList(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,
                                             s11,s12,s13,s14,s15,s16,s17,s18,s19,
                                             s20,s21,s22,s23,s24,s25,s26,s27,s28,s29,
                                             s30,s31,s32,s33,s34,s35,s36);
         studentRepository.saveAll(students);
+        studentRepository.saveAll(fastStudents);
     }
 }
