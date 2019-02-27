@@ -81,7 +81,7 @@ public class AdministrativeController{
    public void deleteStudents(@RequestBody List<Student> students){
        for (Student e: students) {
            try {
-               studentRepo.deleteById(e.getid());
+               studentRepo.deleteById(e.getId());
            } catch (Exception ex) {
                System.out.println(ex);
            }

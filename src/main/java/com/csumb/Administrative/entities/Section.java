@@ -13,6 +13,26 @@ public class Section extends Class {
     private List<Student> students;
     private String TeacherID;
 
+    public Section( ){
+
+    }
+
+    public Section(String department, String className, String classRoom, int section_num, int period_num, List<Student> students, String teacherID) {
+        super(department, className, classRoom);
+        this.section_num = section_num;
+        this.period_num = period_num;
+        this.students = students;
+        TeacherID = teacherID;
+    }
+
+    public Section(Class c, int section_num, int period_num, List<Student> students, String teacherID) {
+        super(c);
+        this.section_num = section_num;
+        this.period_num = period_num;
+        this.students = students;
+        TeacherID = teacherID;
+    }
+
     public Section(Class c, int section_num) {
         super(c);
         this.setClass_id(this.getClass_id() + "_" + section_num);
