@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,6 +17,13 @@ public class Student {
     private int grade;
     private List<Pair<Class, Boolean>> preferred_classes;
     private String academy;
+
+    public Student() {
+        this.name ="";
+        this.grade = 0;
+        this.preferred_classes = new ArrayList<>();
+        this.academy = "";
+    }
 
     public Student(String id, String name, int grade, String academy) {
         this.id = id;
@@ -30,11 +38,11 @@ public class Student {
         this.grade = grade;
     }
 
-    public String getid() {
+    public String getId() {
         return id;
     }
 
-    public void setid(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,14 +60,6 @@ public class Student {
 
     public void setGrade(int grade) {
         this.grade = grade;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public List<Pair<Class, Boolean>> getPreferred_classes() {

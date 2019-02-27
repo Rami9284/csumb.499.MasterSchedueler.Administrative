@@ -3,6 +3,7 @@ package com.csumb.Administrative.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +22,18 @@ public class Teacher {
     private int maxNumStudent;
     private int getMaxNumStudent;
     private List<Section> classes;
+
+    public Teacher( ) {
+        this.name = "";
+        this.department = "";
+        this.prep = 0;
+        this.preferred_room = "";
+        this.is80Percent = false;
+        this.academy = "";
+        this.maxNumStudent = 0;
+        this.getMaxNumStudent = 0;
+        this.classes = new ArrayList<>();
+    }
 
     public Teacher(String id, String name, String department, boolean is80Percent, String academy, int maxNumStudent) {
         this.id = id;

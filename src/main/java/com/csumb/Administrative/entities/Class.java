@@ -15,6 +15,12 @@ public class Class {
     private String className;
     private String classRoom;
 
+    public Class( ) {
+        this.department = "";
+        this.className = "";
+        this.classRoom = "";
+    }
+
     public Class(String department, String className) {
         this.department = department;
         this.className = className;
