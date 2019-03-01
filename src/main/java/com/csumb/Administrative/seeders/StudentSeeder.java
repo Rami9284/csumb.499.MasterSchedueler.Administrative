@@ -1,8 +1,10 @@
 package com.csumb.Administrative.seeders;
 
 import com.csumb.Administrative.entities.Student;
+import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -64,7 +66,10 @@ public class StudentSeeder implements CommandLineRunner {
 
         List<Student> fastStudents = new ArrayList<>();
         for( int i = 0; i < 30; i++){
-            fastStudents.add(new Student("1234" +i,"student_" + i, 10));
+
+            Student s = new Student("1234" +i,"student_" + i, 10, "fast");
+            s.setPreferred_classes(Arrays.asList(Pair.of(new Class("social studies","world history fast"), true)));
+            fastStudents.add(s);
         }
 
 
