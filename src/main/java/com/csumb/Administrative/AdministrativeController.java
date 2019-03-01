@@ -38,10 +38,12 @@ public class AdministrativeController{
     }
 
     // need to refactor this
+    //should not return duplicates 
     @CrossOrigin(origins = "*")
     @GetMapping("/findstudent/{id}")
-    public Optional<Student> findStudent(@PathVariable String id) {
-        return studentRepo.findById(id);
+    public Student findStudent(@PathVariable String id) {
+        return studentRepo.findById(id).orElseThrow(null);
+        
     }
 
     //Response : null if success,
