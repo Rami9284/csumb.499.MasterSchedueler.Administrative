@@ -67,7 +67,7 @@ public class StudentSeeder implements CommandLineRunner {
         List<Student> fastStudents = new ArrayList<>();
         for( int i = 0; i < 30; i++){
 
-            Student s = new Student("1234" +i,"student_" + i, 10);
+            Student s = new Student("1234" +i,"student_" + i, 10, "fast");
             s.setPreferred_classes(Arrays.asList(Pair.of(new Class("social studies","world history fast"), true)));
             fastStudents.add(s);
         }
