@@ -42,7 +42,13 @@ public class AdministrativeController{
     @CrossOrigin(origins = "*")
     @GetMapping("/findstudent/{id}")
     public Student findStudent(@PathVariable String id) {
-        return studentRepo.findById(id).orElseThrow(null);
+
+        if(studentRepo.findById(id).isPresent()){
+            return studentRepo.findById(id).get();
+        }else{
+            return new Student("error", "error",0);
+        }
+        
         
     }
 
