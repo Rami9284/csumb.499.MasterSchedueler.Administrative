@@ -183,7 +183,7 @@ public class AdministrativeController{
     }
 
     @CrossOrigin(origins = "*")
-    @PutMapping("/updateclass")
+    @PutMapping("/updateclasses")
     public List<Class> updateClasses(@RequestBody List<Class> classes){
         return classRepo.saveAll(classes);
     }
