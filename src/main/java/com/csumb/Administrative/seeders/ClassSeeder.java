@@ -19,7 +19,7 @@ public class ClassSeeder implements CommandLineRunner {
     public void run(String... args)throws  Exception{
         Class c1 = new Class("English", "Literature", "400");
        
-        Class c2 = new Class( "Math", "Geometry", "101");
+        Class c2 = new Class("Math", "Geometry", "101");
         Class c3 = new Class("Art", "Digital Art","201");
         Class c4 = new Class("Science", "Chemistry", "301");
         Class c5 = new Class("English","AP English", "401");
