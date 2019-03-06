@@ -2,8 +2,6 @@ package com.csumb.Administrative.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.beans.ConstructorProperties;
 import java.util.Objects;
 
 @Document
@@ -30,6 +28,13 @@ public class Class {
         this.department = department;
         this.className = className;
         this.classRoom = classRoom;
+    }
+
+    public Class(String department, String className, String classRoom, String class_id) {
+        this.department = department;
+        this.className = className;
+        this.classRoom = classRoom;
+        this.class_id = class_id;
     }
 
     public Class(Class c) {
