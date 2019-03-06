@@ -2,7 +2,6 @@ package com.csumb.Administrative;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.entities.Section;
@@ -48,8 +47,7 @@ public class AdministrativeController{
         }else{
             return new Student("error", "error",0);
         }
-        
-        
+       
     }
 
     //Response : null if success,
@@ -107,8 +105,8 @@ public class AdministrativeController{
     // need to refactor this
     @CrossOrigin(origins = "*")
     @GetMapping("/findteacher/{id}")
-    public Optional<Teacher> findTeacher(@PathVariable String id) {
-        return teacherRepo.findById(id);
+    public Teacher findTeacher(@PathVariable String id) {
+        return teacherRepo.findById(id).get();
     }
 
     //Response : null if success,
@@ -164,8 +162,8 @@ public class AdministrativeController{
     // need to refactor this
     @CrossOrigin(origins = "*")
     @GetMapping("/findclass/{id}")
-    public Optional<Class> findClass(@PathVariable String id) {
-        return classRepo.findById(id);
+    public Class findClass(@PathVariable String id) {
+        return classRepo.findById(id).get();
     }
 
     //Response : null if success,
@@ -221,8 +219,8 @@ public class AdministrativeController{
     // need to refactor this
     @CrossOrigin(origins = "*")
     @GetMapping("/findsection/{id}")
-    public Optional<Section> findSection(@PathVariable String id) {
-        return sectionRepo.findById(id);
+    public Section findSection(@PathVariable String id) {
+        return sectionRepo.findById(id).get();
     }
 
     //Response : null if success,
