@@ -76,12 +76,12 @@ public class AdministrativeControllerTest {
         //When there is not an error
         when(teacherRepository.insert(teacherData.get(0))).thenReturn(teacherData.get(0));
         when(teacherRepository.insert(teacherData.get(1))).thenReturn(teacherData.get(1));
-        Assert.assertEquals(null,administrativeController.addTeacher(teacherData));
+        Assert.assertEquals(null,administrativeController.addTeachers(teacherData));
 
         //when an error occurs
         when(teacherRepository.insert(teacherData.get(0))).thenThrow(new DuplicateKeyException("key", new Throwable()));
         when(teacherRepository.insert(teacherData.get(1))).thenThrow(new DuplicateKeyException("key", new Throwable()));
-        Assert.assertEquals(teacherData, administrativeController.addTeacher(teacherData));
+        Assert.assertEquals(teacherData, administrativeController.addTeachers(teacherData));
     }
 
     @Test
