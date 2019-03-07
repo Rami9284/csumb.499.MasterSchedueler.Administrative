@@ -125,8 +125,8 @@ public class AdministrativeController{
     }
 
     @CrossOrigin(origins = "*")
-    @PutMapping("/updateteachers")
-    public void updateTeachers(@RequestBody Teacher teachers){
+    @PutMapping("/updateteacher")
+    public void updateTeacher(@RequestBody Teacher teachers){
         teacherRepo.save(teachers);
     }
 
@@ -154,6 +154,7 @@ public class AdministrativeController{
     @CrossOrigin(origins = "*")
     @GetMapping("/findclass/{id}")
     public Class findClass(@PathVariable String id) {
+        System.out.println(id);
         return classRepo.findById(id).get();
     }
 
@@ -181,14 +182,14 @@ public class AdministrativeController{
 
     @CrossOrigin(origins = "*")
     @PutMapping("/updateclass")
-    public Class updateClasses(@RequestBody Class c){
+    public Class updateClasse(@RequestBody Class c){
         return classRepo.save(c);
     }
 
     //Response : null if success,
     //           List of Teachers with failures
    @DeleteMapping("/deleteclass")
-   public void deleteClasses(@RequestBody Class c){
+   public void deleteClasse(@RequestBody Class c){
         try {
             classRepo.deleteById(c.getClass_id());
         } catch (Exception ex) {
