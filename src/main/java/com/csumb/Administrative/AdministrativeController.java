@@ -87,20 +87,20 @@ public class AdministrativeController{
         return studentRepo.save(student);
     }
 
-    //Response : null if success,
-    //           List of students with failures
-//    @CrossOrigin(origins = "*")
-//    @DeleteMapping("/deletestudent")
-//    public Student deleteStudent(@RequestBody Student student){
-//            try {
-//                studentRepo.deleteById(student.getId());
-//            } catch (Exception ex) {
-//                return student;
-//            }
+    Response : null if success,
+              List of students with failures
+   @CrossOrigin(origins = "*")
+   @DeleteMapping("/deletestudent1")
+   public Student deleteStudent(@RequestBody Student student){
+       try {
+           studentRepo.deleteById(student.getId());
+       } catch (Exception ex) {
+           return student;
+       }
 
-//            return null;
-//    }
-////////////////////////////////////////////////////////////////////
+       return null;
+   }
+
 @CrossOrigin(origins = "*")
 @PostMapping("/deletestudent/{id}")
 public String deleteStudent(@PathVariable String id){
