@@ -89,17 +89,29 @@ public class AdministrativeController{
 
     //Response : null if success,
     //           List of students with failures
-   @CrossOrigin(origins = "*")
-   @DeleteMapping("/deletestudent")
-   public Student deleteStudent(@RequestBody Student student){
-           try {
-               studentRepo.deleteById(student.getId());
-           } catch (Exception ex) {
-               return student;
-           }
+//    @CrossOrigin(origins = "*")
+//    @DeleteMapping("/deletestudent")
+//    public Student deleteStudent(@RequestBody Student student){
+//            try {
+//                studentRepo.deleteById(student.getId());
+//            } catch (Exception ex) {
+//                return student;
+//            }
 
-           return null;
-   }
+//            return null;
+//    }
+
+@CrossOrigin(origins = "*")
+@PostMapping("/deletestudent/{id}")
+public String deleteStudent(@PathVariable String id){
+    try {
+        studentRepo.deleteById(id);
+    } catch (Exception ex) {
+        return "Could not delete";
+    }
+
+    return null;
+}
 
     //Teachers
     //Response: list of all
