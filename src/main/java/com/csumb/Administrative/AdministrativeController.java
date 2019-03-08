@@ -100,7 +100,7 @@ public class AdministrativeController{
 
 //            return null;
 //    }
-
+////////////////////////////////////////////////////////////////////
 @CrossOrigin(origins = "*")
 @PostMapping("/deletestudent/{id}")
 public String deleteStudent(@PathVariable String id){
@@ -110,7 +110,7 @@ public String deleteStudent(@PathVariable String id){
         return "Could not delete";
     }
 
-    return null;
+ return null;
 }
 
     //Teachers
