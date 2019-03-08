@@ -91,12 +91,14 @@ public class AdministrativeController{
     //           List of students with failures
    @CrossOrigin(origins = "*")
    @DeleteMapping("/deletestudent")
-   public void deleteStudent(@RequestBody Student student){
+   public Student deleteStudent(@RequestBody Student student){
            try {
                studentRepo.deleteById(student.getId());
            } catch (Exception ex) {
-               System.out.println(ex);
+               return student;
            }
+
+           return null;
    }
 
     //Teachers
