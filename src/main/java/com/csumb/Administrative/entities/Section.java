@@ -35,7 +35,7 @@ public class Section extends Class {
 
     public Section(Class c, int section_num) {
         super(c);
-        this.setClass_id(this.getClass_id() + "_" + section_num);
+        this.setid(this.getid() + "_" + section_num);
         this.section_num = section_num;
     }
 

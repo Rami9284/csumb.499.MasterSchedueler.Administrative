@@ -190,7 +190,7 @@ public class AdministrativeController{
    @DeleteMapping("/deleteclass")
    public void deleteClass(@RequestBody Class c){
         try {
-            classRepo.deleteById(c.getClass_id());
+            classRepo.deleteById(c.getid());
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -246,7 +246,7 @@ public class AdministrativeController{
    @DeleteMapping("/deletesection")
    public void deleteSection(@RequestBody Section section){
             try {
-                sectionRepo.deleteById(section.getClass_id());
+                sectionRepo.deleteById(section.getid());
             } catch (Exception ex) {
                 System.out.println(ex);
             }

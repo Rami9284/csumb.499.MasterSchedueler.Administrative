@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Class {
 
     @Id
-    private String class_id;
+    private String id;
     private String department;
     private String className;
     private String classRoom;
@@ -30,15 +30,15 @@ public class Class {
         this.classRoom = classRoom;
     }
 
-    public Class(String department, String className, String classRoom, String class_id) {
+    public Class(String department, String className, String classRoom, String id) {
         this.department = department;
         this.className = className;
         this.classRoom = classRoom;
-        this.class_id = class_id;
+        this.id = id;
     }
 
     public Class(Class c) {
-        this.class_id = c.getClass_id();
+        this.id = c.getid();
         this.department = c.getDepartment();
         this.className = c.getClassName();
         this.classRoom = c.getClassRoom();
@@ -68,18 +68,18 @@ public class Class {
         this.classRoom = classRoom;
     }
 
-    public String getClass_id() {
-        return class_id;
+    public String getid() {
+        return id;
     }
 
-    public void setClass_id(String class_id) {
-        this.class_id = class_id;
+    public void setid(String id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "Class{" +
-                "class_id='" + class_id + '\'' +
+                "id='" + id + '\'' +
                 ", department='" + department + '\'' +
                 ", className='" + className + '\'' +
                 ", classRoom='" + classRoom + '\'' +
@@ -91,7 +91,7 @@ public class Class {
         if (this == o) return true;
         if (!(o instanceof Class)) return false;
         Class aClass = (Class) o;
-        return class_id.equals(aClass.class_id) &&
+        return id.equals(aClass.id) &&
                 department.equals(aClass.department) &&
                 className.equals(aClass.className) &&
                 Objects.equals(classRoom, aClass.classRoom);
@@ -99,6 +99,6 @@ public class Class {
 
     @Override
     public int hashCode() {
-        return Objects.hash(class_id, department, className, classRoom);
+        return Objects.hash(id, department, className, classRoom);
     }
 }
