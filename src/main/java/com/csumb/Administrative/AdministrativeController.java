@@ -90,13 +90,15 @@ public class AdministrativeController{
     //Response : null if success,
     //           List of students with failures
    @CrossOrigin(origins = "*")
-   @DeleteMapping("/deletestudent/{id}")
-   public void deleteStudent(@PathVariable String id){
+   @DeleteMapping("/deletestudent")
+   public Student deleteStudent(@RequestBody Student student){
            try {
-               studentRepo.deleteById(id);
+               studentRepo.deleteById(student.getId());
            } catch (Exception ex) {
-               System.out.println("Error");
+               return student;
            }
+
+           return null;
    }
 
     //Teachers
