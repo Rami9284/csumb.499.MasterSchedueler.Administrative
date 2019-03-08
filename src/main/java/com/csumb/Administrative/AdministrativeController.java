@@ -67,6 +67,19 @@ public class AdministrativeController{
         return error;
     }
 
+    @CrossOrigin(origins = "*")
+    @PostMapping("/addstudent")
+    public Student addStudents(@RequestBody Student student) {
+        try {
+            studentRepo.insert(student);
+        }
+        catch (Exception e){
+            return student;
+        }
+        return null; 
+    }
+
+
     //Response: list of students
     @CrossOrigin(origins = "*")
     @PutMapping("/updatestudent")
@@ -180,6 +193,20 @@ public class AdministrativeController{
     }
 
     @CrossOrigin(origins = "*")
+    @PostMapping("/addclass")
+    public Class addClass(@RequestBody Class classs) {
+        
+            try {
+                classRepo.insert(classs);
+            }
+            catch (Exception e){
+                return classs;
+            }
+        
+        return null;
+    }
+
+    @CrossOrigin(origins = "*")
     @PutMapping("/updateclass")
     public Class updateClass(@RequestBody Class c){
         return classRepo.save(c);
@@ -233,6 +260,21 @@ public class AdministrativeController{
             return null;
         }
         return error;
+    }
+
+    //Response : null if success,
+    //           List of Sections with failures
+    @CrossOrigin(origins = "*")
+    @PostMapping("/addsection")
+    public Section addSection(@RequestBody Section section) {
+        try {
+            sectionRepo.insert(section);
+        }
+        catch (Exception e){
+            return section;
+        }
+        
+        return null;
     }
 
     @CrossOrigin(origins = "*")
