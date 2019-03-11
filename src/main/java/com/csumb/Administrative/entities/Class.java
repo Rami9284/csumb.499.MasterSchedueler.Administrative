@@ -13,7 +13,7 @@ public class Class {
     private String className;
     private String classRoom;
 
-    public Class( ) {
+    public Class() {
         this.department = "";
         this.className = "";
         this.classRoom = "";
@@ -38,7 +38,7 @@ public class Class {
     }
 
     public Class(Class c) {
-        this.id = c.getid();
+        this.id = c.getId();
         this.department = c.getDepartment();
         this.className = c.getClassName();
         this.classRoom = c.getClassRoom();
@@ -68,13 +68,15 @@ public class Class {
         this.classRoom = classRoom;
     }
 
-    public String getid() {
+
+    public String getId() {
         return id;
     }
 
-    public void setid(String id) {
-        this.id = id;
+    public void setId(String id) {  
+      this.id = id;
     }
+
 
     @Override
     public String toString() {
@@ -94,7 +96,7 @@ public class Class {
         return id.equals(aClass.id) &&
                 department.equals(aClass.department) &&
                 className.equals(aClass.className) &&
-                Objects.equals(classRoom, aClass.classRoom);
+                classRoom.equals(aClass.classRoom);
     }
 
     @Override

@@ -181,7 +181,8 @@ public String deleteStudent(@PathVariable String id){
     @CrossOrigin(origins = "*")
     @GetMapping("/findclass/{id}")
     public Class findClass(@PathVariable String id) {
-        return classRepo.findById(id).get();
+        System.out.println(id);
+        return classRepo.findById(id).orElse(new Class());
     }
 
     //Response : null if success,
@@ -231,7 +232,8 @@ public String deleteStudent(@PathVariable String id){
    @DeleteMapping("/deleteclass")
    public void deleteClass(@RequestBody Class c){
         try {
-            classRepo.deleteById(c.getid());
+            classRepo.deleteById(c.getId());
+
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -302,17 +304,18 @@ public String deleteStudent(@PathVariable String id){
    @DeleteMapping("/deletesection")
    public void deleteSection(@RequestBody Section section){
             try {
-                sectionRepo.deleteById(section.getid());
+                sectionRepo.deleteById(section.getId());
+
             } catch (Exception ex) {
                 System.out.println(ex);
             }
    }
 
 
-    //Ignore these; they are to stop an error from ocurring   
     public Object updateTeachers(List<Teacher> teacherData) {
         return null;
     }
+
 
     public Object updateStudents(List<Student> studentData) {
         return null;
