@@ -67,24 +67,51 @@ public class AdministrativeController{
         return error;
     }
 
+    @CrossOrigin(origins = "*")
+    @PostMapping("/addstudent")
+    public Student addStudents(@RequestBody Student student) {
+        try {
+            studentRepo.insert(student);
+        }
+        catch (Exception e){
+            return student;
+        }
+        return null; 
+    }
+
+
     //Response: list of students
     @CrossOrigin(origins = "*")
     @PutMapping("/updatestudent")
-    public Student updateStudents(@RequestBody Student students){
-        return studentRepo.save(students);
+    public Student updateStudent(@RequestBody Student student){
+        return studentRepo.save(student);
     }
 
     //Response : null if success,
-    //           List of students with failures
+    //          returns students if failures
    @CrossOrigin(origins = "*")
-   @DeleteMapping("/deletestudent")
-   public void deleteStudents(@RequestBody Student student){
-           try {
-               studentRepo.deleteById(student.getId());
-           } catch (Exception ex) {
-               System.out.println(ex);
-           }
+   @DeleteMapping("/deletestudent1")
+   public Student deleteStudent(@RequestBody Student student){
+       try {
+           studentRepo.deleteById(student.getId());
+       } catch (Exception ex) {
+           return student;
+       }
+
+       return null;
    }
+
+@CrossOrigin(origins = "*")
+@PostMapping("/deletestudent/{id}")
+public String deleteStudent(@PathVariable String id){
+    try {
+        studentRepo.deleteById(id);
+    } catch (Exception ex) {
+        return "Could not delete";
+    }
+
+ return null;
+}
 
     //Teachers
     //Response: list of all
@@ -104,8 +131,8 @@ public class AdministrativeController{
     //Response : null if success,
     //           List of Teachers with failures
     @CrossOrigin(origins = "*")
-    @PostMapping("/addteacher")
-    public List<Teacher> addTeacher(@RequestBody List<Teacher> teachers) {
+    @PostMapping("/addteachers")
+    public List<Teacher> addTeachers(@RequestBody List<Teacher> teachers) {
         List<Teacher> error = new ArrayList<>();
         Teacher err;
 
@@ -125,9 +152,9 @@ public class AdministrativeController{
     }
 
     @CrossOrigin(origins = "*")
-    @PutMapping("/updateteachers")
-    public void updateTeachers(@RequestBody Teacher teachers){
-        teacherRepo.save(teachers);
+    @PutMapping("/updateteacher")
+    public void updateTeacher(@RequestBody Teacher teacher){
+        teacherRepo.save(teacher);
     }
 
     //response: null if success
@@ -181,17 +208,32 @@ public class AdministrativeController{
     }
 
     @CrossOrigin(origins = "*")
+    @PostMapping("/addclass")
+    public Class addClass(@RequestBody Class classs) {
+        
+            try {
+                classRepo.insert(classs);
+            }
+            catch (Exception e){
+                return classs;
+            }
+        
+        return null;
+    }
+
+    @CrossOrigin(origins = "*")
     @PutMapping("/updateclass")
-    public Class updateClasses(@RequestBody Class c){
+    public Class updateClass(@RequestBody Class c){
         return classRepo.save(c);
     }
 
     //Response : null if success,
     //           List of Teachers with failures
    @DeleteMapping("/deleteclass")
-   public void deleteClasses(@RequestBody Class c){
+   public void deleteClass(@RequestBody Class c){
         try {
             classRepo.deleteById(c.getId());
+
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -236,26 +278,44 @@ public class AdministrativeController{
         return error;
     }
 
+    //Response : null if success,
+    //           List of Sections with failures
+    @CrossOrigin(origins = "*")
+    @PostMapping("/addsection")
+    public Section addSection(@RequestBody Section section) {
+        try {
+            sectionRepo.insert(section);
+        }
+        catch (Exception e){
+            return section;
+        }
+        
+        return null;
+    }
+
     @CrossOrigin(origins = "*")
     @PutMapping("/updatesection")
-    public Section updateSections(@RequestBody Section section){
+    public Section updateSection(@RequestBody Section section){
         return sectionRepo.save(section);
     }
 
     //Response : null if success,
     //           List of Teachers with failures
-   @DeleteMapping("/deletesections")
-   public void deleteSections(@RequestBody Section section){
+   @DeleteMapping("/deletesection")
+   public void deleteSection(@RequestBody Section section){
             try {
                 sectionRepo.deleteById(section.getId());
+
             } catch (Exception ex) {
                 System.out.println(ex);
             }
    }
 
+
     public Object updateTeachers(List<Teacher> teacherData) {
         return null;
     }
+
 
     public Object updateStudents(List<Student> studentData) {
         return null;
