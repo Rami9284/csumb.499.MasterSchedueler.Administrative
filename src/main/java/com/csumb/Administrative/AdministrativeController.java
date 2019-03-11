@@ -87,8 +87,8 @@ public class AdministrativeController{
         return studentRepo.save(student);
     }
 
-    Response : null if success,
-              List of students with failures
+    //Response : null if success,
+    //          returns students if failures
    @CrossOrigin(origins = "*")
    @DeleteMapping("/deletestudent1")
    public Student deleteStudent(@RequestBody Student student){
