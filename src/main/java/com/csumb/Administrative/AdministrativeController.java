@@ -150,6 +150,21 @@ public String deleteStudent(@PathVariable String id){
         }
         return error;
     }
+    
+     //Response : null if success,
+    //           List of Teachers with failures
+    @CrossOrigin(origins = "*")
+    @PostMapping("/addteacher")
+    public Teacher addTeachers(@RequestBody Teacher teacher) {
+           try {
+                teacherRepo.insert(teacher);
+           }
+           catch (Exception e){
+                return teacher;
+            }
+        
+        return null;
+    }
 
     @CrossOrigin(origins = "*")
     @PutMapping("/updateteacher")
