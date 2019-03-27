@@ -207,6 +207,7 @@ public class AdministrativeController{
     response: success -> Nothing
               failure -> Nothing
     */
+   @CrossOrigin(origins = "*")
    @DeleteMapping(path = "/deleteteacherId/{id}")
     public String deleteTeacher(@PathVariable String id){
         try {
@@ -303,6 +304,7 @@ public class AdministrativeController{
     response: success -> NA
               failure -> NA
     */
+   @CrossOrigin(origins = "*")
    @DeleteMapping("/deleteclassId/{id}")
    public void deleteClass(@PathVariable String id){
         try {
@@ -398,6 +400,7 @@ public class AdministrativeController{
     response: success -> NA
               failure -> NA
     */
+   @CrossOrigin(origins = "*")
    @DeleteMapping("/deletesectionId/{id}")
    public void deleteSection(@PathVariable String id){
         try {
@@ -407,7 +410,7 @@ public class AdministrativeController{
         }
    }
 
-   
+
    // Added to prevent errors in test files
     public Object updateTeachers(List<Teacher> teacherData) {
         return null;

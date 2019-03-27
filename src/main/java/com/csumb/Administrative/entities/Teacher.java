@@ -17,8 +17,7 @@ public class Teacher {
     private int prep;
     private String preferred_room;
     private boolean is80Percent;
-    // for green academy, fast academy
-    private String academy; // Re named this for to be more specific
+    private String academy; 
     private int maxNumStudent;
     private int currentNumStudent;
     private List<Section> sections;
