@@ -124,14 +124,26 @@ public class AdministrativeController{
        return null;
     }
 
+    @CrossOrigin(origins = "*")
+    @DeleteMapping(path = "/deletestudentId/{id}")
+    public String deleteS(@PathVariable String id){
+        try {
+            studentRepo.deleteById(id);
+        } catch (Exception ex) {
+            return id;
+        }
+ 
+        return null;
+     }
+
    /*
     required: Student ID as a string
     response: success -> null
               failure -> string with error description
     */
     @CrossOrigin(origins = "*")
-    @PostMapping("/deletestudentId/{id}")
-    public String deleteStudent(@PathVariable String id){
+    @PostMapping("/deletestudent2/{id}")
+    public String deleteStudent(@PathVariable("id") String id){
         try {
             studentRepo.deleteById(id);
         } catch (Exception ex) {
