@@ -17,6 +17,7 @@ public class Student {
     private int grade;
     private List<Pair<Class, Boolean>> preferred_classes;
     private String academy;
+    private List<Section> schedule;
 
     public Student() {
         this.name ="";
@@ -76,6 +77,31 @@ public class Student {
 
     public void setAcademy(String academy) {
         this.academy = academy;
+    }
+    public boolean isClassPreferred(String className){
+        for(int i =0; i < preferred_classes.size(); i++){
+            if(preferred_classes.get(i).getFirst().getClassName().equals(className)){
+                return preferred_classes.get(i).getSecond();
+            }
+        }
+        return false;
+    }
+
+    public List<Section> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(List<Section> schedule) {
+        this.schedule = schedule;
+    }
+
+    public void setPeriod(int time, Section section){
+        schedule.set(time,section);
+    }
+
+    public boolean isPeriodAvilable(int time){
+        System.out.println(schedule.get(time).getId());
+        return schedule.get(time).getId().isEmpty();
     }
 
     @Override
