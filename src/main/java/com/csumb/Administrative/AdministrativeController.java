@@ -108,22 +108,10 @@ public class AdministrativeController{
     }
 
     /*
-    required: Student object
+    required: String of id
     response: success -> null
               failure -> student object
     */
-   @CrossOrigin(origins = "*")
-   @DeleteMapping("/deletestudent")
-   public Student deleteStudent(@RequestBody Student student){
-       try {
-           studentRepo.deleteById(student.getId());
-       } catch (Exception ex) {
-           return student;
-       }
-
-       return null;
-    }
-
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/deletestudentId/{id}")
     public String deleteS(@PathVariable String id){
@@ -136,22 +124,6 @@ public class AdministrativeController{
         return null;
      }
 
-   /*
-    required: Student ID as a string
-    response: success -> null
-              failure -> string with error description
-    */
-    @CrossOrigin(origins = "*")
-    @PostMapping("/deletestudent2/{id}")
-    public String deleteStudent(@PathVariable("id") String id){
-        try {
-            studentRepo.deleteById(id);
-        } catch (Exception ex) {
-            return "Could not delete";
-        }
-
-     return null;
-    }
 
     //========================TEACHER====================================
     
@@ -231,19 +203,20 @@ public class AdministrativeController{
     }
 
     /*
-    required: Teacher object
+    required: String of teacher id
     response: success -> Nothing
               failure -> Nothing
     */
-   @DeleteMapping("/deleteteacher")
-   public void deleteTeacher(@RequestBody Teacher teacher){
+   @DeleteMapping(path = "/deleteteacherId/{id}")
+    public String deleteTeacher(@PathVariable String id){
         try {
-            teacherRepo.deleteById(teacher.getId());
+            teacherRepo.deleteById(id);
         } catch (Exception ex) {
-            System.out.println(ex);
+            return id;
         }
-        
-   }
+ 
+        return null;
+    }
 
     //========================CLASS=====================================
 
@@ -326,14 +299,14 @@ public class AdministrativeController{
     }
 
     /*
-    required: Class object
+    required: String of Class id
     response: success -> NA
               failure -> NA
     */
-   @DeleteMapping("/deleteclass")
-   public void deleteClass(@RequestBody Class c){
+   @DeleteMapping("/deleteclassId/{id}")
+   public void deleteClass(@PathVariable String id){
         try {
-            classRepo.deleteById(c.getId());
+            classRepo.deleteById(id);
 
         } catch (Exception ex) {
             System.out.println(ex);
@@ -421,21 +394,20 @@ public class AdministrativeController{
     }
 
     /*
-    required: Section object
+    required: String of Section id
     response: success -> NA
               failure -> NA
     */
-   @DeleteMapping("/deletesection")
-   public void deleteSection(@RequestBody Section section){
+   @DeleteMapping("/deletesectionId/{id}")
+   public void deleteSection(@PathVariable String id){
         try {
-            sectionRepo.deleteById(section.getId());
+            sectionRepo.deleteById(id);
         } catch (Exception ex) {
             System.out.println(ex);
         }
    }
 
-
-
+   
    // Added to prevent errors in test files
     public Object updateTeachers(List<Teacher> teacherData) {
         return null;
