@@ -309,7 +309,6 @@ public class AdministrativeController{
    public void deleteClass(@PathVariable String id){
         try {
             classRepo.deleteById(id);
-
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -408,6 +407,11 @@ public class AdministrativeController{
         } catch (Exception ex) {
             System.out.println(ex);
         }
+     
+     
+     
+     
+     
    }
 
 

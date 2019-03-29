@@ -17,13 +17,17 @@ public class Student {
     private int grade;
     private List<Pair<Class, Boolean>> preferred_classes;
     private String academy;
-    private List<Section> schedule;
+    private List<String> schedule;
 
     public Student() {
         this.name ="";
         this.grade = 0;
         this.preferred_classes = new ArrayList<>();
         this.academy = "";
+        this.schedule = new ArrayList<>();
+        for(int i =0; i < 6;i++){
+            schedule.add("");
+        }
     }
 
     public Student(String id, String name, int grade, String academy) {
@@ -31,12 +35,23 @@ public class Student {
         this.name = name;
         this.grade = grade;
         this.academy = academy;
+        this.preferred_classes = new ArrayList<>();
+        this.schedule = new ArrayList<>();
+        for(int i =0; i < 6;i++){
+            schedule.add("");
+        }
     }
 
     public Student(String id, String name, int grade) {
         this.id = id;
         this.name = name;
         this.grade = grade;
+        this.academy = "";
+        this.preferred_classes = new ArrayList<>();
+        this.schedule = new ArrayList<>();
+        for(int i =0; i < 6;i++){
+            schedule.add("");
+        }
     }
 
     public String getId() {
@@ -102,6 +117,33 @@ public class Student {
     public boolean isPeriodAvilable(int time){
         System.out.println(schedule.get(time).getId());
         return schedule.get(time).getId().isEmpty();
+    }
+
+    public boolean isClassPreferred(String className){
+        for(int i =0; i < preferred_classes.size(); i++){
+            if(preferred_classes.get(i).getFirst().getClassName().equals(className)){
+                return preferred_classes.get(i).getSecond();
+            }
+        }
+        return false;
+    }
+
+    public List<String> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(List<String> schedule) {
+        this.schedule = schedule;
+    }
+
+    public void setPeriod(int time, Section section){
+        schedule.set(time,section.getClassName());
+    }
+
+    public boolean isPeriodAvailable(int time){
+        System.out.println(time);
+        System.out.println(schedule.get(time));
+        return !schedule.get(time).equals("");
     }
 
     @Override

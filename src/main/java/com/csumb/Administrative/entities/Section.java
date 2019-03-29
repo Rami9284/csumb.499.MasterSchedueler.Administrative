@@ -2,6 +2,7 @@ package com.csumb.Administrative.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,10 +12,11 @@ public class Section extends Class {
     private int section_num;
     private int period_num;
     private List<Student> students;
-    private String TeacherID;
+    private String teacherID;
+    private int maxStudent;
 
     public Section( ){
-
+        this.students = new ArrayList<>();
     }
 
     public Section(String department, String className, String classRoom, int section_num, int period_num, List<Student> students, String teacherID) {
@@ -22,7 +24,9 @@ public class Section extends Class {
         this.section_num = section_num;
         this.period_num = period_num;
         this.students = students;
-        TeacherID = teacherID;
+        this.teacherID = teacherID;
+        this.maxStudent = 30;
+        this.students = new ArrayList<>();
     }
 
     public Section(Class c, int section_num, int period_num, List<Student> students, String teacherID) {
@@ -30,14 +34,29 @@ public class Section extends Class {
         this.section_num = section_num;
         this.period_num = period_num;
         this.students = students;
-        TeacherID = teacherID;
+        this.teacherID = teacherID;
+        this.maxStudent = 30;
     }
 
     public Section(Class c, int section_num) {
         super(c);
-        this.setId(this.getId() + "_" + section_num);
+        this.setClass_id(this.getClass_id() + "_" + section_num);
         this.section_num = section_num;
+        this.teacherID = "";
+        this.period_num = -1;
+        this.maxStudent = 30;
+        this.students = new ArrayList<>();
     }
+
+    public Section(Class c, int section_num, List<Student> students) {
+        super(c);
+        this.setClass_id(this.getClass_id() + "_" + section_num);
+        this.section_num = section_num;
+        this.students = students;
+        this.period_num = -1;
+        this.maxStudent = 30;
+    }
+
 
     public int getSection_num() {
         return section_num;
@@ -63,21 +82,36 @@ public class Section extends Class {
         this.students = students;
     }
 
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
     public String getTeacherID() {
-        return TeacherID;
+        return teacherID;
     }
 
     public void setTeacherID(String teacherID) {
-        TeacherID = teacherID;
+        this.teacherID = teacherID;
     }
 
+    public int getMaxStudent() {
+        return maxStudent;
+    }
+
+    public void setMaxStudent(int maxStudent) {
+        this.maxStudent = maxStudent;
+    }
+
+    public boolean canAddStudent(){
+        return maxStudent >= students.size()+1;
+    }
     @Override
     public String toString() {
         return "Section{" +
                 "section_num=" + section_num +
                 ", period_num=" + period_num +
                 ", students=" + students +
-                ", TeacherID='" + TeacherID + '\'' +
+                ", teacherID='" + teacherID + '\'' +
                 '}';
     }
 
@@ -90,11 +124,11 @@ public class Section extends Class {
         return section_num == section.section_num &&
                 period_num == section.period_num &&
                 Objects.equals(students, section.students) &&
-                Objects.equals(TeacherID, section.TeacherID);
+                Objects.equals(teacherID, section.teacherID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), section_num, period_num, students, TeacherID);
+        return Objects.hash(super.hashCode(), section_num, period_num, students, teacherID);
     }
 }
