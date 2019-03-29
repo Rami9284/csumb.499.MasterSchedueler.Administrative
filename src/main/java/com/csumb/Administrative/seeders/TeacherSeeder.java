@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class TeacherSeeder  implements CommandLineRunner {
+public class TeacherSeeder implements CommandLineRunner {
     @Autowired
     private ITeacherRepository teacherRepository;
 
@@ -29,6 +29,7 @@ public class TeacherSeeder  implements CommandLineRunner {
 
         teacherRepository.deleteAll();
         List<Teacher> teachers = Arrays.asList(t1);//,t2,t3,t4,t5,t6,t7,t8,t9,t10);
+
         teacherRepository.saveAll(teachers);
     }
 }
