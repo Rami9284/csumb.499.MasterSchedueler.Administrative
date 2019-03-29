@@ -2,13 +2,14 @@ package com.csumb.Administrative.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 
 @Document
 public class Class {
 
     @Id
-    private String id;
+    private String class_id;
     private String department;
     private String className;
     private String classRoom;
@@ -22,23 +23,26 @@ public class Class {
     public Class(String department, String className) {
         this.department = department;
         this.className = className;
+        this.classRoom = "";
     }
 
-    public Class(String department, String className, String classRoom) {
+    public Class(String department, String className, String id) {
         this.department = department;
         this.className = className;
-        this.classRoom = classRoom;
+        this.class_id = id;
+        this.classRoom = "";
     }
 
-    public Class(String department, String className, String classRoom, String id) {
+    public Class(String department, String className, String roomNum, String id) {
         this.department = department;
         this.className = className;
-        this.classRoom = classRoom;
-        this.id = id;
+        this.class_id = id;
+        this.classRoom = roomNum;
     }
+
 
     public Class(Class c) {
-        this.id = c.getId();
+        this.class_id = c.getClass_id();
         this.department = c.getDepartment();
         this.className = c.getClassName();
         this.classRoom = c.getClassRoom();
@@ -68,20 +72,18 @@ public class Class {
         this.classRoom = classRoom;
     }
 
-
-    public String getId() {
-        return id;
+    public String getClass_id() {
+        return class_id;
     }
 
-    public void setId(String id) {  
-      this.id = id;
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
     }
-
 
     @Override
     public String toString() {
         return "Class{" +
-                "id='" + id + '\'' +
+                "class_id='" + class_id + '\'' +
                 ", department='" + department + '\'' +
                 ", className='" + className + '\'' +
                 ", classRoom='" + classRoom + '\'' +
@@ -93,7 +95,7 @@ public class Class {
         if (this == o) return true;
         if (!(o instanceof Class)) return false;
         Class aClass = (Class) o;
-        return id.equals(aClass.id) &&
+        return class_id.equals(aClass.class_id) &&
                 department.equals(aClass.department) &&
                 className.equals(aClass.className) &&
                 classRoom.equals(aClass.classRoom);
@@ -101,6 +103,6 @@ public class Class {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, department, className, classRoom);
+        return Objects.hash(class_id, department, className, classRoom);
     }
 }

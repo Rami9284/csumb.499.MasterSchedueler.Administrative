@@ -19,14 +19,15 @@ public class ClassSeeder implements CommandLineRunner {
     public void run(String... args)throws  Exception{
 
         List<Class> classes = Arrays.asList(
-                new Class("English", "Literature", "400","123"),
-                new Class("Math", "Geometry", "101","321"),
-                new Class("Art", "Digital Art","201","435"),
-                new Class("Science", "Chemistry", "301","867"),
-                new Class("Science", "Chemistry", "301","654"),
-                new Class("English","AP English", "401","876"),
-                new Class("History","Current Events", "501","6752"),
-                new Class("English", "English1A", "402","5432"));
+                new Class("Social Studies","World History","201","4875t29"));
+//                new Class("English", "Literature", "400","123"),
+//                new Class("Math", "Geometry", "101","321"),
+//                new Class("Art", "Digital Art","201","435"),
+//                new Class("Science", "Chemistry", "301","867"),
+//                new Class("Science", "Chemistry", "301","654"),
+//                new Class("English","AP English", "401","876"),
+//                new Class("History","Current Events", "501","6752"),
+//                new Class("English", "English1A", "402","5432"));
 
 
         classRepository.deleteAll();
