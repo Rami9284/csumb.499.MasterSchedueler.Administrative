@@ -1,24 +1,24 @@
-//package com.csumb.Administrative.seeders;
-//
-//import com.csumb.Administrative.entities.Section;
-//import com.csumb.Administrative.repositotries.ISectionRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.CommandLineRunner;
-//import org.springframework.data.mongodb.core.mapping.Document;
-//import org.springframework.stereotype.Component;
-//import com.csumb.Administrative.entities.Class;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
-//
-//@Component
-//public class SectionSeeder implements CommandLineRunner {
-//    @Autowired
-//    private ISectionRepository sectionRepository;
-//
-//    @Override
-//    public void run(String... args)throws  Exception{
+package com.csumb.Administrative.seeders;
+
+import com.csumb.Administrative.entities.Section;
+import com.csumb.Administrative.repositotries.ISectionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
+import com.csumb.Administrative.entities.Class;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@Component
+public class SectionSeeder implements CommandLineRunner {
+    @Autowired
+    private ISectionRepository sectionRepository;
+
+    @Override
+    public void run(String... args)throws  Exception{
 //
 //        List<Class> classes = Arrays.asList(
 //                new Class("English", "Literature", "400","123"),
@@ -35,7 +35,7 @@
 //           sections.add(new Section(c,1));
 //           sections.add(new Section(c,2));
 //       }
-//        sectionRepository.deleteAll();
+        sectionRepository.deleteAll();
 //        sectionRepository.saveAll(sections);
-//    }
-//}
+    }
+}
