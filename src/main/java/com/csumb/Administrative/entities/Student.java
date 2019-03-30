@@ -93,31 +93,6 @@ public class Student {
     public void setAcademy(String academy) {
         this.academy = academy;
     }
-    public boolean isClassPreferred(String className){
-        for(int i =0; i < preferred_classes.size(); i++){
-            if(preferred_classes.get(i).getFirst().getClassName().equals(className)){
-                return preferred_classes.get(i).getSecond();
-            }
-        }
-        return false;
-    }
-
-    public List<Section> getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(List<Section> schedule) {
-        this.schedule = schedule;
-    }
-
-    public void setPeriod(int time, Section section){
-        schedule.set(time,section);
-    }
-
-    public boolean isPeriodAvilable(int time){
-        System.out.println(schedule.get(time).getId());
-        return schedule.get(time).getId().isEmpty();
-    }
 
     public boolean isClassPreferred(String className){
         for(int i =0; i < preferred_classes.size(); i++){
@@ -137,13 +112,14 @@ public class Student {
     }
 
     public void setPeriod(int time, Section section){
-        schedule.set(time,section.getClassName());
+        System.out.println("here");
+        schedule.set(time-1,section.getClassName());
     }
 
     public boolean isPeriodAvailable(int time){
-        System.out.println(time);
-        System.out.println(schedule.get(time));
-        return !schedule.get(time).equals("");
+        System.out.println(time-1);
+        System.out.println("value " + schedule.get(time-1));
+        return schedule.get(time-1).equals("");
     }
 
     @Override
@@ -154,6 +130,7 @@ public class Student {
                 ", grade=" + grade +
                 ", preferred_classes=" + preferred_classes +
                 ", academy='" + academy + '\'' +
+                ", schedule=" + schedule +
                 '}';
     }
 

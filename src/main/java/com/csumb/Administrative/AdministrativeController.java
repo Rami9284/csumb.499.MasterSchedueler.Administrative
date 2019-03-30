@@ -410,16 +410,4 @@ public class AdministrativeController{
         }
    }
 
-
-   // Added to prevent errors in test files
-    public Object updateTeachers(List<Teacher> teacherData) {
-        return null;
-    }
-
-
-    public Object updateStudents(List<Student> studentData) {
-        return null;
-    }
-
-  
 }
