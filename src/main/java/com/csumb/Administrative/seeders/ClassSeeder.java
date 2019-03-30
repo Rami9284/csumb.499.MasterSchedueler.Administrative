@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,6 +30,7 @@ public class ClassSeeder implements CommandLineRunner {
 //                new Class("English","AP English", "401","876"),
 //                new Class("History","Current Events", "501","6752"),
 //                new Class("English", "English1A", "402","5432"));
+
 
 
         classRepository.deleteAll();
