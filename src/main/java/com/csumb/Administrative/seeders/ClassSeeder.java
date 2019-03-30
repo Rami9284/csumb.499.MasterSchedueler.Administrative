@@ -19,7 +19,10 @@ public class ClassSeeder implements CommandLineRunner {
     public void run(String... args)throws  Exception{
 
         List<Class> classes = Arrays.asList(
-                new Class("Social Studies","World History","201","4875t29"));
+                new Class("Math","Algebra","432","arg34qaw"),
+                new Class("Social Studies","World History","201","4875t29"),
+                new Class("Science","Biology","422","765sdf2"),
+                new Class("Language","French","332","875sd4"));
 //                new Class("English", "Literature", "400","123"),
 //                new Class("Math", "Geometry", "101","321"),
 //                new Class("Art", "Digital Art","201","435"),

@@ -232,7 +232,7 @@ public String deleteStudent(@PathVariable String id){
    @DeleteMapping("/deleteclass")
    public void deleteClass(@RequestBody Class c){
         try {
-            classRepo.deleteById(c.getClass_id());
+            classRepo.deleteById(c.getId());
 
         } catch (Exception ex) {
             System.out.println(ex);
@@ -304,7 +304,7 @@ public String deleteStudent(@PathVariable String id){
    @DeleteMapping("/deletesection")
    public void deleteSection(@RequestBody Section section){
             try {
-                sectionRepo.deleteById(section.getClass_id());
+                sectionRepo.deleteById(section.getId());
 
             } catch (Exception ex) {
                 System.out.println(ex);
