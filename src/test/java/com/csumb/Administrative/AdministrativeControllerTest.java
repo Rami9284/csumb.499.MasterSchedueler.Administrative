@@ -58,11 +58,6 @@ public class AdministrativeControllerTest {
         Assert.assertEquals(studentData, administrativeController.addStudents(studentData));
     }
 
-    @Test
-    public void updateStudents(){
-        when(studentRepository.saveAll(studentData)).thenReturn(studentData);
-        Assert.assertEquals(studentData, administrativeController.updateStudents(studentData));
-    }
 
     //all Teachers
     @Test
@@ -82,12 +77,6 @@ public class AdministrativeControllerTest {
         when(teacherRepository.insert(teacherData.get(0))).thenThrow(new DuplicateKeyException("key", new Throwable()));
         when(teacherRepository.insert(teacherData.get(1))).thenThrow(new DuplicateKeyException("key", new Throwable()));
         Assert.assertEquals(teacherData, administrativeController.addTeachers(teacherData));
-    }
-
-    @Test
-    public void updateTeachers(){
-        when(teacherRepository.saveAll(teacherData)).thenReturn(teacherData);
-        Assert.assertEquals(teacherData, administrativeController.updateTeachers(teacherData));
     }
 
 }
