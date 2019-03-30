@@ -394,6 +394,7 @@ public class AdministrativeController{
         return sectionRepo.save(section);
     }
 
+
     /*
     required: String of Section id
     response: success -> NA
@@ -407,11 +408,6 @@ public class AdministrativeController{
         } catch (Exception ex) {
             System.out.println(ex);
         }
-     
-     
-     
-     
-     
    }
 
 
