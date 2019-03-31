@@ -54,6 +54,20 @@ public class Student {
         }
     }
 
+    public Student(String id, String name, int grade,
+                   String academy, List<Pair<Class, Boolean>> preferred_classes){
+        this.id = id;
+        this.name = name;
+        this.grade = grade;
+        this.academy = academy;
+        this.preferred_classes = preferred_classes;
+        this.schedule = new ArrayList<>();
+        for(int i =0; i < 6;i++){
+            schedule.add("");
+        }
+
+    }
+
     public String getId() {
         return id;
     }
