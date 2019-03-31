@@ -86,6 +86,7 @@ public class AdministrativeController{
     @CrossOrigin(origins = "*")
     @PostMapping("/addstudent")
     public Student addStudent(@RequestBody Student student) {
+        System.out.println(student);
         try {
             studentRepo.insert(student);
         }
