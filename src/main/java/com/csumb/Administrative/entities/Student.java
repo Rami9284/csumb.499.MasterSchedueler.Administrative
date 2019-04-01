@@ -2,11 +2,8 @@ package com.csumb.Administrative.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.util.Pair;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Document
 public class Student {
@@ -15,15 +12,21 @@ public class Student {
     private String id;
     private String name;
     private int grade;
-    private List<Pair<Class, Boolean>> preferred_classes;
+    private List<String> preferredClasses;
+    private List<Boolean> preferred;
     private String academy;
-    private List<Section> schedule;
+    private List<String> schedule;
 
     public Student() {
         this.name ="";
         this.grade = 0;
-        this.preferred_classes = new ArrayList<>();
+        this.preferredClasses = new ArrayList<>();
+        this.preferred = new ArrayList<>();
         this.academy = "";
+        this.schedule = new ArrayList<>();
+        for(int i =0; i < 6;i++){
+            schedule.add("");
+        }
     }
 
     public Student(String id, String name, int grade, String academy) {
@@ -31,12 +34,40 @@ public class Student {
         this.name = name;
         this.grade = grade;
         this.academy = academy;
+        this.preferredClasses = new ArrayList<>();
+        this.preferred = new ArrayList<>();
+        this.schedule = new ArrayList<>();
+        for(int i =0; i < 6;i++){
+            schedule.add("");
+        }
     }
 
     public Student(String id, String name, int grade) {
         this.id = id;
         this.name = name;
         this.grade = grade;
+        this.academy = "";
+        this.preferredClasses = new ArrayList<>();
+        this.preferred = new ArrayList<>();
+        this.schedule = new ArrayList<>();
+        for(int i =0; i < 6;i++){
+            schedule.add("");
+        }
+    }
+
+    public Student(String id, String name, int grade,
+                   String academy, List<String> preferred_classes,List<Boolean> preferred){
+        this.id = id;
+        this.name = name;
+        this.grade = grade;
+        this.academy = academy;
+        this.preferredClasses = preferred_classes;
+        this.preferred = preferred;
+        this.schedule = new ArrayList<>();
+        for(int i =0; i < 6;i++){
+            schedule.add("");
+        }
+
     }
 
     public String getId() {
@@ -63,12 +94,12 @@ public class Student {
         this.grade = grade;
     }
 
-    public List<Pair<Class, Boolean>> getPreferred_classes() {
-        return preferred_classes;
+    public List<String> getPreferredClasses() {
+        return preferredClasses;
     }
 
-    public void setPreferred_classes(List<Pair<Class, Boolean>> preferred_classes) {
-        this.preferred_classes = preferred_classes;
+    public void setPreferredClasses(List<String> preferred_classes) {
+        this.preferredClasses = preferred_classes;
     }
 
     public String getAcademy() {
@@ -78,30 +109,41 @@ public class Student {
     public void setAcademy(String academy) {
         this.academy = academy;
     }
+
     public boolean isClassPreferred(String className){
-        for(int i =0; i < preferred_classes.size(); i++){
-            if(preferred_classes.get(i).getFirst().getClassName().equals(className)){
-                return preferred_classes.get(i).getSecond();
+        for(int i =0; i < preferredClasses.size(); i++){
+            if(preferredClasses.get(i).equals(className)){
+                return preferred.get(i);
             }
         }
         return false;
     }
 
-    public List<Section> getSchedule() {
+    public List<String> getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(List<Section> schedule) {
+    public void setSchedule(List<String> schedule) {
         this.schedule = schedule;
     }
 
     public void setPeriod(int time, Section section){
-        schedule.set(time,section);
+        System.out.println("here");
+        schedule.set(time-1,section.getClassName());
     }
 
-    public boolean isPeriodAvilable(int time){
-        System.out.println(schedule.get(time).getId());
-        return schedule.get(time).getId().isEmpty();
+    public boolean isPeriodAvailable(int time){
+        System.out.println(time-1);
+        System.out.println("value " + schedule.get(time-1));
+        return schedule.get(time-1).equals("");
+    }
+
+    public List<Boolean> getPreferred() {
+        return preferred;
+    }
+
+    public void setPreferred(List<Boolean> preferred) {
+        this.preferred = preferred;
     }
 
     @Override
@@ -110,8 +152,9 @@ public class Student {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", grade=" + grade +
-                ", preferred_classes=" + preferred_classes +
+                ", preferredClasses=" + preferredClasses +
                 ", academy='" + academy + '\'' +
+                ", schedule=" + schedule +
                 '}';
     }
 
@@ -123,12 +166,12 @@ public class Student {
         return grade == student.grade &&
                 id.equals(student.id) &&
                 name.equals(student.name) &&
-                Objects.equals(preferred_classes, student.preferred_classes) &&
+                Objects.equals(preferredClasses, student.preferredClasses) &&
                 Objects.equals(academy, student.academy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, grade, preferred_classes, academy);
+        return Objects.hash(id, name, grade, preferredClasses, academy);
     }
 }

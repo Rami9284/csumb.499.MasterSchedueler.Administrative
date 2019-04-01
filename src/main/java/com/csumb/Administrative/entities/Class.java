@@ -2,6 +2,7 @@ package com.csumb.Administrative.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 
 @Document
@@ -22,20 +23,23 @@ public class Class {
     public Class(String department, String className) {
         this.department = department;
         this.className = className;
+        this.classRoom = "";
     }
 
-    public Class(String department, String className, String classRoom) {
+    public Class(String department, String className, String id) {
         this.department = department;
         this.className = className;
-        this.classRoom = classRoom;
-    }
-
-    public Class(String department, String className, String classRoom, String id) {
-        this.department = department;
-        this.className = className;
-        this.classRoom = classRoom;
         this.id = id;
+        this.classRoom = "";
     }
+
+    public Class(String department, String className, String roomNum, String id) {
+        this.department = department;
+        this.className = className;
+        this.id = id;
+        this.classRoom = roomNum;
+    }
+
 
     public Class(Class c) {
         this.id = c.getId();
@@ -68,15 +72,13 @@ public class Class {
         this.classRoom = classRoom;
     }
 
-
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {  
-      this.id = id;
+    public void setId(String id) {
+        this.id = id;
     }
-
 
     @Override
     public String toString() {

@@ -86,6 +86,7 @@ public class AdministrativeController{
     @CrossOrigin(origins = "*")
     @PostMapping("/addstudent")
     public Student addStudent(@RequestBody Student student) {
+        System.out.println(student);
         try {
             studentRepo.insert(student);
         }
@@ -309,7 +310,6 @@ public class AdministrativeController{
    public void deleteClass(@PathVariable String id){
         try {
             classRepo.deleteById(id);
-
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -395,6 +395,7 @@ public class AdministrativeController{
         return sectionRepo.save(section);
     }
 
+
     /*
     required: String of Section id
     response: success -> NA
@@ -410,15 +411,4 @@ public class AdministrativeController{
         }
    }
 
-
-   // Added to prevent errors in test files
-    public Object updateTeachers(List<Teacher> teacherData) {
-        return null;
-    }
-
-    public Object updateStudents(List<Student> studentData) {
-        return null;
-    }
-
-  
 }
