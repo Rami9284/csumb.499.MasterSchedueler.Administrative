@@ -26,7 +26,7 @@ public class Teacher {
     public Teacher( ) {
         this.name = "";
         this.department = "";
-        this.prep = 0;
+        this.prep = -1;
         this.preferred_room = "";
         this.is80Percent = false;
         this.academy = "";
