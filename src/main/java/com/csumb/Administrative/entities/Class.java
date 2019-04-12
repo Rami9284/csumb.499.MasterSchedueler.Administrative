@@ -13,17 +13,20 @@ public class Class {
     private String department;
     private String className;
     private String classRoom;
+    private int maxNumStudentPerSection;
 
     public Class() {
         this.department = "";
         this.className = "";
         this.classRoom = "";
+        maxNumStudentPerSection = 30;
     }
 
     public Class(String department, String className) {
         this.department = department;
         this.className = className;
         this.classRoom = "";
+        maxNumStudentPerSection = 30;
     }
 
     public Class(String department, String className, String id) {
@@ -31,13 +34,24 @@ public class Class {
         this.className = className;
         this.id = id;
         this.classRoom = "";
+        maxNumStudentPerSection = 30;
     }
+
+    public Class(String department, String className, String id, int maxNumStudentPerSection){
+        this.department = department;
+        this.className = className;
+        this.id = id;
+        this.classRoom = "";
+        this.maxNumStudentPerSection = maxNumStudentPerSection;
+    }
+
 
     public Class(String department, String className, String roomNum, String id) {
         this.department = department;
         this.className = className;
         this.id = id;
         this.classRoom = roomNum;
+        maxNumStudentPerSection = 30;
     }
 
 
@@ -80,6 +94,14 @@ public class Class {
         this.id = id;
     }
 
+    public int getMaxNumStudentPerSection() {
+        return maxNumStudentPerSection;
+    }
+
+    public void setMaxNumStudentPerSection(int maxNumStudentPerSection) {
+        this.maxNumStudentPerSection = maxNumStudentPerSection;
+    }
+
     @Override
     public String toString() {
         return "Class{" +
@@ -95,7 +117,8 @@ public class Class {
         if (this == o) return true;
         if (!(o instanceof Class)) return false;
         Class aClass = (Class) o;
-        return id.equals(aClass.id) &&
+        return maxNumStudentPerSection == aClass.maxNumStudentPerSection &&
+                id.equals(aClass.id) &&
                 department.equals(aClass.department) &&
                 className.equals(aClass.className) &&
                 classRoom.equals(aClass.classRoom);
@@ -103,6 +126,6 @@ public class Class {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, department, className, classRoom);
+        return Objects.hash(id, department, className, classRoom, maxNumStudentPerSection);
     }
 }
