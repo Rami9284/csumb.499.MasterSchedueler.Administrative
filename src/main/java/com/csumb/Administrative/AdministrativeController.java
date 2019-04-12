@@ -1,8 +1,13 @@
 package com.csumb.Administrative;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.csumb.Administrative.dto.ClassDTO;
+import com.csumb.Administrative.dto.SectionDTO;
+import com.csumb.Administrative.dto.StudentDTO;
+import com.csumb.Administrative.dto.TeacherDTO;
 import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.entities.Section;
 import com.csumb.Administrative.entities.Student;
@@ -11,6 +16,8 @@ import com.csumb.Administrative.repositotries.IClassRepository;
 import com.csumb.Administrative.repositotries.ISectionRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +35,57 @@ public class AdministrativeController{
 
     @Autowired
     private ISectionRepository sectionRepo;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    //=======================DTO=========================================
+
+    /////////////////////////Class////////////////////
+    private ClassDTO convertToDto(Class c){
+        ClassDTO classDto = modelMapper.map(c,ClassDTO.class);
+        return classDto;
+    }
+
+    private Class convertToEntity(ClassDTO classDto) throws ParseException{
+        Class c = modelMapper.map(classDto,Class.class);
+        return c;
+    }
+
+    ///////////////////////section////////////////////
+    private SectionDTO convertToDto(Section s){
+        SectionDTO sectionDto = modelMapper.map(s,SectionDTO.class);
+        return sectionDto;
+    }
+
+    private Section convertToEntity(SectionDTO sectionDto) throws ParseException{
+        Section s = modelMapper.map(sectionDto,Section.class);
+        return s;
+    }
+
+     ///////////////////////student////////////////////
+     private StudentDTO convertToDto(Student s){
+        StudentDTO studentDto = modelMapper.map(s,StudentDTO.class);
+        return studentDto;
+    }
+
+    private Student convertToEntity(StudentDTO studentDto) throws ParseException{
+        Student s = modelMapper.map(studentDto,Student.class);
+        return s;
+    }
+
+     ///////////////////////teacher////////////////////
+     private TeacherDTO convertToDto(Teacher s){
+        TeacherDTO teacherDto = modelMapper.map(s,TeacherDTO.class);
+        return teacherDto;
+    }
+
+    private Teacher convertToEntity(TeacherDTO teacherDto) throws ParseException{
+        Teacher t = modelMapper.map(teacherDto,Teacher.class);
+        return t;
+    }
+
+
 
     //========================STUDENT====================================
 
