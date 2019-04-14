@@ -12,9 +12,4 @@ public class AdministrativeApplication {
 		SpringApplication.run(AdministrativeApplication.class, args);
 	}
 
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
-
 }
