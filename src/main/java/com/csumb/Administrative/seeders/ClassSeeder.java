@@ -16,7 +16,11 @@ public class ClassSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args)throws  Exception{
+        seed();
 
+    }
+
+    public void seed(){
         List<Class> classes = Arrays.asList(
                 new Class("Math","Algebra","432","arg34qaw"),
                 new Class("Social Studies","World History","201","4875t29"),
