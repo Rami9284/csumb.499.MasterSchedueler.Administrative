@@ -23,9 +23,9 @@ public class ClassSeeder implements CommandLineRunner {
                 new Class("Science","Biology","422","765sdf2"),
                 new Class("Language","French","332","875sd4"),
                 new Class("Science", "Health", "470","1212dx3"),
-                new Class("Vocational", "Culinary", "101","32sdz1"));
-//                new Class("Art", "Digital Art","201","435"),
-//                new Class("Science", "Chemistry", "301","867"),
+                new Class("Vocational", "Culinary", "101","32sdz1"),
+                new Class("Art", "Digital Art","201","435"),
+                new Class("Science", "Chemistry", "301","867"));
 //                new Class("Science", "Chemistry", "301","654"),
 //                new Class("English","AP English", "401","876"),
 //                new Class("History","Current Events", "501","6752"),
