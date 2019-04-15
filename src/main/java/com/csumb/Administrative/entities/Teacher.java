@@ -36,6 +36,8 @@ public class Teacher {
         this.currentNumStudent = 0;
         this.sections = new ArrayList<>();
         this.className = "";
+        this.className2 = "";
+        this.className2 = "";
     }
 
     public Teacher(String id, String name, String department, boolean is80Percent,
@@ -49,6 +51,8 @@ public class Teacher {
         this.currentNumStudent = 0;
         this.className = className;
         this.sections = new ArrayList<>();
+        this.className2 = "";
+        this.className3 = "";
     }
 
     public Teacher(String id, String name, String department) {
@@ -58,6 +62,8 @@ public class Teacher {
         this.maxNumStudent = 160;
         this.currentNumStudent = 0;
         this.sections = new ArrayList<>();
+        this.className2 = "";
+        this.className3 = "";
     }
 
     public Teacher(String id, String name, String department, String className) {
@@ -68,6 +74,8 @@ public class Teacher {
         this.maxNumStudent = 160;
         this.currentNumStudent = 0;
         this.sections = new ArrayList<>();
+        this.className2 = "";
+        this.className3 = "";
     }
 
     public Teacher(String id, String name,String department, String className, String className2,
