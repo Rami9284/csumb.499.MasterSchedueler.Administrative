@@ -19,7 +19,11 @@ public class StudentSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args)throws  Exception{
-//        Student s1 = new Student("123", "Edith",9);
+        seed();
+
+    }
+    public void seed(){
+        //        Student s1 = new Student("123", "Edith",9);
 //        Student s2 = new Student("345", "Daniel", 10);
 //        Student s3 = new Student("567", "Judith", 11);
 //        Student s4 = new Student("789", "Manjit", 12);
