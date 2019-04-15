@@ -15,7 +15,9 @@ public class TeacherSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args)throws  Exception {
-        Teacher t1 = new Teacher("0998","Ms. Gonzalez","Social Studies","World History" );
+
+        Teacher t1 = new Teacher("0998","Ms. Gonzalez","Social Studies",
+                "World History" ,"Biology", "Health", 5);
 //        Teacher t2 = new Teacher("876", "Ms. Gurcha", "Science", "Biology");
 //        Teacher t3 = new Teacher("656", "Ms. Ramirez", "Art", "Digital Art");
 //        Teacher t4 = new Teacher("216", "Mr. Aguila", "Math","Algebra");
