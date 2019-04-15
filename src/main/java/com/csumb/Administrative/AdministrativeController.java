@@ -11,6 +11,10 @@ import com.csumb.Administrative.repositotries.IClassRepository;
 import com.csumb.Administrative.repositotries.ISectionRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
+import com.csumb.Administrative.seeders.ClassSeeder;
+import com.csumb.Administrative.seeders.SectionSeeder;
+import com.csumb.Administrative.seeders.StudentSeeder;
+import com.csumb.Administrative.seeders.TeacherSeeder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +32,29 @@ public class AdministrativeController{
 
     @Autowired
     private ISectionRepository sectionRepo;
+
+    @Autowired
+    private ClassSeeder classSeeder;
+
+    @Autowired
+    private SectionSeeder sectionSeeder;
+
+    @Autowired
+    private StudentSeeder studentSeeder;
+
+    @Autowired
+    private TeacherSeeder teacherSeeder;
+
+
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/reset")
+    public void reset(){
+        classSeeder.seed();
+        sectionSeeder.seed();
+        studentSeeder.seed();
+        teacherSeeder.seed();
+    }
 
     //========================STUDENT====================================
 
