@@ -15,6 +15,7 @@ public class Class {
     private String classRoom;
     private int maxNumSections;
     private int maxNumStudentPerSection;
+    private int numStudentRegistered;
 
     public Class() {
         this.department = "";
@@ -22,6 +23,7 @@ public class Class {
         this.classRoom = "";
         this.maxNumStudentPerSection = 30;
         this.maxNumSections = 5;
+        this.numStudentRegistered = 0;
     }
 
     public Class(String department, String className) {
@@ -30,6 +32,7 @@ public class Class {
         this.classRoom = "";
         this.maxNumStudentPerSection = 30;
         this.maxNumSections = 5;
+        this.numStudentRegistered = 0;
     }
 
     public Class(String department, String className, String id) {
@@ -39,6 +42,7 @@ public class Class {
         this.classRoom = "";
         this.maxNumStudentPerSection = 30;
         this.maxNumSections = 5;
+        this.numStudentRegistered = 0;
     }
 
 
@@ -49,6 +53,7 @@ public class Class {
         this.classRoom = "";
         this.maxNumStudentPerSection = maxNumStudentPerSection;
         this.maxNumSections = maxNumSections;
+        this.numStudentRegistered = 0;
     }
 
     public Class(String department, String className, String id, int maxNumStudentPerSection){
@@ -58,6 +63,7 @@ public class Class {
         this.classRoom = "";
         this.maxNumSections = 5;
         this.maxNumStudentPerSection = maxNumStudentPerSection;
+        this.numStudentRegistered = 0;
     }
 
 
@@ -67,7 +73,8 @@ public class Class {
         this.id = id;
         this.classRoom = roomNum;
         this.maxNumSections = 5;
-        maxNumStudentPerSection = 30;
+        this.maxNumStudentPerSection = 30;
+        this.numStudentRegistered = 0;
     }
 
 
@@ -77,7 +84,8 @@ public class Class {
         this.className = c.getClassName();
         this.classRoom = c.getClassRoom();
         this.maxNumSections = 5;
-        maxNumStudentPerSection = 30;
+        this.maxNumStudentPerSection = 30;
+        this.numStudentRegistered = 0;
     }
 
     public String getDepartment() {
@@ -126,6 +134,18 @@ public class Class {
 
     public void setMaxNumSections(int maxNumSections) {
         this.maxNumSections = maxNumSections;
+    }
+
+    public void studentAdded(){
+        this.numStudentRegistered++;
+    }
+
+    public int getNumStudentRegistered() {
+        return numStudentRegistered;
+    }
+
+    public void setNumStudentRegistered(int numStudentRegistered) {
+        this.numStudentRegistered = numStudentRegistered;
     }
 
     @Override
