@@ -67,7 +67,6 @@ public class Student {
         for(int i =0; i < 6;i++){
             schedule.add("");
         }
-
     }
 
     public String getId() {
@@ -144,6 +143,26 @@ public class Student {
 
     public void setPreferred(List<Boolean> preferred) {
         this.preferred = preferred;
+    }
+
+    public List<String> getData(){
+        List<String> ans = new ArrayList<>();
+        ans.add(this.id);
+        ans.add(this.name);
+        ans.add(Integer.toString(this.grade));
+        ans.add(this.academy);
+        for(int i =0; i < 6; i++) {
+            if (this.schedule.get(i).equals("")) {
+                ans.add("Please Generate");
+            } else {
+                ans.add(this.schedule.get(i));
+            }
+        }
+        for(int i=0; i< 6 ;i++){
+            ans.add(preferredClasses.get(i));
+            ans.add(Boolean.toString(preferred.get(i)));
+        }
+        return ans;
     }
 
     @Override

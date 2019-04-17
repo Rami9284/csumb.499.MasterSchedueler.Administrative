@@ -438,4 +438,8 @@ public class AdministrativeController{
         }
    }
 
+//    @CrossOrigin(origins = "*")
+
+
+
 }
