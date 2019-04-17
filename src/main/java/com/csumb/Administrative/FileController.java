@@ -36,6 +36,7 @@ public class FileController {
     @Autowired
     private IStudentRepository studentRepository;
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/uploadFile/{type}")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable String type) {
         String fileName = fileStorageService.storeFile(file);
@@ -86,6 +87,7 @@ public class FileController {
                 file.getContentType(), file.getSize());
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
@@ -96,6 +98,7 @@ public class FileController {
 
     //@GetMapping("/downloadFile/{fileName:.+}")
 //    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
+    @CrossOrigin(origins = "*")
     @GetMapping("/downloadFile/{type}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String type, HttpServletRequest request) {
         // Load file as Resource
