@@ -12,7 +12,6 @@ public class Class {
     private String id;
     private String department;
     private String className;
-    private String classRoom;
     private int maxNumSections;
     private int maxNumStudentPerSection;
     private int numStudentRegistered;
@@ -20,7 +19,6 @@ public class Class {
     public Class() {
         this.department = "";
         this.className = "";
-        this.classRoom = "";
         this.maxNumStudentPerSection = 30;
         this.maxNumSections = 5;
         this.numStudentRegistered = 0;
@@ -29,7 +27,6 @@ public class Class {
     public Class(String department, String className) {
         this.department = department;
         this.className = className;
-        this.classRoom = "";
         this.maxNumStudentPerSection = 30;
         this.maxNumSections = 5;
         this.numStudentRegistered = 0;
@@ -39,7 +36,6 @@ public class Class {
         this.department = department;
         this.className = className;
         this.id = id;
-        this.classRoom = "";
         this.maxNumStudentPerSection = 30;
         this.maxNumSections = 5;
         this.numStudentRegistered = 0;
@@ -50,7 +46,6 @@ public class Class {
         this.department = department;
         this.className = className;
         this.id = id;
-        this.classRoom = "";
         this.maxNumStudentPerSection = maxNumStudentPerSection;
         this.maxNumSections = maxNumSections;
         this.numStudentRegistered = 0;
@@ -60,7 +55,6 @@ public class Class {
         this.department = department;
         this.className = className;
         this.id = id;
-        this.classRoom = "";
         this.maxNumSections = 5;
         this.maxNumStudentPerSection = maxNumStudentPerSection;
         this.numStudentRegistered = 0;
@@ -71,7 +65,6 @@ public class Class {
         this.department = department;
         this.className = className;
         this.id = id;
-        this.classRoom = roomNum;
         this.maxNumSections = 5;
         this.maxNumStudentPerSection = 30;
         this.numStudentRegistered = 0;
@@ -82,7 +75,6 @@ public class Class {
         this.id = c.getId();
         this.department = c.getDepartment();
         this.className = c.getClassName();
-        this.classRoom = c.getClassRoom();
         this.maxNumSections = 5;
         this.maxNumStudentPerSection = 30;
         this.numStudentRegistered = 0;
@@ -102,14 +94,6 @@ public class Class {
 
     public void setClassName(String className) {
         this.className = className;
-    }
-
-    public String getClassRoom() {
-        return classRoom;
-    }
-
-    public void setClassRoom(String classRoom) {
-        this.classRoom = classRoom;
     }
 
     public String getId() {
@@ -154,7 +138,6 @@ public class Class {
                 "id='" + id + '\'' +
                 ", department='" + department + '\'' +
                 ", className='" + className + '\'' +
-                ", classRoom='" + classRoom + '\'' +
                 ", maxNumSections=" + maxNumSections +
                 ", maxNumStudentPerSection=" + maxNumStudentPerSection +
                 '}';
@@ -169,12 +152,11 @@ public class Class {
                 maxNumStudentPerSection == aClass.maxNumStudentPerSection &&
                 id.equals(aClass.id) &&
                 department.equals(aClass.department) &&
-                className.equals(aClass.className) &&
-                classRoom.equals(aClass.classRoom);
+                className.equals(aClass.className);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, department, className, classRoom, maxNumSections, maxNumStudentPerSection);
+        return Objects.hash(id, department, className, maxNumSections, maxNumStudentPerSection);
     }
 }
