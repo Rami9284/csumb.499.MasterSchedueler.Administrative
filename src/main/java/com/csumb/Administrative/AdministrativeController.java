@@ -438,6 +438,12 @@ public class AdministrativeController{
         }
    }
 
+   @CrossOrigin(origins = "*")
+    @GetMapping("/getsectionbyclassname/{classname}")
+    public List<Section> GetSectionByClassName(@PathVariable String classname){
+       return sectionRepo.findAllByClassName(classname);
+   }
+
 //    @CrossOrigin(origins = "*")
 
 

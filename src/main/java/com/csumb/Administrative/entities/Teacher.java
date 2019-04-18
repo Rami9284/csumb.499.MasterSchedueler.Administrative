@@ -17,7 +17,7 @@ public class Teacher {
     private int prep;
     private String preferred_room;
     private boolean is80Percent;
-    private String academy; 
+    private String academy;
     private int maxNumStudent;
     private int currentNumStudent;
     private List<Section> sections;
@@ -28,7 +28,7 @@ public class Teacher {
     public Teacher( ) {
         this.name = "";
         this.department = "";
-        this.prep = -1;
+        this.prep = 0;
         this.preferred_room = "";
         this.is80Percent = false;
         this.academy = "";
@@ -38,6 +38,9 @@ public class Teacher {
         this.className = "";
         this.className2 = "";
         this.className2 = "";
+        for(int i =0; i<6; i++){
+            sections.add(new Section());
+        }
     }
 
     public Teacher(String id, String name, String department, boolean is80Percent,
@@ -53,6 +56,9 @@ public class Teacher {
         this.sections = new ArrayList<>();
         this.className2 = "";
         this.className3 = "";
+        for(int i =0; i<6; i++){
+            sections.add(new Section());
+        }
     }
 
     public Teacher(String id, String name, String department) {
@@ -64,6 +70,9 @@ public class Teacher {
         this.sections = new ArrayList<>();
         this.className2 = "";
         this.className3 = "";
+        for(int i =0; i<6; i++){
+            sections.add(new Section());
+        }
     }
 
     public Teacher(String id, String name, String department, String className) {
@@ -76,10 +85,13 @@ public class Teacher {
         this.sections = new ArrayList<>();
         this.className2 = "";
         this.className3 = "";
+        for(int i =0; i<6; i++){
+            sections.add(new Section());
+        }
     }
 
     public Teacher(String id, String name,String department, String className, String className2,
-                String className3,int prep) {
+                   String className3,int prep) {
         this.id = id;
         this.name = name;
         this.department = department;
@@ -87,6 +99,9 @@ public class Teacher {
         this.className2 = className2;
         this.className3 = className3;
         this.prep = prep;
+        for(int i =0; i<6; i++){
+            sections.add(new Section());
+        }
     }
 
     public String getId() {
@@ -195,6 +210,24 @@ public class Teacher {
 
     public void setClassName3(String className3) {
         this.className3 = className3;
+    }
+
+    public void addSection(Section section){
+        if(section.getPeriod_num() != -1) {
+            this.sections.add(section.getPeriod_num()-1, section);
+        } else{
+            this.sections.add(section);
+        }
+    }
+    public int getMaxNumSections(){
+        if(!is80Percent)
+            return 5;
+        else
+            return 4;
+    }
+
+    public void updateCurrentNumStudents(int num){
+        this.currentNumStudent += num;
     }
 
     @Override
