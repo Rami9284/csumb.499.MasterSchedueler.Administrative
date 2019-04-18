@@ -19,6 +19,7 @@ public class Section extends Class {
     private String room;
 
     public Section() {
+        super();
         this.section_num = -1;
         this.period_num = -1;
         this.roster = new ArrayList<>();
