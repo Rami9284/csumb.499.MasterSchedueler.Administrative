@@ -158,6 +158,10 @@ public class Teacher {
         return currentNumStudent;
     }
 
+    public int getCurrentNumSections(){
+        return sections.size();
+    }
+
     public void setCurrentNumStudent(int currentNumStudent) {
         this.currentNumStudent = currentNumStudent;
     }
@@ -168,6 +172,10 @@ public class Teacher {
 
     public void setSections(List<Section> sections) {
         this.sections = sections;
+    }
+
+    public void removeSection(Section s){
+        sections.remove(s);
     }
 
     public void addClass(Section section){
