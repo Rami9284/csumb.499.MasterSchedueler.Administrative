@@ -443,18 +443,33 @@ public class AdministrativeController{
    //==============================OTHER============================
    /* Update Teacher to Section*/
    @CrossOrigin(origins = "*")
-   @PostMapping("/settingTeacher/{teacherID}{sectionId}")
-   public void TeacherToSection(String teacherId, String sectionId){
+   @PostMapping("/setTeacherSection/{teacherId}/{sectionId}")
+   public void TeacherToSection(@PathVariable String teacherId, @PathVariable String sectionId){
         Section s = sectionRepo.findById(sectionId).orElseThrow(null);
         Teacher t = teacherRepo.findById(teacherId).orElseThrow(null);
 
         if(s != null && t != null){
-            s.setTeacherID(teacherId);
-            t.setSections(Arrays.asList(s));
+            if(t.getCurrentNumSections() <= t.getMaxNumSections() && t.getCurrentNumStudent() <= t.getMaxNumStudent()){
+                s.setTeacherID(teacherId);
+                t.addSection(s);
+            }
         }
    }
 
-   @CrossOrigin(origins = "*")
+    /* delete Teacher from Section*/
+    @CrossOrigin(origins = "*")
+    @PostMapping("/removeTeacherSection/{teacherId}/{sectionId}")
+    public void removeTeacherSection(@PathVariable String teacherId, @PathVariable String sectionId){
+         Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+         Teacher t = teacherRepo.findById(teacherId).orElseThrow(null);
+ 
+         if(s != null && t != null){
+             s.setTeacherID("");
+             t.removeSection(s);
+         }
+    }
+
+    @CrossOrigin(origins = "*")
     @GetMapping("/getsectionbyclassname/{classname}")
     public List<Section> GetSectionByClassName(@PathVariable String classname){
        return sectionRepo.findAllByClassName(classname);
