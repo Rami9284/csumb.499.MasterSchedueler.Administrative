@@ -1,6 +1,8 @@
 package com.csumb.Administrative;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.csumb.Administrative.entities.Class;
@@ -435,6 +437,20 @@ public class AdministrativeController{
             sectionRepo.deleteById(id);
         } catch (Exception ex) {
             System.out.println(ex);
+        }
+   }
+
+   //==============================OTHER============================
+   /* Update Teacher to Section*/
+   @CrossOrigin(origins = "*")
+   @PostMapping("/settingTeacher/{teacherID}{sectionId}")
+   public void TeacherToSection(String teacherId, String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        Teacher t = teacherRepo.findById(teacherId).orElseThrow(null);
+
+        if(s != null && t != null){
+            s.setTeacherID(teacherId);
+            t.setSections(Arrays.asList(s));
         }
    }
 

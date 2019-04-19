@@ -1,7 +1,9 @@
 package com.csumb.Administrative;
 
+import com.csumb.Administrative.entities.Section;
 import com.csumb.Administrative.entities.Student;
 import com.csumb.Administrative.entities.Teacher;
+import com.csumb.Administrative.repositotries.ISectionRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
 import org.junit.Assert;
@@ -28,6 +30,8 @@ public class AdministrativeControllerTest {
     @MockBean
     private IStudentRepository studentRepository;
 
+    @MockBean ISectionRepository sectionRepository;
+
     @MockBean
     private ITeacherRepository teacherRepository;
 
@@ -36,6 +40,9 @@ public class AdministrativeControllerTest {
 
     private List<Teacher> teacherData = new ArrayList<>(Arrays.asList(new Teacher("098","Ms. Gonzalez","English"),
             new Teacher("876", "Ms. Gurcha", "Science")));
+
+    private List<Teacher> sectionData = new ArrayList<>(Arrays.asList(new Teacher("098","Ms. Gonzalez","English"),
+    new Teacher("876", "Ms. Gurcha", "Science")));
 
     //all Students
     @Test
@@ -78,5 +85,5 @@ public class AdministrativeControllerTest {
         when(teacherRepository.insert(teacherData.get(1))).thenThrow(new DuplicateKeyException("key", new Throwable()));
         Assert.assertEquals(teacherData, administrativeController.addTeachers(teacherData));
     }
-
+    
 }
