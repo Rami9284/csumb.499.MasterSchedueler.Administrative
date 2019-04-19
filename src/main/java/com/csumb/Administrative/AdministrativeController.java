@@ -467,9 +467,9 @@ public class AdministrativeController{
         Teacher t = teacherRepo.findById(teacherId).orElseThrow(null);
 
         if(s != null && t != null){
-            if(t.getCurrentNumSections() <= t.getMaxNumSections() && t.getCurrentNumStudent() <= t.getMaxNumStudent()){
+            if(t.canAddSection(s)){
                 s.setTeacherID(teacherId);
-                t.addSection(s);
+                t.addSection(s);// Also adds students count in teacher
             }
         }
    }
@@ -483,7 +483,7 @@ public class AdministrativeController{
  
          if(s != null && t != null){
              s.setTeacherID("");
-             t.removeSection(s);
+             t.removeSection(s); // Also removes student count in teacher
          }
     }
 
