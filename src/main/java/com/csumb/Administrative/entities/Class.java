@@ -12,32 +12,62 @@ public class Class {
     private String id;
     private String department;
     private String className;
-    private String classRoom;
+    private int maxNumSections;
+    private int maxNumStudentPerSection;
+    private int numStudentRegistered;
 
     public Class() {
         this.department = "";
         this.className = "";
-        this.classRoom = "";
+        this.maxNumStudentPerSection = 30;
+        this.maxNumSections = 5;
+        this.numStudentRegistered = 0;
     }
 
     public Class(String department, String className) {
         this.department = department;
         this.className = className;
-        this.classRoom = "";
+        this.maxNumStudentPerSection = 30;
+        this.maxNumSections = 5;
+        this.numStudentRegistered = 0;
     }
 
     public Class(String department, String className, String id) {
         this.department = department;
         this.className = className;
         this.id = id;
-        this.classRoom = "";
+        this.maxNumStudentPerSection = 30;
+        this.maxNumSections = 5;
+        this.numStudentRegistered = 0;
     }
+
+
+    public Class(String department, String className, String id, int maxNumSections, int maxNumStudentPerSection) {
+        this.department = department;
+        this.className = className;
+        this.id = id;
+        this.maxNumStudentPerSection = maxNumStudentPerSection;
+        this.maxNumSections = maxNumSections;
+        this.numStudentRegistered = 0;
+    }
+
+    public Class(String department, String className, String id, int maxNumStudentPerSection){
+        this.department = department;
+        this.className = className;
+        this.id = id;
+        this.maxNumSections = 5;
+        this.maxNumStudentPerSection = maxNumStudentPerSection;
+        this.numStudentRegistered = 0;
+    }
+
 
     public Class(String department, String className, String roomNum, String id) {
         this.department = department;
         this.className = className;
         this.id = id;
-        this.classRoom = roomNum;
+        this.maxNumSections = 5;
+        this.maxNumStudentPerSection = 30;
+        this.numStudentRegistered = 0;
     }
 
 
@@ -45,7 +75,9 @@ public class Class {
         this.id = c.getId();
         this.department = c.getDepartment();
         this.className = c.getClassName();
-        this.classRoom = c.getClassRoom();
+        this.maxNumSections = 5;
+        this.maxNumStudentPerSection = 30;
+        this.numStudentRegistered = 0;
     }
 
     public String getDepartment() {
@@ -64,14 +96,6 @@ public class Class {
         this.className = className;
     }
 
-    public String getClassRoom() {
-        return classRoom;
-    }
-
-    public void setClassRoom(String classRoom) {
-        this.classRoom = classRoom;
-    }
-
     public String getId() {
         return id;
     }
@@ -80,13 +104,42 @@ public class Class {
         this.id = id;
     }
 
+    public int getMaxNumStudentPerSection() {
+        return maxNumStudentPerSection;
+    }
+
+    public void setMaxNumStudentPerSection(int maxNumStudentPerSection) {
+        this.maxNumStudentPerSection = maxNumStudentPerSection;
+    }
+
+    public int getMaxNumSections() {
+        return maxNumSections;
+    }
+
+    public void setMaxNumSections(int maxNumSections) {
+        this.maxNumSections = maxNumSections;
+    }
+
+    public void studentAdded(){
+        this.numStudentRegistered++;
+    }
+
+    public int getNumStudentRegistered() {
+        return numStudentRegistered;
+    }
+
+    public void setNumStudentRegistered(int numStudentRegistered) {
+        this.numStudentRegistered = numStudentRegistered;
+    }
+
     @Override
     public String toString() {
         return "Class{" +
                 "id='" + id + '\'' +
                 ", department='" + department + '\'' +
                 ", className='" + className + '\'' +
-                ", classRoom='" + classRoom + '\'' +
+                ", maxNumSections=" + maxNumSections +
+                ", maxNumStudentPerSection=" + maxNumStudentPerSection +
                 '}';
     }
 
@@ -95,14 +148,15 @@ public class Class {
         if (this == o) return true;
         if (!(o instanceof Class)) return false;
         Class aClass = (Class) o;
-        return id.equals(aClass.id) &&
+        return maxNumSections == aClass.maxNumSections &&
+                maxNumStudentPerSection == aClass.maxNumStudentPerSection &&
+                id.equals(aClass.id) &&
                 department.equals(aClass.department) &&
-                className.equals(aClass.className) &&
-                classRoom.equals(aClass.classRoom);
+                className.equals(aClass.className);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, department, className, classRoom);
+        return Objects.hash(id, department, className, maxNumSections, maxNumStudentPerSection);
     }
 }

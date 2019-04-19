@@ -19,7 +19,12 @@ public class SectionSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args)throws  Exception{
-//
+        seed();
+
+    }
+
+    public void seed(){
+        //
 //        List<Class> classes = Arrays.asList(
 //                new Class("English", "Literature", "400","123"),
 //                new Class("Math", "Geometry", "101","321"),
@@ -37,5 +42,6 @@ public class SectionSeeder implements CommandLineRunner {
 //       }
         sectionRepository.deleteAll();
 //        sectionRepository.saveAll(sections);
+
     }
 }
