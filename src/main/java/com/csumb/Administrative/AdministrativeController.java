@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.entities.Section;
@@ -134,8 +135,25 @@ public class AdministrativeController{
     @CrossOrigin(origins = "*")
     @PutMapping("/updatestudent")
     public Student updateStudent(@RequestBody Student student){
-        return studentRepo.save(student);
+        Optional<Student> studentToUpdate= studentRepo.findById(student.getId());
+        if(studentToUpdate.isPresent()){
+            Student s = studentToUpdate.get();
+            s.setGrade(student.getGrade());
+            s.setPreferred(student.getPreferred());
+            s.setPreferredClasses(student.getPreferredClasses());
+            s.setAcademy(student.getAcademy());
+            return studentRepo.save(s);
+        }else{
+            return null;
+        }
     }
+
+//    @CrossOrigin(origins = "*")
+//    @PutMapping("/updatestudentSchedule")
+//    public Student updateStudentSchedule(@RequestBody Student student){
+//
+//
+//    }
 
     /*
     required: String of id
@@ -459,9 +477,5 @@ public class AdministrativeController{
     public List<Section> GetSectionByClassName(@PathVariable String classname){
        return sectionRepo.findAllByClassName(classname);
    }
-
-//    @CrossOrigin(origins = "*")
-
-
 
 }
