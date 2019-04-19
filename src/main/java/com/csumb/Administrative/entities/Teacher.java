@@ -176,7 +176,7 @@ public class Teacher {
 
     public void removeSection(Section s){
         sections.remove(s);
-        currentNumStudent -= currentNumStudent - s.getCurrentNumofStudents();
+        currentNumStudent -= s.getCurrentNumofStudents();
     }
 
     public void addClass(Section section){
