@@ -199,11 +199,7 @@ public class Teacher {
     }
 
     public void addSection(Section section){
-        if(section.getPeriod_num() != -1) {
-            this.sections.add(section.getPeriod_num()-1, section);
-        } else{
             this.sections.add(section);
-        }
     }
     public int getMaxNumSections(){
         if(!is80Percent)
