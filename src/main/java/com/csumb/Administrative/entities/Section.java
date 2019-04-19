@@ -98,6 +98,10 @@ public class Section extends Class {
         return maxStudent >= roster.size()+1;
     }
 
+    public int getCurrentNumofStudents(){
+        return roster.size();
+    }
+
     public String getRoom() {
         return room;
     }
