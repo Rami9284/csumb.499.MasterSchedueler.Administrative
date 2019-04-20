@@ -487,6 +487,16 @@ public class AdministrativeController{
          }
     }
 
+    public void updateClassSection(@RequestBody Class c, @PathVariable String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        if(s != null){
+            s.setDepartment(c.getDepartment());
+            s.setClassName(c.getClassName());
+            s.setMaxNumSections(c.getMaxNumSections());
+            s.setMaxNumStudentPerSection(c.getMaxNumStudentPerSection());
+        }
+    }
+
     @CrossOrigin(origins = "*")
     @GetMapping("/getsectionbyclassname/{classname}")
     public List<Section> GetSectionByClassName(@PathVariable String classname){
