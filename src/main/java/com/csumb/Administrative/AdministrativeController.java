@@ -439,8 +439,38 @@ public class AdministrativeController{
     @CrossOrigin(origins = "*")
     @PutMapping("/updatesection")
     public Section updateSection(@RequestBody Section section){
-        return sectionRepo.save(section);
+        Optional<Section> sectionToUpdate = sectionRepo.findById(section.getId());
+        if(sectionToUpdate.isPresent()){
+            Section s = sectionToUpdate.get();
+            s.setPeriod_num(section.getPeriod_num());
+            s.setRoom(section.getRoom());
+            return sectionRepo.save(section);
+        }
+        else{
+            return null;
+        }
+
     }
+
+//    @CrossOrigin(origins = "*")
+//    @PutMapping("/addStudentSection/{studentId}/{sectionId}")
+//    public void addStudentSection(@PathVariable String studentId, @PathVariable String sectionId){
+//        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+//        Student t = studentRepo.findById(studentId).orElseThrow(null);
+//
+//        if(s != null && t != null){
+//            if(t.canAddSection(s)){
+//                s.setTeacherID(teacherId);
+//                t.addSection(s);// Also adds students count in teacher
+//            }
+//        }
+//
+////        return sectionRepo.save(section);
+//
+//    }
+
+
+
 
 
     /*
