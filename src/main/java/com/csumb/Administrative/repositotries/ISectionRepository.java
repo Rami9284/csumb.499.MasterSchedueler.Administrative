@@ -10,5 +10,5 @@ import java.util.List;
 public interface ISectionRepository  extends MongoRepository<Section,String> {
 
     List<Section> findAllByClassName(String className);
-
+    List<Section> findAllByPeriodNum(int periodNum);
 }
