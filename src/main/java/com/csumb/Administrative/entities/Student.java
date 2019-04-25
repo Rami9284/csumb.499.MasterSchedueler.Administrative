@@ -145,6 +145,11 @@ public class Student {
         this.preferred = preferred;
     }
 
+//    public boolean checkSchedule(Student s){
+//        return getSchedule()
+//    }
+
+
     public List<String> getData(){
         List<String> ans = new ArrayList<>();
         ans.add(this.id);
@@ -163,6 +168,17 @@ public class Student {
             ans.add(Boolean.toString(preferred.get(i)));
         }
         return ans;
+    }
+
+    public void setScheduleSection(Section s){
+        schedule.add(s.getClassName());
+    }
+
+    public void removeScheduleSection(Section s){
+        schedule.remove(s.getClassName());
+        setSchedule(schedule);
+        System.out.println("here");
+
     }
 
     @Override
