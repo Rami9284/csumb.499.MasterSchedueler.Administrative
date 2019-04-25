@@ -159,6 +159,10 @@ public class Teacher {
         return currentNumStudent;
     }
 
+    public int getCurrentNumSections(){
+        return sections.size();
+    }
+
     public void setCurrentNumStudent(int currentNumStudent) {
         this.currentNumStudent = currentNumStudent;
     }
@@ -169,6 +173,11 @@ public class Teacher {
 
     public void setSections(List<Section> sections) {
         this.sections = sections;
+    }
+
+    public void removeSection(Section s){
+        sections.remove(s);
+        currentNumStudent -= s.getCurrentNumofStudents();
     }
 
     public void addClass(Section section){
@@ -200,7 +209,8 @@ public class Teacher {
     }
 
     public void addSection(Section section){
-            this.sections.add(section);
+        this.sections.add(section);
+        updateCurrentNumStudents(section.getCurrentNumofStudents());
     }
     public int getMaxNumSections(){
         if(!is80Percent)
@@ -211,6 +221,10 @@ public class Teacher {
 
     public void updateCurrentNumStudents(int num){
         this.currentNumStudent += num;
+    }
+
+    public boolean canAddSection(Section s){
+        return getCurrentNumSections() + 1 <= getMaxNumSections() && getCurrentNumStudent() + s.getCurrentNumofStudents() <= getMaxNumStudent();
     }
 
     @Override
