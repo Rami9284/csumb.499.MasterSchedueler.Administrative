@@ -176,7 +176,7 @@ public class AdministrativeController{
 
                     //step 5 change student schedule
                     ans.setPeriod(period, section1);
-
+                    studentRepo.save(ans);
                 }
             }
             return ans;
