@@ -1,8 +1,6 @@
 package com.csumb.Administrative;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -466,7 +464,7 @@ public class AdministrativeController{
         Optional<Section> sectionToUpdate = sectionRepo.findById(section.getId());
         if(sectionToUpdate.isPresent()){
             Section s = sectionToUpdate.get();
-            s.setPeriod_num(section.getPeriod_num());
+            s.setPeriodNum(section.getPeriodNum());
             s.setRoom(section.getRoom());
             return sectionRepo.save(section);
         }
@@ -485,7 +483,7 @@ public class AdministrativeController{
 
         System.out.println("Inside function");
         if(s != null && t != null){
-            if(s.canAddStudent(t) && t.isPeriodAvailable(s.getPeriod_num())){
+            if(s.canAddStudent(t) && t.isPeriodAvailable(s.getPeriodNum())){
                 s.addStudent(t);
                 t.setScheduleSection(s);
                 System.out.println("Adding student");
