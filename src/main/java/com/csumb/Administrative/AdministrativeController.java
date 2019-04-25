@@ -18,6 +18,7 @@ import com.csumb.Administrative.seeders.StudentSeeder;
 import com.csumb.Administrative.seeders.TeacherSeeder;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -147,12 +148,42 @@ public class AdministrativeController{
         }
     }
 
-//    @CrossOrigin(origins = "*")
-//    @PutMapping("/updatestudentSchedule")
-//    public Student updateStudentSchedule(@RequestBody Student student){
-//
-//
-//    }
+    @CrossOrigin(origins = "*")
+    @GetMapping("/updatePeriod/{id}/{period}/{classId}")
+    public Student updateStudentSchedule(@PathVariable String id,
+         @PathVariable int period, @PathVariable String classId){
+
+        Optional<Student> s = studentRepo.findById(id);
+        if(s.isPresent()){
+            Student ans = s.get();
+            //step 1 get current class
+            String sectionId = ans.getScheduleId().get(period-1);
+            Optional<Section> sectionOptional = sectionRepo.findById(sectionId);
+            if(sectionOptional.isPresent()){
+                Section section = sectionOptional.get();
+                //Step 2 get the other class
+                Optional<Section> sectionOptional2 = sectionRepo.findById(classId);
+                if(sectionOptional2.isPresent()){
+                    Section section1 = sectionOptional2.get();
+                    //Step 3 get rid of student from previous class
+                    List<Pair<String, String>> roster = section.getRoster();
+                    if(roster.remove(Pair.of(ans.getId(),ans.getName())))
+                        System.out.println("removed");
+                    section.setRoster(roster);
+
+                    //step 4 add student to next section
+                    section1.addStudent(ans);
+
+                    //step 5 change student schedule
+                    ans.setPeriod(period, section1);
+
+                }
+            }
+            return ans;
+        }
+        return null;
+
+    }
 
     /*
     required: String of id
