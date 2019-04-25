@@ -88,6 +88,7 @@ public class Teacher {
         this.className2 = className2;
         this.className3 = className3;
         this.prep = prep;
+        this.maxNumStudent = 160;
     }
 
     public String getId() {
