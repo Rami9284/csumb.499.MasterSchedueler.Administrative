@@ -18,6 +18,7 @@ import com.csumb.Administrative.seeders.ClassSeeder;
 import com.csumb.Administrative.seeders.SectionSeeder;
 import com.csumb.Administrative.seeders.StudentSeeder;
 import com.csumb.Administrative.seeders.TeacherSeeder;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -452,22 +453,46 @@ public class AdministrativeController{
 
     }
 
-//    @CrossOrigin(origins = "*")
-//    @PutMapping("/addStudentSection/{studentId}/{sectionId}")
-//    public void addStudentSection(@PathVariable String studentId, @PathVariable String sectionId){
-//        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
-//        Student t = studentRepo.findById(studentId).orElseThrow(null);
-//
-//        if(s != null && t != null){
-//            if(t.canAddSection(s)){
-//                s.setTeacherID(teacherId);
-//                t.addSection(s);// Also adds students count in teacher
-//            }
-//        }
-//
-////        return sectionRepo.save(section);
-//
-//    }
+    @CrossOrigin(origins = "*")
+    @PutMapping("/addStudentSection/{studentId}/{sectionId}")
+    public void addStudentSection(@PathVariable String studentId, @PathVariable String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        Student t = studentRepo.findById(studentId).orElseThrow(null);
+
+
+        System.out.println("Inside function");
+        if(s != null && t != null){
+            if(s.canAddStudent(t) && t.isPeriodAvailable(s.getPeriod_num())){
+                s.addStudent(t);
+                t.setScheduleSection(s);
+                System.out.println("Adding student");
+            }
+        }
+
+//        return sectionRepo.save(section);
+
+    }
+
+    @CrossOrigin(origins = "*")
+    @DeleteMapping("/deleteStudentSection/{studentId}/{sectionId}")
+    public void deleteStudentSection(@PathVariable String studentId, @PathVariable String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        Student t = studentRepo.findById(studentId).orElseThrow(null);
+
+
+        System.out.println(s);
+        System.out.println("Inside function");
+        if(s != null && t != null){
+            t.removeScheduleSection(s);
+            s.removeStudent(t);
+            System.out.println(s);
+            System.out.println(t);
+            System.out.println("Delete student");
+        }
+
+//        return sectionRepo.save(section);
+
+    }
 
 
 
