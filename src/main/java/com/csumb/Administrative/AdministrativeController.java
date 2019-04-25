@@ -377,6 +377,29 @@ public class AdministrativeController{
         return sectionRepo.findAll();
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/sectionsForPer/{period}")
+    public List<Section> sectionsForPer(@PathVariable int period){
+        List<Section> sections = sectionRepo.findAllByPeriodNum(period);
+        List<Section> ans = new ArrayList<>();
+        Optional<Teacher> t;
+        for(Section s: sections){
+            if(s.canAddStudent()){
+                t = teacherRepo.findById(s.getTeacherID());
+                if(t.isPresent()) {
+                    Teacher teacher = t.get();
+                    if (teacher.getMaxNumStudent() >
+                            teacher.getCurrentNumStudent()) {
+                        ans.add(s);
+                    }
+                } else{
+                    ans.add(s);
+                }
+            }
+        }
+        return ans;
+    }
+
     /*
     required: String variable of section ID
     response: success -> Section with given ID
