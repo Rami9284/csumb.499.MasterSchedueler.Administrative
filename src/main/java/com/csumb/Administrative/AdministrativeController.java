@@ -487,9 +487,11 @@ public class AdministrativeController{
                 s.addStudent(t);
                 t.setScheduleSection(s);
                 System.out.println("Adding student");
-            }
+                studentRepo.save(t);
+                sectionRepo.save(s);
+           }
         }
-
+//        return sectionRepo.save(s);
 //        return sectionRepo.save(section);
 
     }
@@ -509,6 +511,9 @@ public class AdministrativeController{
             System.out.println(s);
             System.out.println(t);
             System.out.println("Delete student");
+            sectionRepo.save(s);
+            studentRepo.save(t);
+
         }
 
 //        return sectionRepo.save(section);
