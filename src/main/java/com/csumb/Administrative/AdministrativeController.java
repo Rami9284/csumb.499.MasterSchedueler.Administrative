@@ -16,8 +16,8 @@ import com.csumb.Administrative.seeders.ClassSeeder;
 import com.csumb.Administrative.seeders.SectionSeeder;
 import com.csumb.Administrative.seeders.StudentSeeder;
 import com.csumb.Administrative.seeders.TeacherSeeder;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -474,49 +474,28 @@ public class AdministrativeController{
 
     }
 
-    @CrossOrigin(origins = "*")
-    @PutMapping("/addStudentSection/{studentId}/{sectionId}")
-    public void addStudentSection(@PathVariable String studentId, @PathVariable String sectionId){
-        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
-        Student t = studentRepo.findById(studentId).orElseThrow(null);
-
-
-        System.out.println("Inside function");
-        if(s != null && t != null){
-            if(s.canAddStudent(t) && t.isPeriodAvailable(s.getPeriodNum())){
-                s.addStudent(t);
-                t.setScheduleSection(s);
-                System.out.println("Adding student");
-                studentRepo.save(t);
-                sectionRepo.save(s);
-           }
-        }
-//        return sectionRepo.save(s);
-//        return sectionRepo.save(section);
-
-    }
 
     @CrossOrigin(origins = "*")
     @DeleteMapping("/deleteStudentSection/{studentId}/{sectionId}")
     public void deleteStudentSection(@PathVariable String studentId, @PathVariable String sectionId){
-        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
-        Student t = studentRepo.findById(studentId).orElseThrow(null);
+        Optional<Section> sectionOptional = sectionRepo.findById(sectionId);
+        Optional<Student> studentOptional = studentRepo.findById(studentId);
 
+        if(sectionOptional.isPresent() && studentOptional.isPresent()){
+            Section section = sectionOptional.get();
+            Student student = studentOptional.get();
+            //Removed section from student schedule
+            List<String> schedule = student.getSchedule();
+            schedule.set(schedule.indexOf(section.getClassName()), "No Class");
+            student.setSchedule(schedule);
+            //Removing Student from section
+            List<Pair<String, String>> roster = section.getRoster();
+            roster.remove(Pair.of(student.getId(),student.getName()));
+            section.setRoster(roster);
 
-        System.out.println(s);
-        System.out.println("Inside function");
-        if(s != null && t != null){
-            t.removeScheduleSection(s);
-            s.removeStudent(t);
-            System.out.println(s);
-            System.out.println(t);
-            System.out.println("Delete student");
-            sectionRepo.save(s);
-            studentRepo.save(t);
-
+            sectionRepo.save(section);
+            studentRepo.save(student);
         }
-
-//        return sectionRepo.save(section);
 
     }
 
