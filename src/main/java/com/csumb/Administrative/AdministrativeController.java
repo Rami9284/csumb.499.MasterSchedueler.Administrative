@@ -502,5 +502,33 @@ public class AdministrativeController{
     public List<Section> GetSectionByClassName(@PathVariable String classname){
        return sectionRepo.findAllByClassName(classname);
    }
+ /*update Class from Section*/
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/setClassSection/{classId}/{sectionId}")
+    public void ClassToSection(@PathVariable String classId, @PathVariable String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        Class c = classRepo.findById(classId).orElseThrow(null);
+
+        if(s !=null && c !=null){
+            s.setDepartment(c.getDepartment());
+            s.setClassName(c.getClassName());
+            s.setMaxNumSections(c.getMaxNumSections());
+            s.setMaxNumStudentPerSection(c.getMaxNumStudentPerSection());
+        }
+    }
+    /* delete Class from Section*/
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/deletesectionfromclass/{classId}/{sectionId}")
+    public void deleteSectionfromClass(@PathVariable String classId, @PathVariable String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        Class c = classRepo.findById(classId).orElseThrow(null);
+
+        if(s != null && c != null){
+            s.setClassName("");
+        }
+    }
+
 
 }
