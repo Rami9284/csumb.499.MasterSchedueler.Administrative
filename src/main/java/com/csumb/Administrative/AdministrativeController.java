@@ -145,12 +145,42 @@ public class AdministrativeController{
         }
     }
 
-//    @CrossOrigin(origins = "*")
-//    @PutMapping("/updatestudentSchedule")
-//    public Student updateStudentSchedule(@RequestBody Student student){
-//
-//
-//    }
+    @CrossOrigin(origins = "*")
+    @GetMapping("/updatePeriod/{id}/{period}/{classId}")
+    public Student updateStudentSchedule(@PathVariable String id,
+         @PathVariable int period, @PathVariable String classId){
+
+        Optional<Student> s = studentRepo.findById(id);
+        if(s.isPresent()){
+            Student ans = s.get();
+            //step 1 get current class
+            String sectionId = ans.getScheduleId().get(period-1);
+            Optional<Section> sectionOptional = sectionRepo.findById(sectionId);
+            if(sectionOptional.isPresent()){
+                Section section = sectionOptional.get();
+                //Step 2 get the other class
+                Optional<Section> sectionOptional2 = sectionRepo.findById(classId);
+                if(sectionOptional2.isPresent()){
+                    Section section1 = sectionOptional2.get();
+                    //Step 3 get rid of student from previous class
+                    List<Pair<String, String>> roster = section.getRoster();
+                    if(roster.remove(Pair.of(ans.getId(),ans.getName())))
+                        System.out.println("removed");
+                    section.setRoster(roster);
+
+                    //step 4 add student to next section
+                    section1.addStudent(ans);
+
+                    //step 5 change student schedule
+                    ans.setPeriod(period, section1);
+                    studentRepo.save(ans);
+                }
+            }
+            return ans;
+        }
+        return null;
+
+    }
 
     /*
     required: String of id
@@ -557,5 +587,33 @@ public class AdministrativeController{
     public List<Section> getSectionByClassName(@PathVariable String classname){
        return sectionRepo.findAllByClassName(classname);
    }
+ /*update Class from Section*/
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/setClassSection/{classId}/{sectionId}")
+    public void ClassToSection(@PathVariable String classId, @PathVariable String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        Class c = classRepo.findById(classId).orElseThrow(null);
+
+        if(s !=null && c !=null){
+            s.setDepartment(c.getDepartment());
+            s.setClassName(c.getClassName());
+            s.setMaxNumSections(c.getMaxNumSections());
+            s.setMaxNumStudentPerSection(c.getMaxNumStudentPerSection());
+        }
+    }
+    /* delete Class from Section*/
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/deletesectionfromclass/{classId}/{sectionId}")
+    public void deleteSectionfromClass(@PathVariable String classId, @PathVariable String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        Class c = classRepo.findById(classId).orElseThrow(null);
+
+        if(s != null && c != null){
+            s.setClassName("");
+        }
+    }
+
 
 }
