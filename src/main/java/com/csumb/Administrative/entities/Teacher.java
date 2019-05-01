@@ -178,10 +178,11 @@ public class Teacher {
     public void removeSection(Section s){
 
         if(sections.contains(s)){
-         System.out.println("HERE");
+            sections.remove(s);
+            sections.remove(s);//REFACTOR THIS
+            currentNumStudent -= s.getCurrentNumofStudents();
         }
-        sections.remove(s);
-        currentNumStudent -= s.getCurrentNumofStudents();
+
     }
 
     public void addClass(Section section){
@@ -212,10 +213,16 @@ public class Teacher {
         this.className3 = className3;
     }
 
-    public void addSection(Section section){
-        this.sections.add(section);
-        updateCurrentNumStudents(section.getCurrentNumofStudents());
+    public boolean addSection(Section section){
+
+        if(!sections.contains(section) && sections.size() <= getMaxNumSections()){
+            this.sections.add(section);
+            updateCurrentNumStudents(section.getCurrentNumofStudents());
+            return true;
+        }
+        return false;
     }
+
     public int getMaxNumSections(){
         if(!is80Percent)
             return 5;

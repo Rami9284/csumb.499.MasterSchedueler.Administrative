@@ -560,16 +560,20 @@ public class AdministrativeController{
             Section s = section.get();
             Teacher t = teacher.get();
 
-            if(t.canAddSection(s)){
-                s.setTeacherID(teacherId);
-                t.addSection(s);// Also adds students count in teacher
-                
-                //t.getSections().get(0).setRoster(s.getRoster());
-
-                sectionRepo.save(s);
-                teacherRepo.save(t);
-
+            t.addSection(s);
+            for (Section sectionObj: t.getSections()) {
+                if(sectionObj.getId().equals(s.getId())){
+                    sectionObj.setRoster(s.getRoster());
+                }
             }
+
+            s.setTeacherID(teacherId);
+            t.addSection(s);// Also adds students count in teacher
+
+            sectionRepo.save(s);
+            teacherRepo.save(t);
+
+
         }
    }
 
@@ -580,12 +584,29 @@ public class AdministrativeController{
          Optional<Section> section = sectionRepo.findById(sectionId);
          Optional<Teacher> teacher = teacherRepo.findById(teacherId);
 
+         int index = -1;
+
          if(section.isPresent() && teacher.isPresent()){
             Section s = section.get();
             Teacher t = teacher.get();
 
+             System.out.println("Before"+ t.getSections().size());
+
+             for (int i = 0; i < t.getSections().size(); i++) {
+                 if(t.getSections().get(i).getId().equals(s.getId())){
+                     index = i;
+                     System.out.println("One to delete"+ t.getSections().get(i));
+                 }
+             }
+
+//             if(index != -1){
+//
+//             }
+             t.removeSection(t.getSections().get(index));
+             System.out.println("after"+ t.getSections().size());
+
              s.setTeacherID("");
-             t.removeSection(s); // Also removes student count in teacher
+             //t.removeSection(s); // Also removes student count in teacher
 
              sectionRepo.save(s);
              teacherRepo.save(t);
