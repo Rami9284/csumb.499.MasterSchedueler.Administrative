@@ -1,8 +1,6 @@
 package com.csumb.Administrative;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.entities.Section;
@@ -530,9 +528,6 @@ public class AdministrativeController{
     }
 
 
-
-
-
     /*
     required: String of Section id
     response: success -> NA
@@ -589,7 +584,7 @@ public class AdministrativeController{
 
     @CrossOrigin(origins = "*")
     @GetMapping("/getsectionbyclassname/{classname}")
-    public List<Section> GetSectionByClassName(@PathVariable String classname){
+    public List<Section> getSectionByClassName(@PathVariable String classname){
        return sectionRepo.findAllByClassName(classname);
    }
  /*update Class from Section*/
