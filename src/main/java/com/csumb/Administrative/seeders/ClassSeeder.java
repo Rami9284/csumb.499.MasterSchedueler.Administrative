@@ -51,7 +51,7 @@ public class ClassSeeder implements CommandLineRunner {
                 new Class("ARTS","CULINARY","asdasf",5,30),
                 new Class("ARTS","CERAMICS","asfvdfb",5,30),
 
-                new Class("NONE","NO CLASS","10101",1,10000)
+                new Class("NONE","NO CLASS","10101",6,1000)
 
                 );
 
