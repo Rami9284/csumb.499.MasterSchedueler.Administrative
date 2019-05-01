@@ -187,6 +187,7 @@ public class Student {
         schedule.add(s.getClassName());
     }
 
+
     public void removeScheduleSection(Section s) {
         schedule.remove(s.getClassName());
         setSchedule(schedule);

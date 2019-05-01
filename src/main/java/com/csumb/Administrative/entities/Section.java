@@ -114,17 +114,6 @@ public class Section extends Class {
         return getCurrentNumofStudents() + 1 <= getMaxNumStudentPerSection();
     }
 
-    public void removeStudent(Student s){
-        int idx = -1;
-        for (int i=0; i<roster.size(); i++){
-            if(roster.get(i).getFirst().equals(s.getId())){
-                idx = i;
-            }
-        }
-        if(idx != -1){
-            roster.remove(idx);
-        }
-    }
 
     @Override
     public String toString() {
