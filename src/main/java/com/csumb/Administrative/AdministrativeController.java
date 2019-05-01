@@ -553,13 +553,22 @@ public class AdministrativeController{
    @CrossOrigin(origins = "*")
    @PostMapping("/setTeacherSection/{teacherId}/{sectionId}")
    public void TeacherToSection(@PathVariable String teacherId, @PathVariable String sectionId){
-        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
-        Teacher t = teacherRepo.findById(teacherId).orElseThrow(null);
+        Optional<Section> section = sectionRepo.findById(sectionId);
+        Optional<Teacher> teacher = teacherRepo.findById(teacherId);
 
-        if(s != null && t != null){
+        if(section.isPresent() && teacher.isPresent()){
+            Section s = section.get();
+            Teacher t = teacher.get();
+
             if(t.canAddSection(s)){
                 s.setTeacherID(teacherId);
                 t.addSection(s);// Also adds students count in teacher
+                
+                //t.getSections().get(0).setRoster(s.getRoster());
+
+                sectionRepo.save(s);
+                teacherRepo.save(t);
+
             }
         }
    }
@@ -568,12 +577,18 @@ public class AdministrativeController{
     @CrossOrigin(origins = "*")
     @PostMapping("/removeTeacherSection/{teacherId}/{sectionId}")
     public void removeTeacherSection(@PathVariable String teacherId, @PathVariable String sectionId){
-         Section s = sectionRepo.findById(sectionId).orElseThrow(null);
-         Teacher t = teacherRepo.findById(teacherId).orElseThrow(null);
- 
-         if(s != null && t != null){
+         Optional<Section> section = sectionRepo.findById(sectionId);
+         Optional<Teacher> teacher = teacherRepo.findById(teacherId);
+
+         if(section.isPresent() && teacher.isPresent()){
+            Section s = section.get();
+            Teacher t = teacher.get();
+
              s.setTeacherID("");
              t.removeSection(s); // Also removes student count in teacher
+
+             sectionRepo.save(s);
+             teacherRepo.save(t);
          }
     }
 
@@ -608,16 +623,20 @@ public class AdministrativeController{
         }
     }
     /* delete Class from Section*/
-
+    //refactor is needed
     @CrossOrigin(origins = "*")
     @PostMapping("/deletesectionfromclass/{classId}/{sectionId}")
     public void deleteSectionfromClass(@PathVariable String classId, @PathVariable String sectionId){
-        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
-        Class c = classRepo.findById(classId).orElseThrow(null);
+        Optional<Section> section = sectionRepo.findById(sectionId);
+        Optional<Class> classs = classRepo.findById(classId);
 
-        if(s != null && c != null){
+        if(section.isPresent() && classs.isPresent()){
+            Section s = section.get();
+            
             s.setClassName("");
+            sectionRepo.save(s);
         }
+
     }
 
 

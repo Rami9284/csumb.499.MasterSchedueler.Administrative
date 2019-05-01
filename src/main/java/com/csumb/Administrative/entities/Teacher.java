@@ -176,6 +176,10 @@ public class Teacher {
     }
 
     public void removeSection(Section s){
+
+        if(sections.contains(s)){
+         System.out.println("HERE");
+        }
         sections.remove(s);
         currentNumStudent -= s.getCurrentNumofStudents();
     }
