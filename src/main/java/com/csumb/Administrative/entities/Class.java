@@ -20,7 +20,7 @@ public class Class {
         this.department = "";
         this.className = "";
         this.maxNumStudentPerSection = 30;
-        this.maxNumSections = 5;
+        this.maxNumSections = 30;
         this.numStudentRegistered = 0;
     }
 
@@ -28,7 +28,7 @@ public class Class {
         this.department = department;
         this.className = className;
         this.maxNumStudentPerSection = 30;
-        this.maxNumSections = 5;
+        this.maxNumSections = 30;
         this.numStudentRegistered = 0;
     }
 
@@ -37,7 +37,7 @@ public class Class {
         this.className = className;
         this.id = id;
         this.maxNumStudentPerSection = 30;
-        this.maxNumSections = 5;
+        this.maxNumSections = 30;
         this.numStudentRegistered = 0;
     }
 
@@ -55,7 +55,7 @@ public class Class {
         this.department = department;
         this.className = className;
         this.id = id;
-        this.maxNumSections = 5;
+        this.maxNumSections = 30;
         this.maxNumStudentPerSection = maxNumStudentPerSection;
         this.numStudentRegistered = 0;
     }
