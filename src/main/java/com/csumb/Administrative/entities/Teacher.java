@@ -39,10 +39,10 @@ public class Teacher {
         this.maxNumStudent = 160;
         this.currentNumStudent = 0;
         this.sections = new ArrayList<>();
-        Class none = new Class("NONE","NO CLASS","10101",6,1000);
-        for(int i =1; i<= 6;i++){
-            this.sections.add(new Section(none,i));
-        }
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
         this.className = "";
         this.className2 = "";
         this.className2 = "";
@@ -60,10 +60,10 @@ public class Teacher {
         this.currentNumStudent = 0;
         this.className = className;
         this.sections = new ArrayList<>();
-        Class none = new Class("NONE","NO CLASS","10101",6,1000);
-        for(int i =1; i<= 6;i++){
-            this.sections.add(new Section(none,i));
-        }
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
         this.className2 = "";
         this.className3 = "";
     }
@@ -75,10 +75,10 @@ public class Teacher {
         this.maxNumStudent = 160;
         this.currentNumStudent = 0;
         this.sections = new ArrayList<>();
-        Class none = new Class("NONE","NO CLASS","10101",6,1000);
-        for(int i =1; i<= 6;i++){
-            this.sections.add(new Section(none,i));
-        }
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
         this.className2 = "";
         this.className3 = "";
     }
@@ -91,10 +91,10 @@ public class Teacher {
         this.maxNumStudent = 160;
         this.currentNumStudent = 0;
         this.sections = new ArrayList<>();
-        Class none = new Class("NONE","NO CLASS","10101",6,1000);
-        for(int i =1; i<= 6;i++){
-            this.sections.add(new Section(none,i));
-        }
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
         this.className2 = "";
         this.className3 = "";
     }
@@ -110,10 +110,10 @@ public class Teacher {
         this.prep = prep;
         this.maxNumStudent = 160;
         this.sections = new ArrayList<>();
-        Class none = new Class("NONE","NO CLASS","10101",6,1000);
-        for(int i =1; i<= 6;i++){
-            this.sections.add(new Section(none,i));
-        }
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
     }
 
     public String getId() {
