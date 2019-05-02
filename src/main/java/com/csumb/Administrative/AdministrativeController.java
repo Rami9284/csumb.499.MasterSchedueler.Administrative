@@ -1,8 +1,6 @@
 package com.csumb.Administrative;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.entities.Section;
@@ -504,49 +502,30 @@ public class AdministrativeController{
 
     }
 
-    @CrossOrigin(origins = "*")
-    @PutMapping("/addStudentSection/{studentId}/{sectionId}")
-    public void addStudentSection(@PathVariable String studentId, @PathVariable String sectionId){
-        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
-        Student t = studentRepo.findById(studentId).orElseThrow(null);
-
-
-        System.out.println("Inside function");
-        if(s != null && t != null){
-            if(s.canAddStudent(t) && t.isPeriodAvailable(s.getPeriodNum())){
-                s.addStudent(t);
-                t.setScheduleSection(s);
-                System.out.println("Adding student");
-            }
-        }
-
-//        return sectionRepo.save(section);
-
-    }
 
     @CrossOrigin(origins = "*")
     @DeleteMapping("/deleteStudentSection/{studentId}/{sectionId}")
     public void deleteStudentSection(@PathVariable String studentId, @PathVariable String sectionId){
-        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
-        Student t = studentRepo.findById(studentId).orElseThrow(null);
+        Optional<Section> sectionOptional = sectionRepo.findById(sectionId);
+        Optional<Student> studentOptional = studentRepo.findById(studentId);
 
+        if(sectionOptional.isPresent() && studentOptional.isPresent()){
+            Section section = sectionOptional.get();
+            Student student = studentOptional.get();
+            //Removed section from student schedule
+            List<String> schedule = student.getSchedule();
+            schedule.set(schedule.indexOf(section.getClassName()), "No Class");
+            student.setSchedule(schedule);
+            //Removing Student from section
+            List<Pair<String, String>> roster = section.getRoster();
+            roster.remove(Pair.of(student.getId(),student.getName()));
+            section.setRoster(roster);
 
-        System.out.println(s);
-        System.out.println("Inside function");
-        if(s != null && t != null){
-            t.removeScheduleSection(s);
-            s.removeStudent(t);
-            System.out.println(s);
-            System.out.println(t);
-            System.out.println("Delete student");
+            sectionRepo.save(section);
+            studentRepo.save(student);
         }
 
-//        return sectionRepo.save(section);
-
     }
-
-
-
 
 
     /*
@@ -605,8 +584,36 @@ public class AdministrativeController{
 
     @CrossOrigin(origins = "*")
     @GetMapping("/getsectionbyclassname/{classname}")
-    public List<Section> GetSectionByClassName(@PathVariable String classname){
+    public List<Section> getSectionByClassName(@PathVariable String classname){
        return sectionRepo.findAllByClassName(classname);
    }
+ /*update Class from Section*/
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/setClassSection/{classId}/{sectionId}")
+    public void ClassToSection(@PathVariable String classId, @PathVariable String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        Class c = classRepo.findById(classId).orElseThrow(null);
+
+        if(s !=null && c !=null){
+            s.setDepartment(c.getDepartment());
+            s.setClassName(c.getClassName());
+            s.setMaxNumSections(c.getMaxNumSections());
+            s.setMaxNumStudentPerSection(c.getMaxNumStudentPerSection());
+        }
+    }
+    /* delete Class from Section*/
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/deletesectionfromclass/{classId}/{sectionId}")
+    public void deleteSectionfromClass(@PathVariable String classId, @PathVariable String sectionId){
+        Section s = sectionRepo.findById(sectionId).orElseThrow(null);
+        Class c = classRepo.findById(classId).orElseThrow(null);
+
+        if(s != null && c != null){
+            s.setClassName("");
+        }
+    }
+
 
 }

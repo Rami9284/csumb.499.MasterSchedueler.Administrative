@@ -19,22 +19,59 @@ public class TeacherSeeder implements CommandLineRunner {
     }
 
     public void seed(){
-        Teacher t1 = new Teacher("0998","Ms. Gonzalez","Social Studies",
-                "World History" ,"Biology", "Health", 5);
-//        Teacher t2 = new Teacher("876", "Ms. Gurcha", "Science", "Biology");
-//        Teacher t3 = new Teacher("656", "Ms. Ramirez", "Art", "Digital Art");
-//        Teacher t4 = new Teacher("216", "Mr. Aguila", "Math","Algebra");
-//        Teacher t5 = new Teacher("356", "Mr. Ferguson", "Science","Physics");
-//        Teacher t6 = new Teacher("615", "Mr. O\'Brien", "English","Forsh English");
-//        Teacher t7 = new Teacher("522", "Mr. kent", "Math","Algebra");
-//        Teacher t8 = new Teacher("760", "Ms. Andrews", "English", "Frosh English AP");
-//        Teacher t9 = new Teacher("627", "Mr. Robertson", "History","World History");
-//        Teacher t10 = new Teacher("348", "Ms. Johnston", "Science","Biology");
-//
+        List<Teacher> teachers = Arrays.asList(
+                new Teacher("0998","Ms. Gonzalez","MATH",
+                "ALGEBRA" ,"ADVANCED ALGEBRA", "HIGH SCHOOL MATHEMATICS I", 5),
+                new Teacher("13qwsd","Ms. Z","MATH",
+                        "ADVANCED ALGEBRA" ,"ALGEBRA", "HIGH SCHOOL MATHEMATICS I", 5),
+                new Teacher("dgasd","Ms. Ramos","MATH",
+                        "HIGH SCHOOL MATHEMATICS II" ,"ALGEBRA", "HIGH SCHOOL MATHEMATICS I", 5),
+                new Teacher("sfat3","Ms. Hersh","MATH",
+                        "HIGH SCHOOL MATHEMATICS II" ,"ALGEBRA", "HIGH SCHOOL MATHEMATICS I", 5),
+
+                new Teacher("lkfnb","Ms. Patric","ENGLISH",
+                        "ENGLISH 1-2" ,"ENGLISH 3-4", "ENGLISH 5-6", 5),
+                new Teacher("asf23","Ms. Sponge","ENGLISH",
+                        "ENGLISH 3-4" ,"ENGLISH 7-8", "ENGLISH 5-6", 5),
+                new Teacher("bgdd","Ms. Karma","ENGLISH",
+                        "ENGLISH 1-2" ,"ENGLISH 3-4", "ENGLISH 5-6", 5),
+                new Teacher("asf135f","Ms. Jihn","ENGLISH",
+                        "ENGLISH 7-8" ,"ENGLISH 3-4", "ENGLISH 5-6", 5),
+
+                new Teacher("asd13rg","Ms. Sona","SCIENCE",
+                        "INTRODUCTION TO LIFE SCIENCE" ,"BIOLOGY", "MARINE BIOLOGY", 5),
+                new Teacher("dgvb","Ms. Lulu","SCIENCE",
+                        "MARINE BIOLOGY" ,"INTRODUCTION TO LIFE SCIENCE", "CHEMISTRY", 5),
+                new Teacher("jnnb ","Ms. Leona","SCIENCE",
+                        "BIOLOGY" ,"MARINE BIOLOGY", "INTRODUCTION TO LIFE SCIENCE", 5),
+                new Teacher("dsa64","Ms. Jay","SCIENCE",
+                        "BIOLOGY" ,"CHEMISTRY", "BIOLOGY", 5),
+
+                new Teacher("gnhmc","Ms. Kermit","LANGUAGE",
+                        "SPANISH 1" ,"SPANISH 2", "", 5),
+                new Teacher("fshy4","Ms. arre","LANGUAGE",
+                        "FRENCH 1" ,"FRENCH 2", "", 5),
+                new Teacher("ascasrtgh","Ms. kerk","LANGUAGE",
+                        "SPANISH 1" ,"SPANISH 2", "", 5),
+                new Teacher("fda","Ms. Arellano","LANGUAGE",
+                        "FRENCH 1" ,"FRENCH 2", "", 5),
+
+                new Teacher("123","Ms. cisum","ARTS",
+                        "MUSIC 1" ,"MUSIC 1", "", 5),
+                new Teacher("aefth","Ms. Fairview","ARTS",
+                        "ART 1" ,"ART 2", "", 5),
+                new Teacher("htgfv","Ms. Liao","ARTS",
+                        "DIGITAL ART" ,"", "", 5),
+                new Teacher("asv ","Ms. Aguila","ARTS",
+                        "WOOD SHOP" ,"", "", 5),
+                new Teacher("fvgnewr","Ms. Maven","ARTS",
+                        "CULINARY" ,"", "", 5),
+                new Teacher("ghyjghfd","Ms. Spring","ARTS",
+                        "CERAMICS" ,"", "", 5)
+                );
+
 
         teacherRepository.deleteAll();
-        List<Teacher> teachers = Arrays.asList(t1);//,t2,t3,t4,t5,t6,t7,t8,t9,t10);
-
         teacherRepository.saveAll(teachers);
     }
 }
