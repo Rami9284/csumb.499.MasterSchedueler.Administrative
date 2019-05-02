@@ -52,10 +52,7 @@ public class ClassSeeder implements CommandLineRunner {
                 new Class("ARTS","CERAMICS","asfvdfb",5,30),
 
                 new Class("NONE","NO CLASS","10101",6,1000)
-
                 );
-
-
 
         classRepository.deleteAll();
         classRepository.saveAll(classes);

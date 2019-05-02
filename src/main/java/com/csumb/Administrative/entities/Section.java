@@ -39,12 +39,12 @@ public class Section extends Class {
         this.room ="";
     }
 
-    public Section(Class c, int section_num, List<Pair<String, String>> students) {
+    public Section(Class c, int section_num, int perNum) {
         super(c);
         this.setId(this.getId() + "_" + section_num);
         this.section_num = section_num;
-        this.roster = students;
-        this.periodNum = -1;
+        this.roster = new ArrayList<>();
+        this.periodNum = perNum;
         this.maxStudent = 30;
         this.room ="";
     }
