@@ -68,19 +68,18 @@ public class AdministrativeControllerTest {
         Assert.assertNull(administrativeController.findStudent("not a real id"));
     }
 
-    //insert students with out an error
-//    @Test
-//    public void addStudents(){
-//        //When there is not an error
-//        when(studentRepository.insert(studentData.get(0))).thenReturn(studentData.get(0));
-//        when(studentRepository.insert(studentData.get(1))).thenReturn(studentData.get(1));
-//        Assert.assertEquals(null,administrativeController.addStudents(studentData));
-//
-//        //when an error occurs
-//        when(studentRepository.insert(studentData.get(0))).thenThrow(new DuplicateKeyException("key", new Throwable()));
-//        when(studentRepository.insert(studentData.get(1))).thenThrow(new DuplicateKeyException("key", new Throwable()));
-//        Assert.assertEquals(studentData, administrativeController.addStudents(studentData));
-//    }
+    @Test
+    public void addStudents(){
+        //When there is not an error
+        when(studentRepository.insert(studentData.get(0))).thenReturn(studentData.get(0));
+        when(studentRepository.insert(studentData.get(1))).thenReturn(studentData.get(1));
+        Assert.assertEquals(null,administrativeController.addStudents(studentData));
+
+        //when an error occurs
+        when(studentRepository.insert(studentData.get(0))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        when(studentRepository.insert(studentData.get(1))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        Assert.assertEquals(studentData, administrativeController.addStudents(studentData));
+    }
 
     @Test
     public void addStudent(){
@@ -130,12 +129,26 @@ public class AdministrativeControllerTest {
     }
 
 
-
     //all Teachers
     @Test
     public void getAllTeachers(){
         when(teacherRepository.findAll()).thenReturn(teacherData);
         Assert.assertEquals(teacherData, administrativeController.getTeachers());
+    }
+
+
+    @Test
+    public void findTeacher(){
+        Teacher t = new Teacher("124","Gonsalez", "MATH");
+        when(teacherRepository.findById("124")).thenReturn(Optional.of(t));
+
+        Assert.assertEquals(t,administrativeController.findTeacher("124"));
+    }
+
+    @Test
+    public void notFoundTeacher(){
+        when(teacherRepository.findById("124")).thenReturn(Optional.empty());
+        Assert.assertNull(administrativeController.findTeacher("124"));
     }
 
     @Test
