@@ -258,7 +258,82 @@ Micro service is deployed on Heroku.  https://master-scheduler-admin.herokuapp.c
         }
     ```    
 ### Classes
+- Get Classes 
+    - (Read/Get) Gets all of the Classes in the Database
+    - Required: NA
+    - Response: List of all classes present
+     ``` java
+        @CrossOrigin(origins = "*")
+        @GetMapping("/classes")
+        public List<Class> getClasses()
+          //implementation
+        }
+    ```
+- Find Class 
+    - (Read/Get) String variable of class ID
+    - Required: class ID: String
+    - Response: 
+        - Success: Teacher
+        - Fail: null
+     ``` java
+        @CrossOrigin(origins = "*")
+        @GetMapping("/findclass/{id}")
+        public Class findClass(@PathVariable String id) {
+          //implementation
+        }
+    ```
 
+- Add Class  
+    - (Insert/Post) Insert a class
+    - Required: Class Object: Class
+    - Response: 
+        - Success: null
+        - Fail: Teacher Object not inserted
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PostMapping("/addclass")
+        public Class addClass(@RequestBody Class classs) {
+            // Implementation
+        }
+    ```
+- Add Multiple Teachers
+    - (Insert/Post) Insert Multiple teachers
+    - Required: List of Teacher Object: List of Teachers
+    - Response: 
+        - Success: null
+        - Fail: List of Class Object not inserted
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PostMapping("/addclasses")
+        public List<Class> addClasses(@RequestBody List<Class> classes) {
+        // Implementation
+        }
+    ```
+    
+- Update Class Basic Class info
+    - (Update/Put) Updates a class's basic information that does not affect other classes
+    - Required: Class Object: Class
+    - Response: 
+        - Success: Class object
+        - Fail: null
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PutMapping("/updateclass")
+        public Class updateClass(@RequestBody Class c){
+            // Implementation
+        }
+    ```
+- Delete Class  
+    - (Delete/Delete) Deletes a Class
+    - Required: Class Id: String
+    - Response: NA
+     ``` java
+        @CrossOrigin(origins = "*")
+        @DeleteMapping("/deleteclassId/{id}")
+        public void deleteClass(@PathVariable String id){
+        // Implementation
+        }
+ 
 
 ### Sections
 ### Other
