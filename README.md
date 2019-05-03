@@ -180,7 +180,86 @@ Micro service is deployed on Heroku.  https://master-scheduler-admin.herokuapp.c
         }
     ```
 ### Teachers
+- Get Teachers 
+    - (Read/Get) Gets all of the teachers in the Database
+    - Required: NA
+    - Response: List of all teachers present
+     ``` java
+        @CrossOrigin(origins = "*")
+        @GetMapping("/teachers")
+        public List<Teacher> getTeachers() {
+          return teacherRepo.findAll();
+        }
+    ```
+- Find Teacher 
+    - (Read/Get) String variable of teacher ID
+    - Required: Student ID: String
+    - Response: 
+        - Success: Teacher
+        - Fail: null
+     ``` java
+        @CrossOrigin(origins = "*")
+        @GetMapping("/findteacher/{id}")
+        public Teacher findTeacher(@PathVariable String id) {
+          //implementation
+        }
+    ```
+
+- Add Teacher  
+    - (Insert/Post) Insert a teacher
+    - Required: Teacher Object: Teacher
+    - Response: 
+        - Success: null
+        - Fail: Teacher Object not inserted
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PostMapping("/addteacher")
+        public Teacher addTeacher(@RequestBody Teacher teacher) {
+
+            // Implementation
+        }
+    ```
+- Add Multiple Teachers
+    - (Insert/Post) Insert Multiple teachers
+    - Required: List of Teacher Object: List of Teachers
+    - Response: 
+        - Success: null
+        - Fail: List of Teacher Object not inserted
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PostMapping("/addteachers")
+        public List<Teacher> addTeachers(@RequestBody List<Teacher> teachers) {
+        // Implementation
+        }
+    ```
+    
+- Update Teacher Basic Student info
+    - (Update/Put) Updates a teacher's basic information that does not affect other classes
+    - Required: Teacher Object: Teacher
+    - Response: 
+        - Success: Teacher object
+        - Fail: null
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PutMapping("/updateteacher")
+        public Teacher updateTeacher(@RequestBody Teacher teacher){
+            // Implementation
+        }
+    ```
+- Delete Teacher  
+    - (Delete/Delete) Deletes a Teacher
+    - Required: Teacher Id: String
+    - Response: NA
+     ``` java
+        @CrossOrigin(origins = "*")
+        @DeleteMapping(path = "/deleteteacherId/{id}")
+         public String deleteTeacher(@PathVariable String id){
+        // Implementation
+        }
+    ```    
 ### Classes
+
+
 ### Sections
 ### Other
 - Reset Database
