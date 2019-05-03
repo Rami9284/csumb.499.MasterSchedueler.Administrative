@@ -36,11 +36,11 @@ blah blah blah blah need to update this
 |id|String|Id of the student. Database Primary key|
 |name|String|Name of student|
 |grade|int|Grade of student|
-|preferredClasses|List<String>|List of classes student wants to take|
-|preferred|List<Boolean>|Maps to the classes student want to take and determines if a student has priority to take the class|
+|preferredClasses|String[]|List of classes student wants to take|
+|preferred|Boolean[]|Maps to the classes student want to take and determines if a student has priority to take the class|
 |academy|String|Student's academy they are part of [none, green, fast]|
-|schedule|List<String>|Student's schedule that was generated. A list of the class names|
-|scheduleId|List<String>|Student's schedule that was generated. A list of class Ids that map to class names|
+|schedule|String[]|Student's schedule that was generated. A list of the class names|
+|scheduleId|String[]|Student's schedule that was generated. A list of class Ids that map to class names|
 
 #### Teacher
 |Property|Type|Description|
