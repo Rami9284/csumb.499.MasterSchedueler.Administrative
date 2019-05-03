@@ -148,6 +148,11 @@ public class AdministrativeController{
         }
     }
 
+    /*
+    required: String of id
+    response: success -> Student
+              failure -> null
+    */
     @CrossOrigin(origins = "*")
     @GetMapping("/updatePeriod/{id}/{period}/{classId}")
     public Student updateStudentSchedule(@PathVariable String id,
@@ -179,10 +184,10 @@ public class AdministrativeController{
                     studentRepo.save(ans);
                 }
             }
+            System.out.println(ans);
             return ans;
         }
         return null;
-
     }
 
     /*

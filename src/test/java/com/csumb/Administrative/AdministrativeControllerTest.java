@@ -3,6 +3,7 @@ package com.csumb.Administrative;
 import com.csumb.Administrative.entities.Section;
 import com.csumb.Administrative.entities.Student;
 import com.csumb.Administrative.entities.Teacher;
+import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.repositotries.ISectionRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
@@ -104,10 +105,24 @@ public class AdministrativeControllerTest {
         Assert.assertNull(administrativeController.updateStudent(expected));
     }
 
-//    @Test
-//    public void updateStudentSchedule(){
-//
-//    }
+    @Test
+    public void updateStudentSchedule(){
+        List<String> schedule = new ArrayList<>(Arrays.asList("Bio","Algebra","PE","Wood Shop","Art","French"));
+        List<String> scheduleId = new ArrayList<>(Arrays.asList("1_2","2_3","3_4","4_5","5_6","6_1"));
+        Student s = new Student("123", "Daniel", 9,schedule, scheduleId);
+        when(studentRepository.findById("123")).thenReturn(Optional.of(s));
+        Class c = new Class("Science", "Bio","1");
+        Section sec1 = new Section(c,2);
+        Class c2 = new Class("Science", "Marine Bio","8");
+        Section sec2 = new Section(c2,6);
+        when(sectionRepository.findById("1_2")).thenReturn(Optional.of(sec1));
+        when(sectionRepository.findById("8_6")).thenReturn(Optional.of(sec2));
+        List<String> sc = new ArrayList<>(Arrays.asList("Marine Bio","Algebra","PE","Wood Shop","Art","French"));
+        List<String> scId = new ArrayList<>(Arrays.asList("8_6","2_3","3_4","4_5","5_6","6_1"));
+        Student expected = new Student("123", "Daniel", 9,sc, scId);
+        when(studentRepository.save(expected)).thenReturn(expected);
+        Assert.assertEquals(expected,administrativeController.updateStudentSchedule("123",1,"8_6"));
+    }
 
     @Test
     public void deleteStudent(){
