@@ -163,7 +163,10 @@ blah blah blah blah need to update this
         // Implementation
         }
     ```
-
+### Teachers
+### Classes
+### Sections
+### Other
 - Reset Database
     - (Delete/Get) Wipes out the Database and re-seeds the Database. Display purposesd
     - Required: NA
