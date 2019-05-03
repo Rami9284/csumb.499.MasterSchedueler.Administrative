@@ -288,7 +288,7 @@ Micro service is deployed on Heroku.  https://master-scheduler-admin.herokuapp.c
     - Required: Class Object: Class
     - Response: 
         - Success: null
-        - Fail: Teacher Object not inserted
+        - Fail: Class Object not inserted
      ``` java
         @CrossOrigin(origins = "*")
         @PostMapping("/addclass")
@@ -296,9 +296,9 @@ Micro service is deployed on Heroku.  https://master-scheduler-admin.herokuapp.c
             // Implementation
         }
     ```
-- Add Multiple Teachers
-    - (Insert/Post) Insert Multiple teachers
-    - Required: List of Teacher Object: List of Teachers
+- Add Multiple Classes
+    - (Insert/Post) Insert Multiple classes
+    - Required: List of Class Object: List of Classes
     - Response: 
         - Success: null
         - Fail: List of Class Object not inserted
