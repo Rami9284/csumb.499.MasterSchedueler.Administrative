@@ -62,6 +62,17 @@ public class Student {
         }
     }
 
+    public Student(String id, String name, int grade,List<String> schedule,List<String> scheduleId) {
+        this.id = id;
+        this.name = name;
+        this.grade = grade;
+        this.academy = "";
+        this.preferredClasses = new ArrayList<>();
+        this.preferred = new ArrayList<>();
+        this.schedule = schedule;
+        this.scheduleId = scheduleId;
+    }
+
     public Student(String id, String name, int grade,
                    String academy, List<String> preferred_classes, List<Boolean> preferred) {
         this.id = id;
@@ -136,14 +147,11 @@ public class Student {
     }
 
     public void setPeriod(int time, Section section) {
-        System.out.println("here");
         schedule.set(time - 1, section.getClassName());
         scheduleId.set(time - 1, section.getId());
     }
 
     public boolean isPeriodAvailable(int time) {
-        System.out.println(time - 1);
-        System.out.println("value " + schedule.get(time - 1));
         return schedule.get(time - 1).equals("");
     }
 

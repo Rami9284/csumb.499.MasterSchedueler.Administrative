@@ -71,12 +71,16 @@ public class AdministrativeController{
     /*
     required: String variable of student ID
     response: success -> Student with given ID
-              failure -> Empty Student
+              failure -> null
     */
     @CrossOrigin(origins = "*")
     @GetMapping("/findstudent/{id}")
     public Student findStudent(@PathVariable String id) {
-        return studentRepo.findById(id).orElse(new Student());  
+        Optional<Student> s = studentRepo.findById(id);
+        if(s.isPresent())
+            return s.get();
+        else
+            return null;
     }
 
     /*
@@ -84,26 +88,26 @@ public class AdministrativeController{
     response: success -> null
               failure -> list of students not added to db
     */
-    @CrossOrigin(origins = "*")
-    @PostMapping("/addstudents")
-    public List<Student> addStudents(@RequestBody List<Student> students) {
-        List<Student> error = new ArrayList<>();
-        Student err;
-
-            for (Student s: students) {
-                err = s;
-                try {
-                    studentRepo.insert(s);
-                }
-                catch (Exception e){
-                    error.add(err);
-                }
-            }
-        if(error.isEmpty()){
-            return null;
-        }
-        return error;
-    }
+//    @CrossOrigin(origins = "*")
+//    @PostMapping("/addstudents")
+//    public List<Student> addStudents(@RequestBody List<Student> students) {
+//        List<Student> error = new ArrayList<>();
+//        Student err;
+//
+//            for (Student s: students) {
+//                err = s;
+//                try {
+//                    studentRepo.insert(s);
+//                }
+//                catch (Exception e){
+//                    error.add(err);
+//                }
+//            }
+//        if(error.isEmpty()){
+//            return null;
+//        }
+//        return error;
+//    }
 
     /*
     required: Student object
@@ -113,7 +117,6 @@ public class AdministrativeController{
     @CrossOrigin(origins = "*")
     @PostMapping("/addstudent")
     public Student addStudent(@RequestBody Student student) {
-        System.out.println(student);
         try {
             studentRepo.insert(student);
         }
@@ -145,6 +148,11 @@ public class AdministrativeController{
         }
     }
 
+    /*
+    required: String of id
+    response: success -> Student
+              failure -> null
+    */
     @CrossOrigin(origins = "*")
     @GetMapping("/updatePeriod/{id}/{period}/{classId}")
     public Student updateStudentSchedule(@PathVariable String id,
@@ -176,10 +184,10 @@ public class AdministrativeController{
                     studentRepo.save(ans);
                 }
             }
+            System.out.println(ans);
             return ans;
         }
         return null;
-
     }
 
     /*
