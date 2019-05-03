@@ -11,8 +11,11 @@ MasterSchedueler.Administrative - README
 
 ## Overview
 ### Description
-California State University Capstone Project. Salinas Union High School District Sponsored 
-blah blah blah blah need to update this
+California State University Capstone Project, Salinas Union High School District Sponsored. Micro service for the Master Scheduler App.
+The Master scheduler app is a tool implemented for the Administrative team. This app makes it easier for the admin team to generate the school schedule. 
+
+This administrative micro services handels all of the insert, updates, and deletes request for the student, classes, teachers, and section objects. 
+Micro service is deployed on Heroku.  https://master-scheduler-admin.herokuapp.com/
 
 ## Product Spec
 
