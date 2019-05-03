@@ -59,6 +59,23 @@ blah blah blah blah need to update this
 |className2|String|2nd class teacher can teach|
 |className3|String|3rd class teacher can teach|
 
+#### Class
+|Property|Type|Description|
+|---|---|---|
+|id|String|Id of the Class. Database primary key|
+|className|String|Name of the class|
+|maxNumSections|int|Max number of sections that can be created form this class|
+|maxNumStudentPerSection|int|Max number of students for each section|
+|numStudentRegistered|int|how many students have registed for the class (in progress)|
+    
+#### Section extends Class
+|Property|Type|Description|
+|---|---|---|
+|section_num|int|Section number. Section_num gets used with class id to create primary key|
+|periodNum|int|Period when section will be held|
+|roster|List of Par of string , string|List of student name and id that will take the class|
+|teacherID|String|Teache ID who is teaching the class|
+|room|String|how many students have registed for the class (in progress)|
 
 ### Networking
 ## List of network requests by screen
