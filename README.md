@@ -273,7 +273,7 @@ Micro service is deployed on Heroku.  https://master-scheduler-admin.herokuapp.c
     - (Read/Get) String variable of class ID
     - Required: class ID: String
     - Response: 
-        - Success: Teacher
+        - Success: Class
         - Fail: null
      ``` java
         @CrossOrigin(origins = "*")
