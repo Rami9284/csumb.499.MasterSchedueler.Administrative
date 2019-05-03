@@ -3,9 +3,13 @@ package com.csumb.Administrative.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
 @Document
 public class Teacher {
@@ -35,6 +39,10 @@ public class Teacher {
         this.maxNumStudent = 160;
         this.currentNumStudent = 0;
         this.sections = new ArrayList<>();
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
         this.className = "";
         this.className2 = "";
         this.className2 = "";
@@ -52,6 +60,10 @@ public class Teacher {
         this.currentNumStudent = 0;
         this.className = className;
         this.sections = new ArrayList<>();
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
         this.className2 = "";
         this.className3 = "";
     }
@@ -63,6 +75,10 @@ public class Teacher {
         this.maxNumStudent = 160;
         this.currentNumStudent = 0;
         this.sections = new ArrayList<>();
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
         this.className2 = "";
         this.className3 = "";
     }
@@ -75,6 +91,10 @@ public class Teacher {
         this.maxNumStudent = 160;
         this.currentNumStudent = 0;
         this.sections = new ArrayList<>();
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
         this.className2 = "";
         this.className3 = "";
     }
@@ -89,6 +109,11 @@ public class Teacher {
         this.className3 = className3;
         this.prep = prep;
         this.maxNumStudent = 160;
+        this.sections = new ArrayList<>();
+//        Class none = new Class("NONE","NO CLASS","10101",6,1000);
+//        for(int i =1; i<= 6;i++){
+//            this.sections.add(new Section(none,i));
+//        }
     }
 
     public String getId() {
@@ -213,6 +238,7 @@ public class Teacher {
         this.className3 = className3;
     }
 
+
     public boolean addSection(Section section){
 
         if(!sections.contains(section) && sections.size() <= getMaxNumSections()){
@@ -222,6 +248,11 @@ public class Teacher {
         }
         return false;
     }
+  
+    public void sortSection(){
+        this.sections.sort(new SortSection());
+    }
+
 
     public int getMaxNumSections(){
         if(!is80Percent)
