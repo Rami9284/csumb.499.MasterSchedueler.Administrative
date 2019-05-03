@@ -119,6 +119,19 @@ blah blah blah blah need to update this
             // Implementation
         }
     ```
+- Add Multiple Student
+    - (Insert/Post) Insert Multiple student
+    - Required: List of Student Object: List of Student
+    - Response: 
+        - Success: null
+        - Fail: List of Student Object who cound not be inserted
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PostMapping("/addstudents")
+        public List<Student> addStudents(@RequestBody List<Student> students) {
+        // Implementation
+        }
+    ```
     
 - Update Student Basic Student info
     - (Update/Put) Updates a student's basic information that does not affect other classes
