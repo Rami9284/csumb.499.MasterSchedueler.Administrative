@@ -36,11 +36,11 @@ blah blah blah blah need to update this
 |id|String|Id of the student. Database Primary key|
 |name|String|Name of student|
 |grade|int|Grade of student|
-|preferredClasses|String[]|List of classes student wants to take|
-|preferred|Boolean[]|Maps to the classes student want to take and determines if a student has priority to take the class|
+|preferredClasses|List of String|List of classes student wants to take|
+|preferred|List of Boolean|Maps to the classes student want to take and determines if a student has priority to take the class|
 |academy|String|Student's academy they are part of [none, green, fast]|
-|schedule|String[]|Student's schedule that was generated. A list of the class names|
-|scheduleId|String[]|Student's schedule that was generated. A list of class Ids that map to class names|
+|schedule|List of String|Student's schedule that was generated. A list of the class names|
+|scheduleId|List of String|Student's schedule that was generated. A list of class Ids that map to class names|
 
 #### Teacher
 |Property|Type|Description|
@@ -54,10 +54,11 @@ blah blah blah blah need to update this
 |academy|String|Teacher's academy they are part of [none, green, fast]|
 |maxNumStudent|int|Maximum number of students the teacher can teach|
 |currentNumStudent|int|Number of students teacher currently has|
-|sections|List<Section>|Teachers schedule|
+|sections|List of Section|Teachers schedule|
 |className|String|1rst class teacher can teach|
 |className2|String|2nd class teacher can teach|
 |className3|String|3rd class teacher can teach|
+
 
 ### Networking
 ## List of network requests by screen
