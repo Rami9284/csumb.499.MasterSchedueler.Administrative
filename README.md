@@ -80,7 +80,7 @@ blah blah blah blah need to update this
 
 ## Networking
 ## List of network requests
-
+# Students
 - Get Students 
     - (Read/Get) Gets all of the students in the Database
     - Required: NA
