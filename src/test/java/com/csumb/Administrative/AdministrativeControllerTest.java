@@ -7,7 +7,6 @@ import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.repositotries.ISectionRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
-import javafx.util.Pair;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -271,7 +269,7 @@ public class AdministrativeControllerTest {
 
         when(sectionRepository.findById(s.getId())).thenReturn(Optional.of(s));
         when(studentRepository.findById(student.getId())).thenReturn(Optional.of(student));
-//error happening here
+//error happening here java.lang.UnsupportedOperationException on .remove
         administrativeController.deleteStudentSection(student.getId(),s.getId());
 
         Assert.assertEquals(student,expected);
