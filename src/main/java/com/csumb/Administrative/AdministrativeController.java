@@ -626,10 +626,6 @@ public class AdministrativeController{
                      System.out.println("One to delete"+ t.getSections().get(i));
                  }
              }
-
-//             if(index != -1){
-//
-//             }
              t.removeSection(t.getSections().get(index));
              System.out.println("after"+ t.getSections().size());
 
