@@ -7,6 +7,7 @@ import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.repositotries.ISectionRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
+import javafx.util.Pair;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,8 +46,8 @@ public class AdministrativeControllerTest {
     private List<Teacher> teacherData = new ArrayList<>(Arrays.asList(new Teacher("098","Ms. Gonzalez","English"),
             new Teacher("876", "Ms. Gurcha", "Science")));
 
-    private List<Teacher> sectionData = new ArrayList<>(Arrays.asList(new Teacher("098","Ms. Gonzalez","English"),
-    new Teacher("876", "Ms. Gurcha", "Science")));
+    private List<Section> sectionData = new ArrayList<>(Arrays.asList(new Section(new Class("Social","Cooking 101"),1,3),
+    new Section(new Class(), 1, 2)));
 
     //all Students
     @Test
@@ -136,7 +137,6 @@ public class AdministrativeControllerTest {
         Assert.assertEquals(teacherData, administrativeController.getTeachers());
     }
 
-
     @Test
     public void findTeacher(){
         Teacher t = new Teacher("124","Gonsalez", "MATH");
@@ -153,6 +153,13 @@ public class AdministrativeControllerTest {
 
     @Test
     public void addTeacher(){
+        Teacher t = new Teacher("10", "Judith","Art");
+        when(teacherRepository.insert(t)).thenReturn(t);
+        Assert.assertNull(administrativeController.addTeacher(t));
+    }
+
+    @Test
+    public void addTeachers(){
         //When there is not an error
         when(teacherRepository.insert(teacherData.get(0))).thenReturn(teacherData.get(0));
         when(teacherRepository.insert(teacherData.get(1))).thenReturn(teacherData.get(1));
@@ -164,4 +171,116 @@ public class AdministrativeControllerTest {
         Assert.assertEquals(teacherData, administrativeController.addTeachers(teacherData));
     }
 
+    @Test
+    public void updateTeacher(){
+        Teacher t = new Teacher("876", "Ms. Gurcha", "Science");
+        when(teacherRepository.findById(t.getId())).thenReturn(Optional.of(t));
+        Teacher expected = new Teacher("876", "Ms. Gurcha","Math");
+        when(teacherRepository.save(expected)).thenReturn(expected);
+        Assert.assertEquals(expected, administrativeController.updateTeacher(expected));
+    }
+
+    @Test
+    public void NotupdateTeacher(){
+        when(teacherRepository.findById("wrong id")).thenReturn(Optional.empty());
+        Teacher t = new Teacher("10", "Judith","Art");
+        Assert.assertNull(administrativeController.updateTeacher(t));
+    }
+
+    @Test
+    public void deleteTeacher(){
+        Assert.assertNull(administrativeController.deleteTeacher("123"));
+    }
+
+    //all Sections
+    @Test
+    public void getAllSections(){
+        when(sectionRepository.findAll()).thenReturn(sectionData);
+        Assert.assertEquals(sectionData, administrativeController.getSections());
+    }
+
+    @Test
+    public void sectionsForPeriod(){
+
+    }
+
+    @Test
+    public void findSection(){
+        Section s = new Section(new Class("Social","Cooking 101"),1,3);
+        when(sectionRepository.findById(s.getId())).thenReturn(Optional.of(s));
+
+        Assert.assertEquals(s,administrativeController.findSection(s.getId()));
+    }
+
+    @Test
+    public void notFoundSection(){
+        when(sectionRepository.findById("124")).thenReturn(Optional.empty());
+        Assert.assertNull(administrativeController.findSection("124"));
+    }
+
+    @Test
+    public void addSection(){
+        Section s = new Section(new Class("science", "Health"),2, 4);
+        when(sectionRepository.insert(s)).thenReturn(s);
+        Assert.assertNull(administrativeController.addSection(s));
+    }
+
+    @Test
+    public void addSections(){
+        //When there is not an error
+        when(sectionRepository.insert(sectionData.get(0))).thenReturn(sectionData.get(0));
+        when(sectionRepository.insert(sectionData.get(1))).thenReturn(sectionData.get(1));
+        Assert.assertEquals(null,administrativeController.addTeachers(teacherData));
+
+        //when an error occurs
+        when(sectionRepository.insert(sectionData.get(0))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        when(sectionRepository.insert(sectionData.get(1))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        Assert.assertEquals(sectionData, administrativeController.addSections(sectionData));
+    }
+
+    @Test
+    public void updateSection(){
+        Section s = new Section(new Class(), 4,1);
+        when(sectionRepository.findById(s.getId())).thenReturn(Optional.of(s));
+        Section expected = new Section(new Class(), 4,3);
+        when(sectionRepository.save(expected)).thenReturn(expected);
+        Assert.assertEquals(expected, administrativeController.updateSection(expected));
+    }
+
+    @Test
+    public void NotupdateSection(){
+        when(teacherRepository.findById("wrong id")).thenReturn(Optional.empty());
+        Section s = new Section(new Class("science", "Health"),2, 4);
+        Assert.assertNull(administrativeController.updateSection(s));
+    }
+
+    @Test
+    public void deleteSectionFromStudent(){
+
+        Student student = new Student("0000", "test", 10);
+        student.setSchedule(Arrays.asList("Health","Biology"));
+
+        Student expected = new Student("0000", "test", 10);
+        expected.setSchedule(Arrays.asList("Biology"));
+
+        Section s = new Section(new Class("science", "Health"), 4,1);
+        s.setRoster(Arrays.asList(org.springframework.data.util.Pair.of("0000", "test"), org.springframework.data.util.Pair.of("123","bob")));
+
+        Section sectionExpected = new Section(new Class("science", "Health"), 4,1);
+        sectionExpected.setRoster(Arrays.asList(org.springframework.data.util.Pair.of("123","bob")));
+
+        when(sectionRepository.findById(s.getId())).thenReturn(Optional.of(s));
+        when(studentRepository.findById(student.getId())).thenReturn(Optional.of(student));
+//error happening here
+        administrativeController.deleteStudentSection(student.getId(),s.getId());
+
+        Assert.assertEquals(student,expected);
+        Assert.assertEquals(s,sectionExpected);
+
+    }
+
+    @Test
+    public void deleteSection(){
+        Assert.assertNull(administrativeController.deleteSection("123"));
+    }
 }

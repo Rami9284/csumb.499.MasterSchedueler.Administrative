@@ -285,8 +285,27 @@ public class AdministrativeController{
     */
     @CrossOrigin(origins = "*")
     @PutMapping("/updateteacher")
-    public void updateTeacher(@RequestBody Teacher teacher){
-        teacherRepo.save(teacher);
+    public Teacher updateTeacher(@RequestBody Teacher teacher){
+
+        Optional<Teacher> teacherToUpdate= teacherRepo.findById(teacher.getId());
+        if(teacherToUpdate.isPresent()){
+            Teacher t = teacherToUpdate.get();
+            t.setAcademy(teacher.getAcademy());
+            t.setClassName(teacher.getClassName());
+            t.setClassName2(teacher.getClassName2());
+            t.setClassName3(teacher.getClassName3());
+            t.setCurrentNumStudent(teacher.getCurrentNumStudent());
+            t.setDepartment(teacher.getDepartment());
+            t.setMaxNumStudent(teacher.getMaxNumStudent());
+            t.setName(teacher.getName());
+            t.setPreferred_room(teacher.getPreferred_room());
+            t.setPrep(teacher.getPrep());
+            t.setSections(teacher.getSections());
+            t.setIs80Percent(teacher.isIs80Percent());
+            return teacherRepo.save(t);
+        }else{
+            return null;
+        }
     }
 
     /*
@@ -447,7 +466,7 @@ public class AdministrativeController{
     @CrossOrigin(origins = "*")
     @GetMapping("/findsection/{id}")
     public Section findSection(@PathVariable String id) {
-        return sectionRepo.findById(id).orElse(new Section());
+        return sectionRepo.findById(id).orElse(null);
     }
 
     /*
@@ -547,12 +566,14 @@ public class AdministrativeController{
     */
    @CrossOrigin(origins = "*")
    @DeleteMapping("/deletesectionId/{id}")
-   public void deleteSection(@PathVariable String id){
+   public String deleteSection(@PathVariable String id){
         try {
             sectionRepo.deleteById(id);
         } catch (Exception ex) {
-            System.out.println(ex);
+            return id;
         }
+
+        return null;
    }
 
    //==============================OTHER============================
