@@ -80,6 +80,7 @@ blah blah blah blah need to update this
 
 ## Networking
 ## List of network requests
+
 - Get Students 
     - (Read/Get) Gets all of the students in the Database
     - Required: NA
@@ -101,25 +102,67 @@ blah blah blah blah need to update this
         @CrossOrigin(origins = "*")
         @GetMapping("/findstudent/{id}")
         public Student findStudent(@PathVariable String id) {
-        ...
+        // Implementation
+        }
+    ```
+
+- Add Student  
+    - (Insert/Post) Insert a student
+    - Required: Student Object: Student
+    - Response: 
+        - Success: null
+        - Fail: Student Object who count be inserted
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PostMapping("/addstudent")
+        public Student addStudent(@RequestBody Student student) {
+            // Implementation
         }
     ```
     
-- Add Student  
-  - (Insert/Post) Insert a student
-  - Required: Student Object: Student
-  - Response: 
-      - Success: null
-      - Fail: Student Object who count be inserted
-   ``` java
-      @CrossOrigin(origins = "*")
-       @PostMapping("/addstudent")
-      public Student addStudent(@RequestBody Student student) {
-          // Implementation
-      }
-  ```
+- Update Student Basic Student info
+    - (Update/Put) Updates a student's basic information that does not affect other classes
+    - Required: Student Object: Student
+    - Response: 
+        - Success: Student object
+        - Fail: null
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PutMapping("/updatestudent")
+        public Student updateStudent(@RequestBody Student student){
+            // Implementation
+        }
+    ```
    
+- Update Student Schedule
+    - (Update/Get) Updates a Schedule. Switch one section for another in the same period
+    - Required: 
+        -  Student id: String
+        -  Period: int
+        -  ClassId to be changed: String
+    - Response: 
+        - Success: Student object
+        - Fail: null
+     ``` java
+        @CrossOrigin(origins = "*")
+        @GetMapping("/updatePeriod/{id}/{period}/{classId}")
+        public Student updateStudentSchedule(@PathVariable String id,
+         @PathVariable int period, @PathVariable String classId){
+            // Implementation
+        }
+    ```
 
+- Delete Student  
+    - (Delete/Delete) Deletes a students
+    - Required: Student Id: String
+    - Response: NA
+     ``` java
+        @CrossOrigin(origins = "*")
+        @DeleteMapping(path = "/deletestudentId/{id}")
+        public String deleteS(@PathVariable String id){
+        // Implementation
+        }
+    ```
 
 - Reset Database
     - (Delete/Get) Wipes out the Database and re-seeds the Database. Display purposesd
