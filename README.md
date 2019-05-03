@@ -18,14 +18,14 @@ blah blah blah blah need to update this
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-    [x] User can add students, teachers, classes, and sections
-    [x] User can update students, teachers, classes, and sections
-    [x] User can delete students, teachers, classes, and sections
-    [x] User can find student(s), teacher(s), class(es), and section(s)
+  - [X] User can add students, teachers, classes, and sections
+  - [X] User can update students, teachers, classes, and sections
+  - [X] User can delete students, teachers, classes, and sections
+  - [X] User can find student(s), teacher(s), class(es), and section(s)
 
 **Optional Nice-to-have Stories**
-    [ ] User can download Schedule
-    [ ] User can upload .csv files to add students, teachers, classes, and sections
+  - [ ] User can download Schedule
+  - [ ] User can upload .csv files to add students, teachers, classes, and sections
 
 ## Schema 
 
