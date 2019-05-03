@@ -201,8 +201,13 @@ public class Teacher {
     }
 
     public void removeSection(Section s){
-        sections.remove(s);
-        currentNumStudent -= s.getCurrentNumofStudents();
+
+        if(sections.contains(s)){
+            sections.remove(s);
+            sections.remove(s);//REFACTOR THIS
+            currentNumStudent -= s.getCurrentNumofStudents();
+        }
+
     }
 
     public void addClass(Section section){
@@ -233,14 +238,21 @@ public class Teacher {
         this.className3 = className3;
     }
 
-    public void addSection(Section section){
-        this.sections.set(section.getPeriodNum(),section);
-        updateCurrentNumStudents(section.getCurrentNumofStudents());
-    }
 
+    public boolean addSection(Section section){
+
+        if(!sections.contains(section) && sections.size() <= getMaxNumSections()){
+            this.sections.add(section);
+            updateCurrentNumStudents(section.getCurrentNumofStudents());
+            return true;
+        }
+        return false;
+    }
+  
     public void sortSection(){
         this.sections.sort(new SortSection());
     }
+
 
     public int getMaxNumSections(){
         if(!is80Percent)

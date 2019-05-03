@@ -70,6 +70,7 @@ public class Section extends Class {
         return roster;
     }
 
+
     public void setRoster(List<Pair<String, String>> roster) {
         this.roster = roster;
     }
