@@ -88,26 +88,26 @@ public class AdministrativeController{
     response: success -> null
               failure -> list of students not added to db
     */
-//    @CrossOrigin(origins = "*")
-//    @PostMapping("/addstudents")
-//    public List<Student> addStudents(@RequestBody List<Student> students) {
-//        List<Student> error = new ArrayList<>();
-//        Student err;
-//
-//            for (Student s: students) {
-//                err = s;
-//                try {
-//                    studentRepo.insert(s);
-//                }
-//                catch (Exception e){
-//                    error.add(err);
-//                }
-//            }
-//        if(error.isEmpty()){
-//            return null;
-//        }
-//        return error;
-//    }
+    @CrossOrigin(origins = "*")
+    @PostMapping("/addstudents")
+    public List<Student> addStudents(@RequestBody List<Student> students) {
+        List<Student> error = new ArrayList<>();
+        Student err;
+
+            for (Student s: students) {
+                err = s;
+                try {
+                    studentRepo.insert(s);
+                }
+                catch (Exception e){
+                    error.add(err);
+                }
+            }
+        if(error.isEmpty()){
+            return null;
+        }
+        return error;
+    }
 
     /*
     required: Student object
@@ -129,8 +129,8 @@ public class AdministrativeController{
 
     /*
     required: Student object
-    response: success -> null
-              failure -> error
+    response: success -> Student
+              failure -> null
     */
     @CrossOrigin(origins = "*")
     @PutMapping("/updatestudent")
@@ -184,7 +184,6 @@ public class AdministrativeController{
                     studentRepo.save(ans);
                 }
             }
-            System.out.println(ans);
             return ans;
         }
         return null;
@@ -223,12 +222,17 @@ public class AdministrativeController{
    /*
     required: String variable of teacher ID
     response: success -> Teacher with given ID
-              failure -> Empty teacher
+              failure -> null
     */
     @CrossOrigin(origins = "*")
     @GetMapping("/findteacher/{id}")
     public Teacher findTeacher(@PathVariable String id) {
-        return teacherRepo.findById(id).orElse(new Teacher());
+        Optional<Teacher> s = teacherRepo.findById(id);
+        if(s.isPresent()) {
+            return s.get();
+        }
+        else
+            return null;
     }
 
     /*
