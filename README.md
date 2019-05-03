@@ -5,9 +5,8 @@ MasterSchedueler.Administrative - README
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+2. [Product Spec](#Product-Spec)
+3. [Schema](#Schema)
 
 ## Overview
 ### Description
@@ -80,13 +79,6 @@ Report issues dealing with city/state infustructure damage/disturbances which in
    * Submission history
 * Alerts
     * Alerts page
-
-## Wireframes
-<img src="https://i.imgur.com/yrR4CNq.png" width=600>
-
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
 
 ## Schema 
 
