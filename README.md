@@ -30,20 +30,17 @@ blah blah blah blah need to update this
 ## Schema 
 
 ### Models
-#### Post
+#### Student
 |Property|Type|Description|
 |---|---|---|
-|issueCategory|string|type of issue to be reported|
-|dirOfTravel|string|direction defined by Northbound, Southbound, Eastbound, Westbound|
-|transMode|string|type of transportation like car, boat, walking, etc  |
-|nearestCrossStreet|string|nearest intersection to issue|
-|dateTime|Date|time issue was created|
-|image|File|image related to issue|
-|location|GeoPoint|coordinate of issue|
-|descripText|string|description of issue|
-|followUp|boolean|whether or not follow up response is needed|
-|upVote|number|number of upvotes|
-|username|string|author of post|
+|id|String|id of the student|
+|name|String|name of student|
+|grade|int|grade of student|
+|preferredClasses|List<String>|List of classes student wants to take|
+|preferred|List<Boolean>|Maps to the classes student want to take and determines if a student has priority to take the class|
+|academy|String|student's academy they are part of [none, green, fast]|
+|schedule|List<String>|student's schedule that was generated. A list of the class names|
+|scheduleId|List<String>|student's schedule that was generated. A list of class Ids that map to class names|
 
 #### User
 |Property|Type|Description|
