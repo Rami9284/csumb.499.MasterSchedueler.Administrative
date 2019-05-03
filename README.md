@@ -7,6 +7,7 @@ MasterSchedueler.Administrative - README
 1. [Overview](#Overview)
 2. [Product Spec](#Product-Spec)
 3. [Schema](#Schema)
+4. [Networking](#Networking)
 
 ## Overview
 ### Description
@@ -77,8 +78,8 @@ blah blah blah blah need to update this
 |teacherID|String|Teache ID who is teaching the class|
 |room|String|how many students have registed for the class (in progress)|
 
-### Networking
-## List of network requests by screen
+## Networking
+## List of network requests
 - Login 
     - (Read/Get) Query user credentials to get corresponding user
      ``` swift
