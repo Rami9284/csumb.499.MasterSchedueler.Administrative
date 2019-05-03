@@ -104,6 +104,21 @@ blah blah blah blah need to update this
         ...
         }
     ```
+    
+- Add Student  
+  - (Insert/Post) Insert a student
+  - Required: Student Object: Student
+  - Response: 
+      - Success: null
+      - Fail: Student Object who count be inserted
+   ``` java
+      @CrossOrigin(origins = "*")
+       @PostMapping("/addstudent")
+      public Student addStudent(@RequestBody Student student) {
+          // Implementation
+      }
+  ```
+   
 
 
 - Reset Database
