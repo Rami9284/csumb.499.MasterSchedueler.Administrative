@@ -10,75 +10,22 @@ MasterSchedueler.Administrative - README
 
 ## Overview
 ### Description
-Report issues dealing with city/state infustructure damage/disturbances which includes Graffiti, Litter, Roadway(Potholes, Roadkill), Landscaping, etc. This app uses current geo-location to report issues along with a short easy to fill survey. This information will be sent to the appropriate city/state reporting outlet (email, online form, etc). 
-
-### App Evaluation
-[Evaluation of your app across the following attributes]
-- **Category:** Reporting
-- **Mobile:** iOS
-- **Story:** 
-- **Market:** Anyone
-- **Habit:** 
-- **Scope:** California
+California State University Capstone Project. Salinas Union High School District Sponsored 
+blah blah blah blah need to update this
 
 ## Product Spec
 
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-
-* User can register a new account
-* User can login
-* User can submit issues 
-* User can view submissions
-* User can upvote/downvote issues
-* User can view their profile recent reports
+    [x] User can add students, teachers, classes, and sections
+    [x] User can update students, teachers, classes, and sections
+    [x] User can delete students, teachers, classes, and sections
+    [x] User can find student(s), teacher(s), class(es), and section(s)
 
 **Optional Nice-to-have Stories**
-
-* User can report issues outside of California
-* User can view city information (email, phone, people to contact)
-* Users can add optional photos to issue
-* User can received notification of local issues
-
-### 2. Screen Archetypes
-
-* Login
-    * User can login
-* Register
-    * User can register a new account
-* Map
-    * User can submit issues
-* Submission form
-    * User can submit issues
-* View Reports
-    * User can view submissions
-    * User can upvote/downvote issues
-* Profile
-* ...
-
-### 3. Navigation
-
-**Tab Navigation** (Tab to Screen)
-
-* Map
-* Profile
-* Alerts
-
-**Flow Navigation** (Screen to Screen)
-
-* Login 
-    * Map
-* Register
-    * Map
-* Map
-   * Submission form
-   * Alerts page
-* Profile
-   * Profile page
-   * Submission history
-* Alerts
-    * Alerts page
+    [ ] User can download Schedule
+    [ ] User can upload .csv files to add students, teachers, classes, and sections
 
 ## Schema 
 
@@ -97,7 +44,6 @@ Report issues dealing with city/state infustructure damage/disturbances which in
 |followUp|boolean|whether or not follow up response is needed|
 |upVote|number|number of upvotes|
 |username|string|author of post|
-
 
 #### User
 |Property|Type|Description|
