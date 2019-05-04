@@ -333,9 +333,108 @@ Micro service is deployed on Heroku.  https://master-scheduler-admin.herokuapp.c
         public void deleteClass(@PathVariable String id){
         // Implementation
         }
- 
-
+     ```
 ### Sections
+- Get Sections 
+    - (Read/Get) Gets all of the Sections in the Database
+    - Required: NA
+    - Response: List of all sections present
+     ``` java
+        @CrossOrigin(origins = "*")
+        @GetMapping("/sections")
+        public List<Section> getSections(){
+          //implementation
+        }
+    ```
+- Get Sections that have a specific period 
+    - (Read/Get) Gets all of the Sections in the Database
+    - Required: The desired period 
+    - Response: List of all sections present
+     ``` java
+        @CrossOrigin(origins = "*")
+        @GetMapping("/sectionsForPer/{period}")
+        public List<Section> sectionsForPer(@PathVariable int period){
+          //implementation
+        }
+    ```     
+    
+- Find Sections 
+    - (Read/Get) String variable of Section ID
+    - Required: class ID: String
+    - Response: 
+        - Success: Section
+        - Fail: null
+     ``` java
+        @CrossOrigin(origins = "*")
+        @GetMapping("/findsection/{id}")
+        public Section findSection(@PathVariable String id) {
+          //implementation
+        }
+    ```
+
+- Add Sections 
+    - (Insert/Post) Insert a section
+    - Required: Section Object: Section
+    - Response: 
+        - Success: null
+        - Fail: Section Object not inserted
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PostMapping("/addsection")
+    public Section addSection(@RequestBody Section section) {
+            // Implementation
+        }
+    ```
+- Add Multiple Sections
+    - (Insert/Post) Insert Multiple sections
+    - Required: List of Section Object: List of Sections
+    - Response: 
+        - Success: null
+        - Fail: List of Section Object not inserted
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PostMapping("/addsections")
+         public List<Section> addSections(@RequestBody List<Section> sections) {
+        // Implementation
+        }
+    ```
+    
+- Update Section Basic Section info
+    - (Update/Put) Updates a section's basic information that does not affect other classes
+    - Required: Section Object: Section
+    - Response: 
+        - Success: Section object
+        - Fail: null
+     ``` java
+        @CrossOrigin(origins = "*")
+        @PutMapping("/updatesection")
+        public Section updateSection(@RequestBody Section section){
+            // Implementation
+        }
+    ```
+- Delete Section 
+    - (Delete/Delete) Deletes a Section
+    - Required: Section Id: String
+    - Response: NA
+     ``` java
+        @CrossOrigin(origins = "*")
+        @DeleteMapping("/deletesectionId/{id}")
+        public String deleteSection(@PathVariable String id){
+        // Implementation
+        }
+     ```
+ - Delete Student from Section 
+    - (Delete/Delete) Deletes a Section from a student and removes the student from the section
+    - Required: Student Id: String,Section Id: String
+    - Response: NA
+     ``` java
+        @CrossOrigin(origins = "*")
+        @DeleteMapping("/deleteStudentSection/{studentId}/{sectionId}")
+        public void deleteStudentSection(@PathVariable String studentId, @PathVariable String sectionId){
+        // Implementation
+        }
+     ```
+     
 ### Other
 - Reset Database
     - (Delete/Get) Wipes out the Database and re-seeds the Database. Display purposesd
