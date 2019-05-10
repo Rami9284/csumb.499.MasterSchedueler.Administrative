@@ -347,7 +347,7 @@ public class AdministrativeController{
     @GetMapping("/findclass/{id}")
     public Class findClass(@PathVariable String id) {
         System.out.println(id);
-        return classRepo.findById(id).orElse(new Class());
+        return classRepo.findById(id).orElse(null);
     }
 
     /*
