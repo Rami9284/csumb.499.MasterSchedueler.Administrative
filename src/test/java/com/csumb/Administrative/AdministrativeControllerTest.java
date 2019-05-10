@@ -7,6 +7,8 @@ import com.csumb.Administrative.entities.Class;
 import com.csumb.Administrative.repositotries.ISectionRepository;
 import com.csumb.Administrative.repositotries.IStudentRepository;
 import com.csumb.Administrative.repositotries.ITeacherRepository;
+import com.csumb.Administrative.repositotries.IClassRepository;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +36,8 @@ public class AdministrativeControllerTest {
 
     @MockBean ISectionRepository sectionRepository;
 
+    @MockBean IClassRepository classRepository;
+
     @MockBean
     private ITeacherRepository teacherRepository;
 
@@ -46,6 +50,9 @@ public class AdministrativeControllerTest {
 
     private List<Section> sectionData = new ArrayList<>(Arrays.asList(new Section(new Class("Social","Cooking 101"),1,3),
     new Section(new Class(), 1, 2)));
+
+    private List<Class> classData = new ArrayList<>(Arrays.asList(new Class("Math", "Algebra", "124","1234"),new Class("Science", "Biology", "128","1283")));
+
 
     //all Students
     @Test
@@ -281,4 +288,69 @@ public class AdministrativeControllerTest {
     public void deleteSection(){
         Assert.assertNull(administrativeController.deleteSection("123"));
     }
+
+
+   ////classes
+    @Test
+    public void getClasses(){
+        when(classRepository.findAll()).thenReturn(classData);
+        Assert.assertEquals(classData, administrativeController.getClasses());
+    }
+
+    @Test
+    public void findClass(){
+        Class c = new Class("Math","Algebra");
+        when(classRepository.findById(c.getId())).thenReturn(Optional.of(c));
+        Assert.assertEquals(c,administrativeController.findClass(c.getId()));
+    }
+
+    @Test
+    public void addClasses(){
+
+        when(classRepository.insert(classData.get(0))).thenReturn(classData.get(0));
+        when(classRepository.insert(classData.get(1))).thenReturn(classData.get(1));
+        Assert.assertEquals(null,administrativeController.addClass(new Class("Math", "Algebra")));
+
+
+        when(classRepository.insert(classData.get(0))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        when(classRepository.insert(classData.get(1))).thenThrow(new DuplicateKeyException("key", new Throwable()));
+        Assert.assertEquals(classData, administrativeController.addClasses(classData));
+
+    }
+
+    @Test
+    public void ClassNotFound(){
+        when(classRepository.findById("290")).thenReturn(Optional.empty());
+        Assert.assertNull(administrativeController.findClass("127"));
+    }
+
+    @Test
+    public void addClass(){
+        Class c = new Class("science", "Health");
+        when(classRepository.insert(c)).thenReturn(c);
+        Assert.assertNull(administrativeController.addClass(c));
+    }
+
+    @Test
+    public void updateClass(){
+        Class c = new Class();
+        when(classRepository.findById(c.getId())).thenReturn(Optional.of(c));
+        Class expected = new Class();
+        when(classRepository.save(expected)).thenReturn(expected);
+        Assert.assertEquals(expected, administrativeController.updateClass(expected));
+    }
+
+    @Test
+    public void classNotUpdated(){
+        when(teacherRepository.findById("wrong id")).thenReturn(Optional.empty());
+        Class c = new Class("science", "Health");
+        Assert.assertNull(administrativeController.updateClass(c));
+    }
+
+
+
+
+
 }
+
+
