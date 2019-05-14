@@ -42,7 +42,7 @@ public class TeacherSeeder implements CommandLineRunner {
                         "INTRODUCTION TO LIFE SCIENCE" ,"BIOLOGY", "MARINE BIOLOGY", 5),
                 new Teacher("dgvb","Ms. Lulu","SCIENCE",
                         "MARINE BIOLOGY" ,"INTRODUCTION TO LIFE SCIENCE", "CHEMISTRY", 5),
-                new Teacher("jnnb ","Ms. Leona","SCIENCE",
+                new Teacher("jnnb","Ms. Leona","SCIENCE",
                         "BIOLOGY" ,"MARINE BIOLOGY", "INTRODUCTION TO LIFE SCIENCE", 5),
                 new Teacher("dsa64","Ms. Jay","SCIENCE",
                         "BIOLOGY" ,"CHEMISTRY", "BIOLOGY", 5),
